@@ -1,6 +1,6 @@
 **Replace the items in square brackets `[...]` with your teams information** 
 
-# [Team Name]
+# [Tuesday-5]
 |Name|GitHub Username|Email|
 |:---|:--------------|:----|
 |Richard Connor| youcancallmerich |rconn004@odu.edu|
