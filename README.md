@@ -3,13 +3,13 @@
 # [Team Name]
 |Name|GitHub Username|Email|
 |:---|:--------------|:----|
-|Person 1| person1 |person1@odu.edu|
+|Richard Connor| youcancallmerich |rconn004@odu.edu|
 |Person 2| person2 |person2@odu.edu|
 
 
 # Trello Board
 
-Our Trello Board is located at [<[Trello Board URL]>](https://trello.com/b/UmHcjn06/agile-board).
+Our Trello Board is located at [<[Tuesday-5]>](https://trello.com/b/UmHcjn06/agile-board).
 
 # Design Notes
 
