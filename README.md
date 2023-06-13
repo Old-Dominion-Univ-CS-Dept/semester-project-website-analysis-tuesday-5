@@ -9,7 +9,7 @@
 
 # Trello Board
 
-Our Trello Board is located at <[Trello Board URL]>.
+Our Trello Board is located at [<[Trello Board URL]>](https://trello.com/b/UmHcjn06/agile-board).
 
 # Design Notes
 
