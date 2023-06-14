@@ -4,7 +4,7 @@
 |Name|GitHub Username|Email|
 |:---|:--------------|:----|
 |Richard Connor| youcancallmerich |rconn004@odu.edu|
-|Person 2| person2 |person2@odu.edu|
+|Jon Rossy| jross015 |jross015@odu.edu|
 
 
 # Trello Board
