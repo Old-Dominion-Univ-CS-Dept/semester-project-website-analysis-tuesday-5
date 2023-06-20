@@ -5,6 +5,7 @@
 |:---|:--------------|:----|
 |Richard Connor| youcancallmerich |rconn004@odu.edu|
 |Jon Rossy| jross015 |jross015@odu.edu|
+|Lucas Hayes| hayeslucas1 |lhaye005@odu.edu|
 
 
 # Trello Board
