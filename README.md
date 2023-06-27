@@ -7,7 +7,7 @@
 |Jon Rossy| jross015 |jross015@odu.edu|
 |Lucas Hayes| hayeslucas1 |lhaye005@odu.edu|
 |Justin Cantoria| Jcan1095 |jcant005@odu.edu|
-
+|Selai Naim | snaim001 |snaim001@odu.edu|
 # Trello Board
 
 Our Trello Board is located at [<[Tuesday-5]>](https://trello.com/b/UmHcjn06/agile-board).
