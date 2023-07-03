@@ -19,3 +19,6 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+implementation 'org.jsoup:jsoup:1.16.1' 
+
