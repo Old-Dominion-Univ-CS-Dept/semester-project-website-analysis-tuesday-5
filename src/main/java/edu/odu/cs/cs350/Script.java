@@ -1,5 +1,5 @@
 package edu.odu.cs.cs350;
 
-public class WebsiteBuilder {
+public class Script {
     
 }
