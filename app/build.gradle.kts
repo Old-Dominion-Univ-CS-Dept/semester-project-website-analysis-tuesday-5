@@ -16,10 +16,8 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // Use JUnit test framework.
+    testImplementation("junit:junit:4.13.2")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
@@ -34,10 +32,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("edu.odu.cs.cs350.App")
-}
-
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+    mainClass.set("semester.project.website.analysis.tuesday.App")
 }

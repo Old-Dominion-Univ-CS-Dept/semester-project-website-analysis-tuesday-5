@@ -10,5 +10,5 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
 }
 
-rootProject.name = "edu-odu-cs-cs350"
+rootProject.name = "semester-project-website-analysis-tuesday-5"
 include("app")
