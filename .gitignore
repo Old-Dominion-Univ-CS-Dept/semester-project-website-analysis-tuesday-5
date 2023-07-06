@@ -22,3 +22,6 @@ gradle-app.setting
 
 implementation 'org.jsoup:jsoup:1.16.1' 
 
+
+# Ignore Gradle build output directory
+build
