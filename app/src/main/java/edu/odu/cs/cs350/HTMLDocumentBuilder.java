@@ -42,7 +42,7 @@ public class HTMLDocumentBuilder {
 
     }
 
-    public static void build(HTMLDOCUMENT) {
+    public static void build(HTMLDocument) {
 
     }
 
