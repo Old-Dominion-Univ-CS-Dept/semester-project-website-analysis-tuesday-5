@@ -15,5 +15,9 @@ public static void withURL(url: URL){
 public static void withURLs(urls: Collection<?>){
 
 }
+
+public static void build(Website) {
+
+    }
     
 }
