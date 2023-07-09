@@ -30,4 +30,20 @@ public class HTMLDocumentBuilder {
 
     }
 
+    public static void extractImages(Collection<?> Images) {
+
+    }
+
+    public static void extractScripts(Collection<?> Scripts) {
+
+    }
+
+    public static void extractStyleSheets(Collection<?> StyleSheets) {
+
+    }
+
+    public static void build(HTMLDocument) {
+
+    }
+    
 }
