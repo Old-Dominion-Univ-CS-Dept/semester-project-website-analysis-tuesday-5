@@ -21,8 +21,8 @@ public class HTMLDocumentBuilderTest {
 
     @BeforeEach
     public void setUp() {
-        linkValidator = new LinkValidator();
-        visitedLinks = new HashSet<>();
+        LinkValidator linkValidator = new LinkValidator();
+        HashSet visitedLinks = new HashSet<>();
     }
 
     @Test

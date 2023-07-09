@@ -27,7 +27,7 @@ public class HTMLDocumentBuilder {
 
 
     public static void extractAnchors(Collection<?> Anchors) {
-
+        
     }
 
     public static void extractImages(Collection<?> Images) {
@@ -39,7 +39,7 @@ public class HTMLDocumentBuilder {
     }
 
     public static void extractStyleSheets(Collection<?> StyleSheets) {
-        
+
     }
 
     public static void build(HTMLDocument) {
