@@ -3,12 +3,10 @@
  */
 package edu.odu.cs.cs350;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
+    @Test void App() {
         fail("Not yet implemented");
     }
 }

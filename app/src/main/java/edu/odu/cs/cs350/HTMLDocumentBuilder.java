@@ -2,18 +2,18 @@ package edu.odu.cs.cs350;
 
 import java.util.Collection;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 public class HTMLDocumentBuilder {
 
-    public static void HTMLDocumentBuilder() {
-
-    }
 
     public static void withContentFrom(StringBuffer reader) {
 
     }
 
-    public static void withContentFrom(String file) {
-
+    public static Document withContentFrom(String file) {
+        return Jsoup.parse(file, "UTF-8");
     }
 
     public static void withBaseDirectory(String[] siteRoot) {
