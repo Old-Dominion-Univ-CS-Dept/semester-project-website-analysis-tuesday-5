@@ -4,8 +4,10 @@ public class Anchor {
     HTMLDocument foundOn = new HTMLDocument();
     long sizeOfFile;
 
-
-    public void Anchor() {
+    public void anchor() {
         sizeOfFile = 0;
     }
+
+
+    
 }

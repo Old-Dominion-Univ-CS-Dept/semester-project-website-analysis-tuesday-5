@@ -39,7 +39,7 @@ public class HTMLDocumentBuilder {
     }
 
     public static void extractStyleSheets(Collection<?> StyleSheets) {
-
+        
     }
 
     public static void build(HTMLDocument) {
