@@ -8,13 +8,21 @@ import org.jsoup.nodes.Document;
 public class HTMLDocumentBuilder {
 
 
-    public static void withContentFrom(StringBuffer reader) {
+    public static Document withContentFrom(StringBuffer reader) {
+        return Jsoup.parse(reader.toString());
 
     }
-
+    
+    /*
     public static Document withContentFrom(String file) {
-        return Jsoup.parse(file, "UTF-8");
+        Hold all of this until next increment
+
+        File inputFile = new File(file);
+        return Jsoup.parse(inputFile, "UTF-8");
+
+
     }
+    */
 
     public static void withBaseDirectory(String[] siteRoot) {
 
@@ -42,7 +50,7 @@ public class HTMLDocumentBuilder {
 
     }
 
-    public static void build(HTMLDocument) {
+    public static void build(Document HTMLDocument) {
 
     }
     
