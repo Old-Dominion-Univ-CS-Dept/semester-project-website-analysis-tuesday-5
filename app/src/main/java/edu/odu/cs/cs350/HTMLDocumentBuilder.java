@@ -35,7 +35,7 @@ public class HTMLDocumentBuilder {
 
 
     public static void extractAnchors(Collection<?> Anchors) {
-
+        
     }
 
     public static void extractImages(Collection<?> Images) {
