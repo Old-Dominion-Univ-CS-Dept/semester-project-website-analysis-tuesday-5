@@ -50,7 +50,7 @@ public class HTMLDocumentBuilderTest {
         assertEquals(functionLinks, "a1");
 
     }
-
+    
     @BeforeEach
     public void setUp() {
         LinkValidator linkValidator = new LinkValidator();
