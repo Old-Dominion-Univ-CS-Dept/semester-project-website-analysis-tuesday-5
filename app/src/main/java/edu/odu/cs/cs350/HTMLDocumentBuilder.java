@@ -4,8 +4,6 @@ import java.util.Collection;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class HTMLDocumentBuilder {
 
@@ -36,10 +34,8 @@ public class HTMLDocumentBuilder {
     }
 
 
-    public static Collection<?> extractAnchors(Document doc) {
-        Element content = doc.getElementById("content");
-        Elements links = content.getElementsByTag("a");
-        return links;
+    public static void extractAnchors(Collection<?> Anchors) {
+
     }
 
     public static void extractImages(Collection<?> Images) {

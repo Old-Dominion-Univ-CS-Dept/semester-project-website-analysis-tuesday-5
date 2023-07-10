@@ -8,7 +8,7 @@ public class AnchorTest {
 
     @Test void Anchor() {
         Anchor anchor = new Anchor();
-        assertEquals(0, anchor.sizeOfFile);
+        assertEquals( 0, anchor.sizeOfFile);
         
     }
     
