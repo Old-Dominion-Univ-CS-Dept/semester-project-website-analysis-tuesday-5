@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><html><head><meta charset="UTF-8"/><link href="../../styles/md-scroll.css" media="screen, projection, print" rel="stylesheet" type="text/css"/><link href="../../styles/md-scroll-ext.css" media="screen, projection, print" rel="stylesheet" type="text/css"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="https://www.cs.odu.edu/~zeil/styles/highlight.js/styles/googlecode.css" rel="stylesheet"/><script src="https://www.cs.odu.edu/~zeil/styles/highlight.js/highlight.pack.js"> </script><script>hljs.initHighlightingOnLoad();</script><script src="../../styles/md-scroll.js" type="text/javascript"> </script><script src="../../styles/md-scroll-ext.js" type="text/javascript"> </script><script src="../../styles/rawdeflate.js" type="text/javascript"> </script><script src="../../styles/plantuml.js" type="text/javascript"> </script><script src="../../styles/mermaid.min.js" type="text/javascript"> </script><script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  };
+  </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"> </script><title>Test-Driven Development</title></head><body><script>sshowControl0 = { counter: 1,
+    showNumber: 0, max: 1};
+    window.onhashchange = hashHasChanged;</script><div class="navHeader" id="slideshowControlA0"><table class="navHeader"><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"/><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="../../Directory/outline/index.html" title="Course home/outline"><img src="../../graphics/home.png"/></a>
+<a href="mailto:tkennedy@odu.edu?subject=CS350%2C%20Test-Driven%20Development"><img src="../../graphics/email.png" title="Email to instructor"/></a><span style="margin: 0 32px;"/></td><td class="slideshowcontrolRight"/></tr></table></div><div class="mainBody"><div class="titleblock"><h1 class="title">Test-Driven Development</h1><h2 class="author">Steven J Zeil</h2><div class="date">Last modified: May 3, 2023</div></div><div class="toc">Contents:<div class="toc-h1"><a href="#the-story">1 The Story</a></div><div class="toc-h2"><a href="#scenario-use-case">1.1 Scenario / Use Case</a></div><div class="toc-h1"><a href="#instructions">2 Instructions</a></div><div class="toc-h2"><a href="#building-and-testing">2.1 Building and testing</a></div><div class="toc-h2"><a href="#the-tdd-process">2.2 The TDD Process</a></div><div class="toc-h1"><a href="#assignment-management">3 Assignment management</a></div><div class="toc-h2"><a href="#actions">3.1 Actions</a></div><div class="toc-h2"><a href="#files-that-you-may-change-">3.2 Files that you may change:</a></div><div class="toc-h1"><a href="#notes">4 Notes</a></div></div><p>In this assignment you will demonstrate your understanding of Test-Driven Development (TDD).</p>
+<p>You will be given a description and skeleton for a relatively simple class, and a user story that you are supposed to implement. You must do this in a TDD process, using commits to your repository as snapshots showing off the steps of your process.</p>
+<a id="thestory"/><h1 id="the-story">1 The Story</h1><p>You are part of a team implementing an on-line shopping site. The company lawyers have warned you that the ubiquitous online “shopping cart” may be patented, so you are working instead on a simulated cash register.</p>
+<p>The story that you need to implement is</p>
+<blockquote>
+<p>As a store customer, I would like to pay slightly more than I have been charged and receive the appropriate change in return. </p>
+
+</blockquote><p>A note attached to the card for this story says:</p>
+<blockquote>
+<p>This story requires a cash register with some money already in the till and some charges already applied. For the purpose of this simulation, we will only be concerned with the total amount of change owed – we will not worry about whether the money in the till has the correct denominations (pennies, nickels, dimes, quarters, and various types of dollar bills) to make exact change. </p>
+
+<p>To make change, the payment must be larger than the total charges and the till must ocntain enough money to pay out the difference between the payment and the charges. If there is not enough money in the till to make change, an exception should be thrown. If the payment offered is insufficient for the charges accumulated, an exception should be thrown.</p>
+
+</blockquote><p>You will be provided with a skeleton interface for <code>CashRegister</code> that you will fill in as you develop the tests.</p>
+<a id="scenariousecase"/><h2 id="scenario-use-case">1.1 Scenario / Use Case</h2><p>A <code>CashRegister</code> has a drawer that holds cash (called the “till”) that holds cash.</p>
+<p>Money is placed into the till typically when each cashier begins their shift.</p>
+<pre><code>CashRegister register = new CashRegister(); // Has $0 in the till, $0 charges.
+register.addToTill(new Money(100, 0)); // add $100.00 to the till
+</code></pre><p>The cashier might check periodically to see how much is in the till:</p>
+<pre><code>System.out.println("The till contains " + register.getAmountInTill());
+//  should print $100.00
+</code></pre><p>When a customer brings items to the cashier, the cashier rings up the charges for those items.</p>
+<pre><code>register.charge(new Money(5, 95));  // $5.95
+register.charge(new Money(1, 0));  // $1.00
+</code></pre><p>When all charges have been rung up, the cashier can announce the total charge.</p>
+<pre><code>System.out.println ("Your total is " + register.getTotalCharge());
+// should print $6.95
+</code></pre><p>Then the customer offers payment, which may be larger than the total charge. If there is enough money in the till to make change, the change is taken from the till and then the customer’s payment put into the till.</p>
+<pre><code>Money change = register.payment(new Money(10, 0)); // customer pays $10.00
+System.out.println("Your change is " + change); // should be $3.05
+System.out.println("The till contains " + register.getAmountInTill()); // should be $106.95
+System.out.println ("Remaining charges are " + register.getTotalCharge()); // should be $0.00
+</code></pre><h1 id="instructions">2 Instructions</h1><a id="buildingandtesting"/><h2 id="building-and-testing">2.1 Building and testing</h2><ul>
+<li>You can compile your code for this project in your IDE and/or using the  provided makefile:
+<pre><code>make
+</code></pre>
+</li>
+<li>You can run your unit tests in your IDE and/or using the  provided makefile:
+<pre><code>make test
+</code></pre>
+</li>
+<li>
+<p>You can clean up your prior compilation attempts using the  provided makefile:</p>
+
+<pre><code>make clean
+</code></pre>
+</li>
+</ul><a id="thetddprocess"/><h2 id="the-tdd-process">2.2 The TDD Process</h2><ol>
+<li>
+<p>Tag the commit with the starting code as “start”.</p>
+</li>
+<li>
+<p>Start writing a unit test (in <code>TestRegister.java</code>) that addresses the story.</p>
+
+<ul>
+<li>Stop as soon as your test fails (remember that failing to compile counts as a “failure”) for reasons that cannot be addressed in <code>TestRegister</code>.</li>
+<li>Commit your changes.</li>
+<li>Tag this commit as <code>test1</code>.</li>
+</ul>
+</li>
+<li>
+<p>Add just enough code to <code>CashRegister.java</code> to enable your tests to “pass” (even if “pass” in this instance only means that they now compile cleanly).</p>
+
+<ul>
+<li>Commit your changes.</li>
+<li>Tag this commit <code>production1</code>.</li>
+</ul>
+</li>
+<li>
+<p>Repeat steps 2 &amp; 3 as many times as necessary until you have completed the story, advancing the tag numbers by one on each repetition (i.e., <code>test2</code>, <code>production2</code>, <code>test3</code>, <code>production3</code>, …)</p>
+</li>
+<li>
+<p>You may push your changes and tags at any time. Pushing a commit (but not pushing tags) will trigger a preliminary grade report.</p>
+
+<ul>
+<li>
+<p>So push the tags first, <em>then</em> push the commit. Otherwise your preliminary grade reports will tend to lag one tag  behind your current work.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>When you are finished with the story, make sure that you have pushed everything, both tags and commits.</p>
+</li>
+</ol><script src="../AssignmentManager/asstMgr.js"> </script><a id="assignmentmanagement"/><h1 id="assignment-management">3 Assignment management</h1><h2 id="actions">3.1 Actions</h2><ol>
+<li>Get the <a href="./registerRepo" target="_blank">starting code</a> for this project and register your  GitHub repository.</li>
+<li><a href="./gradeReport">View your current grade report.</a>.
+<ul>
+<li>
+<p>A request for a <em>preliminary</em> grade  report will be automatically filed each time you push changes to your  repository.</p>
+
+<p>It may be several minutes before grading begins, depending on how many requests are in front of yours. Grading itself can take anywhere from a few seconds to many minutes.</p>
+
+</li>
+<li>
+<p>On rare occasions the request from GitHub to our servers may fail. Also,  your web browser may have cached the old report and be showing that to you.</p>
+
+<p>If more than an hour has passed since you last pushed changes, and your grade report has not updated, you should:</p>
+
+<ol>
+ <li>Clear your browser’s cache (files only, not cookies or history) and then try to view the grade report again.</li>
+ <li>If that does not work, <a href="./requestGrading">request preliminary grading</a> of your most recent push.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>View the <a href="./getSolution">solution</a>.</li>
+</ol><a id="filesthatyoumaychange"/><h2 id="files-that-you-may-change-">3.2 Files that you may change:</h2><script>setAssignmentOptions("tddAsst-register","/home/tkennedy/Courses/Websites/cs350/sum23/Assts","/home/tkennedy/Courses/AutoGrading/cs350/sum23/");</script><ul>
+<li><code>TestRegister.java</code></li>
+<li><code>CashRegister.java</code></li>
+</ul><h1 id="notes">4 Notes</h1><ol>
+<li>
+<p>This assignment is about demonstrating that you can carry out a process.</p>
+
+<p>As such, rewriting your git history through <code>git reset</code> and similar means is forbidden. </p>
+
+<p>On the other hand, instances of “oops, I forgot one thing before I set that tag” are likely to be quite common when tagging commits. Therefore, moving tags with the “<code>-f</code>” option will not be penalized.</p>
+
+</li>
+<li>
+<p>Because you are not working directly with branches in this assignment,  merge conflicts should not be an issue.</p>
+
+<p>The one exception to that statement would be if you do some of your work on one machine and some of your work on a different machine. To avoid conflicts, get in the habit of starting each work session with a pull and ending each work session with a push.</p>
+
+<p>This will become an essential habit when you start working with your team.</p>
+
+</li>
+<li>
+<p>Preliminary grade reports are <em>preliminary</em>. The instructor may choose to  add tests later, refine the existing ones, or may raise or lower the final  score if circumstances demand it.</p>
+</li>
+</ol></div><script>sshowControl0 = { counter: 1,
+    showNumber: 0, max: 1};
+    window.onhashchange = hashHasChanged;</script><div class="navFooter" id="slideshowControl0"><table class="navFooter"><tr class="slideshowcontrol"><td class="slideshowcontrolLeft"/><td class="slideshowcontrolMiddle">
+<a class="imgLink" href="../../Directory/outline/index.html" title="Course home/outline"><img src="../../graphics/home.png"/></a>
+<a href="mailto:tkennedy@odu.edu?subject=CS350%2C%20Test-Driven%20Development"><img src="../../graphics/email.png" title="Email to instructor"/></a><span style="margin: 0 32px;"/></td><td class="slideshowcontrolRight"/></tr></table></div><div class="copyright">© 2015-2023, Old Dominion Univ.</div></body></html>
