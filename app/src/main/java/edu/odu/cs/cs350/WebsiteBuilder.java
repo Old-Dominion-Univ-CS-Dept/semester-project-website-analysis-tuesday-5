@@ -8,11 +8,16 @@ public static void withPath(path: Path){
         
     }
 
-public static void withURL(url: URL){
+public static Document withURL(String URL){
+        Document doc = jsoup.connect(URL).get();
+    return doc;
         
     }
 
-public static void withURLs(urls: Collection<?>){
+public static Collection<?> withURLs(urls: Collection<?>){
+        Collection<?> collect = jsoup.connect(URL).get();
+   return collect;
+
 
 }
 
