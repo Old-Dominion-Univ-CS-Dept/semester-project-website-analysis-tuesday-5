@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 public class HTMLDocumentBuilder {
 
@@ -40,8 +41,10 @@ public class HTMLDocumentBuilder {
     }
 
 
-    public static void extractAnchors(Collection<?> Anchors) {
-        
+    public static Collection<?> extractAnchors(Document doc) {
+        //Element content = doc.getElementById("content");
+        Elements links = doc.getElementsByTag("a");
+        return links;
     }
 
     public static void extractImages(Collection<?> Images) {
