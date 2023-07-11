@@ -47,15 +47,24 @@ public class HTMLDocumentBuilder {
         return links;
     }
 
-    public static void extractImages(Collection<?> Images) {
+    public static Collection<?> extractImages(Image image) {
+
+        Elements images = image.getElementsByTag("a");
+        return images;
 
     }
 
-    public static void extractScripts(Collection<?> Scripts) {
+    public static Collection<?> extractScripts(Script script) {
+
+        Elements scripts = script.getElementsByTag("a");
+        return scripts;
 
     }
 
-    public static void extractStyleSheets(Collection<?> StyleSheets) {
+    public static Collection<?> extractStyleSheets(Stylesheet StyleSheet) {
+
+        Elements stylesheets = StyleSheet.getElementsByTag("a");
+        return stylesheets;
 
     }
 
