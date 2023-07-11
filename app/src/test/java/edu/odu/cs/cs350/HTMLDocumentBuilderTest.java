@@ -2,6 +2,8 @@ package edu.odu.cs.cs350;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 
 import org.jsoup.Jsoup;
@@ -50,30 +52,28 @@ public class HTMLDocumentBuilderTest {
    /* 
     @BeforeEach
     public void setUp() {
-        LinkValidator linkValidator = new LinkValidator();
-        HashSet visitedLinks = new HashSet<>();
+        File htmlFile = new File("src/main/test/java/edu/odu/cs/cs350/SampleHTMLFile.html");
     }
 
     @Test
-    public void testValidateLink() {
-        String link1 = "https://example.com/link1";
-        String link2 = "https://example.com/link2";
-        String link3 = "https://example.com/link3";
+    public void validateLinkTest() {
+        HTMLLinkValidator.validateLinksInHTML(htmlFile);
 
-        // Validate the first link
-        boolean isValid1 = linkValidator.validateLink(link1, visitedLinks);
-        Assertions.assertTrue(isValid1);
-        Assertions.assertTrue(visitedLinks.contains(link1));
+        // Add assertions based on your expected behavior
+        // For example, check if a specific link is visited or validated
+        // You can also check if certain links are not visited or validated
 
-        // Validate the second link
-        boolean isValid2 = linkValidator.validateLink(link2, visitedLinks);
-        Assertions.assertTrue(isValid2);
-        Assertions.assertTrue(visitedLinks.contains(link2));
+        assertTrue(HTMLLinkValidator.visitedLinks.contains("http://example.com"));
+        assertFalse(HTMLLinkValidator.visitedLinks.contains("http://invalid-link.com"));
+    }
 
-        // Validate the third link (which has been visited before)
-        visitedLinks.add(link3);
-        boolean isValid3 = linkValidator.validateLink(link3, visitedLinks);
-        Assertions.assertFalse(isValid3);
+    @Test
+    void testValidateLinksInHTML_withInvalidFile() {
+        // Test the case where an invalid file is provided
+        File invalidFile = new File("src/main/test/java/edu/odu/cs/cs350/SampleHTMLFile.html");
+
+        // Assert that an IOException is thrown
+        assertThrows(IOException.class, () -> HTMLLinkValidator.validateLinksInHTML(invalidFile));
     }
 
 */
