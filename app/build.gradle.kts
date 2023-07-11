@@ -21,6 +21,11 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+
+    implementation 'org.jsoup:jsoup:1.16.1'
+    implementation 'org.apache.poi:poi:5.2.3+'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3+'
+    implementation 'com.cedarsoftware:json-io:4.14.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

@@ -6,9 +6,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+/*
+ * This is an HTML parser that takes URLs or files and extracts various tags (anchors,
+ * images, stylesheets, JavaScript code) from each webpage. After extracting all of that
+ * information, it will build and return an HTML Document.
+ */
 public class HTMLDocumentBuilder {
 
-
+    /*
+     * Parse HTML from a StringBuffer
+     * 
+     * @param StringBuffer HTML code
+     * 
+     * @return an HTML Document
+     */
     public static Document withContentFrom(StringBuffer reader) {
         return Jsoup.parse(reader.toString());
 
@@ -34,7 +45,13 @@ public class HTMLDocumentBuilder {
 
     }
 
-
+    /*
+     * Extracts all anchors from a given HTML Document
+     * 
+     * @param an HTML Document
+     * 
+     * @return a Collection of all anchors found
+     */
     public static Collection<?> extractAnchors(Document doc) {
         //Element content = doc.getElementById("content");
         Elements links = doc.getElementsByTag("a");
