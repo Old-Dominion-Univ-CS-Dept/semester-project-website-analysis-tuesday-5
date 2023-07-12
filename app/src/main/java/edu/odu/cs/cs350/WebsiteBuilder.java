@@ -5,14 +5,17 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collection;
-
 import java.util.HashSet;
 import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-*/ 
+/**
+ * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and 
+ *
+ * @author Jon Rossy
+ */
 
 
 public class WebsiteBuilder {
