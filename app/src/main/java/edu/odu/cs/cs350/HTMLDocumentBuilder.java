@@ -1,7 +1,13 @@
 package edu.odu.cs.cs350;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Collection;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -58,20 +64,71 @@ public class HTMLDocumentBuilder {
         return links;
     }
 
-    public static void extractImages(Collection<?> Images) {
+    public static Collection<?> extractImages(Image image) {
+
+        Elements images = image.getElementsByTag("a");
+        return images;
 
     }
 
-    public static void extractScripts(Collection<?> Scripts) {
+    public static Collection<?> extractScripts(Script script) {
+
+        Elements scripts = script.getElementsByTag("a");
+        return scripts;
 
     }
 
-    public static void extractStyleSheets(Collection<?> StyleSheets) {
+    public static Collection<?> extractStyleSheets(Stylesheet StyleSheet) {
+
+        Elements stylesheets = StyleSheet.getElementsByTag("a");
+        return stylesheets;
 
     }
 
     public static void build(Document HTMLDocument) {
 
     }
+
+    public static void validateLink(File htmlFile){
+        try {
+            Document document = Jsoup.parse(htmlFile, "UTF-8");
+
+            //Select all <a> tags with href attribute
+            document.select("a[href]");
+            for (Element link : links){
+                String url = link.attr("href");
+
+                if (visitedLinks.contains(url)){
+                    System.out.println(url + " has already been visited.");
+                } else{
+                    visitedLinks.add(url);
+                    if (validateLink(url)) {
+                        System.out.println(url + " is a valid link.");
+                    } else {
+                         System.out.println(url + " is not a valid link.");
+                    }
+                }
+
+            }
+
+        } 
+        catch (IOException e){
+            System.out.println("Error reading HTML file: " + e.getMessage());
+        }  
+        }
+         public static boolean validateLink(String url) {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("HEAD");
+            connection.connect();
+
+            int responseCode = connection.getResponseCode();
+            return responseCode == HttpURLConnection.HTTP_OK;
+         } catch (Exception e){
+            return false;
+         }
+
+    }
+
     
 }
