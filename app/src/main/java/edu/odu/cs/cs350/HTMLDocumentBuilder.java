@@ -12,14 +12,14 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-/*
+/**
  * This is an HTML parser that takes URLs or files and extracts various tags (anchors,
  * images, stylesheets, JavaScript code) from each webpage. After extracting all of that
  * information, it will build and return an HTML Document.
  */
 public class HTMLDocumentBuilder {
 
-    /*
+    /**
      * Parse HTML from a StringBuffer
      * 
      * @param StringBuffer HTML code
@@ -51,7 +51,7 @@ public class HTMLDocumentBuilder {
 
     }
 
-    /*
+    /**
      * Extracts all anchors from a given HTML Document
      * 
      * @param an HTML Document
