@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -10,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
@@ -56,12 +58,17 @@ public class HTMLDocumentBuilder {
      * 
      * @param an HTML Document
      * 
-     * @return a Collection of all anchors found
+     * @return an ArrayList of all anchors found
      */
-    public static Collection<?> extractAnchors(Document doc) {
+    public static ArrayList<Element> extractAnchors(Document doc) {
+        ArrayList<Element> anchors = new ArrayList<Element>();
         //Element content = doc.getElementById("content");
         Elements links = doc.getElementsByTag("a");
-        return links;
+        for (Element link : links) {
+            anchors.add(link);
+        }
+
+        return anchors;
     }
 
     public static Collection<?> extractImages(Image image) {

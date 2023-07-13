@@ -2,12 +2,14 @@ package edu.odu.cs.cs350;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 
 public class HTMLDocumentBuilderTest {
@@ -44,9 +46,9 @@ public class HTMLDocumentBuilderTest {
         StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a><a id=\"a2\">a2</a></html>");
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
         Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
-        Collection<?> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
+        ArrayList<Element> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
 
-        assertEquals(functionLinks.toString(), "<a id=\"a1\">a1</a>\n<a id=\"a2\">a2</a>");
+        assertEquals(functionLinks.toString(), "[<a id=\"a1\">a1</a>, <a id=\"a2\">a2</a>]");
 
     }
    /* 
