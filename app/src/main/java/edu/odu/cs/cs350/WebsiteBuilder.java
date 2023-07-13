@@ -15,27 +15,38 @@ import java.util.Vector;
 import java.nio.file.Path;
 
 /**
- * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and 
- *
- * 
+ * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
+ * information, it will build and return a website.
  */
 
 
 public class WebsiteBuilder {
 
+    /**
+    * obtains website path
+    */
+    
 public static Path withPath(String Path){
 
     Path path = jsoup.connect(Path).get();
     return path;
+}
    
-
+/**
+* obtains website URL
+*/
+    
 public static Document withURL(String URLs){
         
     Document doc = jsoup.connect(URL).get();
     return doc;
         
     }
-
+    
+/**
+* obtains collection of website URLs
+*/
+    
 public static Vector<Collection> withURLs(string URL){
         
     Vector<Collection> collect = new Vector<>();
@@ -44,6 +55,10 @@ public static Vector<Collection> withURLs(string URL){
     return collect:
 
 }
+
+    /**
+    * builds website with path and url
+    */
 
 public static void build(Website) {
 
