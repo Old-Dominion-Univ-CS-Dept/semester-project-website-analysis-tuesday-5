@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.Vector;
 import java.nio.file.Path;
@@ -16,7 +17,7 @@ import java.nio.file.Path;
 /**
  * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and 
  *
- * @author Jon Rossy
+ * 
  */
 
 
@@ -24,12 +25,11 @@ public class WebsiteBuilder {
 
 public static Path withPath(String Path){
 
-    Path path = Paths.connect(Path).get();
+    Path path = jsoup.connect(Path).get();
     return path;
-        
-    }
+   
 
-public static Document withURL(String URL){
+public static Document withURL(String URLs){
         
     Document doc = jsoup.connect(URL).get();
     return doc;
