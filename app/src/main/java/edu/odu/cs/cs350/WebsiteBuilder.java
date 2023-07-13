@@ -10,6 +10,8 @@ import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import java.util.Vector;
+import java.nio.file.Path;
 
 /**
  * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and 
@@ -20,20 +22,26 @@ import org.jsoup.select.Elements;
 
 public class WebsiteBuilder {
 
-public static void withPath(path: Path){
+public static Path withPath(String Path){
+
+    Path path = Paths.connect(Path).get();
+    return path;
         
     }
 
 public static Document withURL(String URL){
-        Document doc = jsoup.connect(URL).get();
+        
+    Document doc = jsoup.connect(URL).get();
     return doc;
         
     }
 
-public static Collection<?> withURLs(urls: Collection<?>){
-        Collection<?> collect = jsoup.connect(URL).get();
-   return collect;
-
+public static Vector<Collection> withURLs(string URL){
+        
+    Vector<Collection> collect = new Vector<>();
+    Vector<Collection> collect = jsoup.connect(URL).get();
+    collect.add(URL)
+    return collect:
 
 }
 
