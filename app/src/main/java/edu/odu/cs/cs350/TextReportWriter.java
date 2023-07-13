@@ -7,11 +7,11 @@ public class TextReportWriter {
     
     public static void writeReport(String fileName){
         try {
-            BufferedWriter = new BufferedWriter(new FileWriter(filename));
+            BufferedWriter Writer = new BufferedWriter(new FileWriter(fileName));
 
-            writer.write("Text report content.");
+            Writer.write("Text report content.");
 
-            writer.close();
+            Writer.close();
             System.out.println("Report written successfully.");
     }   catch (IOException e) {
             System.err.println("Error writing the report: " + e.getMessage());
