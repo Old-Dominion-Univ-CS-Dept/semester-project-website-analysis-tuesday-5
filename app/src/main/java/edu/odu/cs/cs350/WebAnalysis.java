@@ -1,23 +1,40 @@
 package edu.odu.cs.cs350;
 import java.nio.file.Path;
-
+import edu.odu.cs.cs350.WebsiteBuilder;
 public class WebAnalysis {
-    public static void main(String[] args) {
-        System.out.println("Driver for websitebuilder");
-     
+    public String Path;
+    public String URLs;
+
+    public WebsiteBuilder(String Path);{
+        this.Path = Path;
     }
-    //driver -> wb: new()
-   //return
+    public WebsiteBuilder(String URLs) {
+        this.URLs = URLs;
+    }
+    
+    public static void main(String[] args) {
+       //driver -> wb: new()
+      //return 
+        WebsiteBuilder Path = new WebsiteBuilder("/path/to/website");
+            //driver -> wb: withPath(path)
+            //return
+        WebsiteBuilder builder = new WebsiteBuilder(Path);
+        builder.build();
 
+        WebsiteBuilder updatedBuilder = builder.withPath(Path);
+        updatedBuilder.build();
 
-    //driver -> wb: withPath(path)
-   //return
-    WebsiteBuilder Path = new WebsiteBuilder();
-
-   //driver -> wb: withURLs(urls)
-   //return
-
+            //driver -> wb: withURLs(urls)
+            //return
+        List<String> urls = Arrays.asList("https://example.com", "https://example.org");
+        WebsiteBuilder = WebsiteBuilder.withURLs(urls);
+    }
    //driver -> wb: build()
+   public void build(WebsiteBuilder) {
+    // Build the website using the specified path
+    System.out.println("Building website at path: " + Path);
+}
+  
 
 
 }
