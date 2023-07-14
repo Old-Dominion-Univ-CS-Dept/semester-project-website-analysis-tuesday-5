@@ -4,6 +4,7 @@ import edu.odu.cs.cs350.WebsiteBuilder;
 public class WebAnalysis {
     public String Path;
     public String URLs;
+    public String URL;
 
     public WebsiteBuilder(String Path);{
         this.Path = Path;
@@ -22,11 +23,10 @@ public class WebAnalysis {
         Document.build();
         WebsiteBuilder updatedDocment = Document.withPath(Path);
         updatedDocment.build();
-
             //driver -> wb: withURLs(urls)
             //return
         List<String> urls = Arrays.asList("https://example.com", "https://example.org");
-        WebsiteBuilder = WebsiteBuilder.withURLs(urls);
+        WebsiteBuilder = WebsiteBuilder.withURLs(URL);
     }
    //driver -> wb: build()
    public void build(WebsiteBuilder) {
