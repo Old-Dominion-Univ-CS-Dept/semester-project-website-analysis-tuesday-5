@@ -18,11 +18,10 @@ public class WebAnalysis {
         WebsiteBuilder Path = new WebsiteBuilder("/path/to/website");
             //driver -> wb: withPath(path)
             //return
-        WebsiteBuilder builder = new WebsiteBuilder(Path);
-        builder.build();
-
-        WebsiteBuilder updatedBuilder = builder.withPath(Path);
-        updatedBuilder.build();
+        WebsiteBuilder Document = new WebsiteBuilder(URLs);
+        Document.build();
+        WebsiteBuilder updatedDocment = Document.withPath(Path);
+        updatedDocment.build();
 
             //driver -> wb: withURLs(urls)
             //return
