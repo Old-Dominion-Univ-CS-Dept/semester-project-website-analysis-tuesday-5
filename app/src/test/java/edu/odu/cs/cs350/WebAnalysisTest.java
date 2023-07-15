@@ -3,13 +3,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class WebAnalysisTest {
-    
-
     @Test
-    public void path_exists() throws IOException {
-       Path link = ( "app/src/test/java/edu/odu/cs/cs350/SampleHTMLFile.html");
-       assertThat(Files.exists(link)).isTrue;
+    @void GetPageTitle(){
+        String html = "<html><head><title>Example Page Title</title></head><body></body></html>";
+        Document doc = Jsoup.parse(html);
+
+        String title = WebAnalysis.GetPageTitle(doc);
+        assertEquals("Example Page Title", title);
     }
 }
+    
+
+    
+    
