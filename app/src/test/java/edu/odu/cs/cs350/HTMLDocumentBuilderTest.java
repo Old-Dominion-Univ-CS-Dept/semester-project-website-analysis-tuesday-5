@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -40,6 +43,15 @@ public class HTMLDocumentBuilderTest {
         assertEquals(testSite,Website);
         
         */
+    }
+
+    @Test void withBaseDirectoryTest() {
+        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+
+        //HTMLDoc.withBaseDirectory("baseDir");
+        File directory = new File("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
+        assertEquals(getClass().getResource("testSite.html"), "Semester");
+
     }
 
     @Test void extractAnchorsTest() {

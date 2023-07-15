@@ -44,7 +44,7 @@ public class HTMLDocumentBuilder {
     }
     */
 
-    public static void withBaseDirectory(String[] siteRoot) {
+    public static void withBaseDirectory(String siteRoot) {
 
     }
 
