@@ -22,15 +22,25 @@ import java.nio.file.Path;
 
 public class WebsiteBuilder {
 
-    // obtains website path
+    /**
+     * obtains website path
+     * @param Path
+     * @return
+     * @throws IOException
+     */
     
 public static Document withPath(String Path) throws IOException{
 
     Document path = Jsoup.connect(Path).get();
     return path;
 }
-   
-// obtains website URL
+
+    /**
+ * obtains website URL
+ * @param URL
+ * @return
+ * @throws IOException
+ */
     
 public static Document withURL(String URL) throws IOException{
         
@@ -38,8 +48,12 @@ public static Document withURL(String URL) throws IOException{
     return doc;
         
     }
-    
-// obtains collection of website URLs
+
+    /**
+ * obtains collection of website URLs
+ * @param URL
+ * @return
+ */
 
 public static Vector<Element> withURLs(Element URL){
         
@@ -48,7 +62,10 @@ public static Vector<Element> withURLs(Element URL){
     return collect;
 }
 
-    // builds website with path and url
+/**
+ * builds website with path and url
+ * @param website
+ */
     
 public static void build(Website website) {
 
