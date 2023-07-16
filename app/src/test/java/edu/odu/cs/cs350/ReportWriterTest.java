@@ -1,12 +1,12 @@
 package edu.odu.cs.cs350;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReportWriterTest {
+
     @Test
     public void testJsonExtension() {
         String extension = "json";
@@ -16,7 +16,7 @@ public class ReportWriterTest {
 
         String fileName = ReportWriter.nameFile(extension);
 
-        Assertions.assertEquals(expectedFileName, fileName);
+        assertEquals(expectedFileName, fileName);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ReportWriterTest {
 
         String fileName = ReportWriter.nameFile(extension);
 
-        Assertions.assertEquals(expectedFileName, fileName);
+        assertEquals(expectedFileName, fileName);
     }
 
     @Test
@@ -40,6 +40,6 @@ public class ReportWriterTest {
 
         String fileName = ReportWriter.nameFile(extension);
 
-        Assertions.assertEquals(expectedFileName, fileName);
+        assertEquals(expectedFileName, fileName);
     }
 }
