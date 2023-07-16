@@ -1,39 +1,37 @@
 package edu.odu.cs.cs350;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import java.nio.file.Path;
 import edu.odu.cs.cs350.WebsiteBuilder;
 public class WebAnalysis {
-    public String Path;
-    public String URLs;
-    public String URL;
-
-    public WebsiteBuilder(String Path);{
-        this.Path = Path;
-    }
-    public WebsiteBuilder(String URLs) {
-        this.URLs = URLs;
-    }
-    
     public static void main(String[] args) {
        //driver -> wb: new()
       //return 
-        WebsiteBuilder Path = new WebsiteBuilder("/path/to/website");
+        WebsiteBuilder path = new WebsiteBuilder(".");
+            return path;
+            try{
+                //Connenct to the web page and get the HTML document
+                Document doc = Jsoup.connect(URL).get();
+
+                //Print the page title 
+                String title = doc.title();
+                System.out.println("Page title: " + title);
+
+                // Print all the links in the page
+                System.out.println("Links: ");
+                Element links = doc.select("a[href]");
+                for(Element link : links){
+                    String href = link.attr("href");
+                    System.out.println(href);
+                }
+            }
             //driver -> wb: withPath(path)
             //return
-        WebsiteBuilder Document = new WebsiteBuilder(URLs);
-        Document.build();
-        WebsiteBuilder updatedDocment = Document.withPath(Path);
-        updatedDocment.build();
+      
             //driver -> wb: withURLs(urls)
             //return
-        List<String> urls = Arrays.asList("https://example.com", "https://example.org");
-        WebsiteBuilder = WebsiteBuilder.withURLs(URL);
     }
    //driver -> wb: build()
-   public void build(WebsiteBuilder) {
-    // Build the website using the specified path
-    System.out.println("Building website at path: " + Path);
-}
-  
-
-
 }
