@@ -1,48 +1,25 @@
 package edu.odu.cs.cs350;
-import java.io.File; 
-import java.util.Date;
-import java.util.concurrent.Callable;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.Calendar;
-import java.io.IOException; 
 
- 
-// superclass for excelWriter, jsonWriter, textWriter
-public class ReportWriter{
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    //defult constructor, wont be needed in most cases
-    public ReportWriter(){
+public class ReportWriter {
 
+    // Default constructor (not needed in most cases)
+    public ReportWriter() {
     }
-//naming outPut files
-// type of file will be json, txt or xlsx
 
-/**
- *naming outPut files
-* type of file will be json, txt or xlsx
-*
- * @return string
- */
-public static String nameFile(){
-    //getting current year, month, day, hour, minute,second
-    LocalDate date = LocalDate.now();
-    Calendar time = Calendar.getInstance();
-    int currentDay = date.getDayOfMonth();
-    int currentYear = date.getYear();
-    int currentMonth = date.getMonthValue();
-    int currentHour = time.get(Calendar.HOUR_OF_DAY);
-    int currentMinute = time.get(Calendar.MINUTE);
-    int currentSecond = time.get(Calendar.SECOND);
-    
+    /**
+     * Generates the name for the output files.
+     *
+     * @param extension The file extension (json, txt, xlsx)
+     * @return The generated file name as a string
+     */
+    public static String nameFile(String extension) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+        String formattedDateTime = now.format(formatter);
 
-
-
-// creating the file
-    return ""+currentYear + currentMonth + 
-    currentDay + "-" + currentHour + currentMinute + currentSecond + "-" + "summary.";
-
+        return formattedDateTime + "-summary." + extension;
+    }
 }
-
-} 
-
