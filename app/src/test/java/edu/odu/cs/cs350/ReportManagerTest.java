@@ -8,32 +8,23 @@ public class ReportManagerTest {
 
     @Before
     public void setUp() {
-        
+       
     }
 
     @Test
     public void testGenerateReport() {
+       
         String reportName = "Sample Report";
-        
-        // Call the method under test
-        ReportManager.generateReport(reportName);
-        
-        // Perform assertions to validate the behavior
-        assertTrue(//what is report testing//(reportName));
+        String generatedReport = ReportManager.generateReport(reportName);
+        assertEquals("Generated report: " + reportName, generatedReport);
     }
 
     @Test
     public void testExportReport() {
+        
         String reportName = "Sample Report";
         String format = "PDF";
-        
-        // Call the method under test
-        ReportManager.exportReport(reportName, format);
-        
-        // Perform assertions to validate the behavior
-        assertTrue(// ask group (reportName, format));
-    }
+        String exportedReport = ReportManager.exportReport(reportName, format);
+        assertEquals("Exported report: " + reportName + " in " + format + " format", exportedReport);
 }
-
-// added comment
-// added new comment
+}
