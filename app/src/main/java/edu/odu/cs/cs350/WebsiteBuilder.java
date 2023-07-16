@@ -24,36 +24,33 @@ public class WebsiteBuilder {
 
     // obtains website path
     
-public static Path withPath(String Path){
+public static Document withPath(String Path) throws IOException{
 
-    Path path = jsoup.connect(Path).get();
+    Document path = Jsoup.connect(Path).get();
     return path;
 }
    
 // obtains website URL
     
-public static Document withURL(String URLs){
+public static Document withURL(String URL) throws IOException{
         
-    Document doc = jsoup.connect(URL).get();
+    Document doc = Jsoup.connect(URL).get();
     return doc;
         
     }
     
 // obtains collection of website URLs
 
-public static Vector<Collection> withURLs(string URL){
+public static Vector<Element> withURLs(Element URL){
         
-    Vector<Collection> collect = new Vector<>();
-    Vector<Collection> collect = jsoup.connect(URL).get();
-    collect.add(URL)
-    return collect:
-
+    Vector<Element> collect = new Vector<>();
+    collect.add(URL);
+    return collect;
 }
 
     // builds website with path and url
     
-public static void build(Website) {
+public static void build(Website website) {
 
     }
-    
 }
