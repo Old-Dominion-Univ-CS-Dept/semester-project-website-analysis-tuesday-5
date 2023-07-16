@@ -71,30 +71,30 @@ public class HTMLDocumentBuilder {
         return anchors;
     }
 
-    public static Collection<?> extractImages(Image image) {
+   /// public static Collection<?> extractImages(Image image) {
 
-        Elements images = image.getElementsByTag("a");
-        return images;
+    ///    Elements images = image.getElementsByTag("a");
+    ///    return images;
 
-    }
+  ///  }
 
-    public static Collection<?> extractScripts(Script script) {
+ ///   public static Collection<?> extractScripts(Script script) {
 
-        Elements scripts = script.getElementsByTag("a");
-        return scripts;
+  ///      Elements scripts = script.getElementsByTag("a");
+  ///      return scripts;
 
-    }
+  ///  }
 
-    public static Collection<?> extractStyleSheets(Stylesheet StyleSheet) {
+  ///  public static Collection<?> extractStyleSheets(Stylesheet StyleSheet) {
 
-        Elements stylesheets = StyleSheet.getElementsByTag("a");
-        return stylesheets;
+   ///     Elements stylesheets = StyleSheet.getElementsByTag("a");
+    ///    return stylesheets;
 
-    }
+   /// }
 
-    public static void build(Document HTMLDocument) {
+  ///  public static void build(Document HTMLDocument) {
 
-    }
+ ///   }
 
 
     
