@@ -38,7 +38,7 @@ public static Path withPath(String Path){
     
 public static Document withURL(String URLs){
         
-    Document doc = jsoup.connect(URL).get();
+    Document doc = Jsoup.connect(URL).get();
     return doc;
         
     }
