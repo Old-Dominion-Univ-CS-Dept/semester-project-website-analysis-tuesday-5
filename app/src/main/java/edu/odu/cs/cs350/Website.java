@@ -17,10 +17,10 @@ import java.nio.file.Path;
 
 public class Website {
 
-Vector<Collection> URL;
-String Path;
+Vector<Element> URL;
+static String Path;
 
-public Website(Vector<Collection> Url, String path) {
+public Website(Vector<Element> Url, String path) {
     URL = Url;
     Path = path;
 }
@@ -29,17 +29,17 @@ public void setPath(String path) {
     Path = path;
 }
 
-public static Path getPath() {
-    return Path;
-}
+///public static Path getPath() {
+ ///   return Path;
+///}
 
 
-public void setUrl(Vector<Document> ) {
+public void setUrl(Vector<Element> Url) {
     URL = Url;
 }
 
-public static URL getURL() {
-    return URL;
+public static URL getURL(java.net.URL Url) {
+    return Url;
 }
     
 }
