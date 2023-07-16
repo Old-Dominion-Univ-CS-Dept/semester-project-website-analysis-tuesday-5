@@ -90,7 +90,7 @@ public class Anchor {
      * 
      * @param HTMLDocument
      * 
-     * @return none
+     * @return none 
      */
     public void setFoundOn(HTMLDocument HTMLDoc) {
         foundOn = HTMLDoc;
