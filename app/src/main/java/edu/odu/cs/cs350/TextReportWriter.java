@@ -17,5 +17,7 @@ public class TextReportWriter {
             System.err.println("Error writing the report: " + e.getMessage());
     }
     }
+
+    
     
 }

@@ -20,6 +20,7 @@ import org.jsoup.select.Elements;
  * information, it will build and return an HTML Document.
  */
 public class HTMLDocumentBuilder {
+    ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
 
     /**
      * Parse HTML from a StringBuffer
@@ -60,40 +61,33 @@ public class HTMLDocumentBuilder {
      * 
      * @return an ArrayList of all anchors found
      */
-    public static ArrayList<Element> extractAnchors(Document doc) {
-        ArrayList<Element> anchors = new ArrayList<Element>();
+    public static ArrayList<Anchor> extractAnchors(Document doc) {
+        ArrayList<Anchor> anchors = new ArrayList<Anchor>();
         //Element content = doc.getElementById("content");
         Elements links = doc.getElementsByTag("a");
         for (Element link : links) {
-            anchors.add(link);
+            Anchor a = new Anchor(link);
+            anchors.add(a);
         }
 
         return anchors;
     }
 
-    public static Collection<?> extractImages(Image image) {
 
-        Elements images = image.getElementsByTag("a");
-        return images;
+    /**
+     * Builds a completed HTMLDocument object
+     * 
+     * @param A StringBuffer object
+     * 
+     * @return an HTMLDocument object
+     */
+    public static HTMLDocument build(StringBuffer StrBuffer) {
+        Document doc = withContentFrom(StrBuffer);
+        HTMLDocument HTMLDoc = new HTMLDocument();
+        ArrayList<Anchor> docAnchors = extractAnchors(doc);
+        HTMLDoc.setAnchors(HTMLDoc, docAnchors);
 
-    }
-
-    public static Collection<?> extractScripts(Script script) {
-
-        Elements scripts = script.getElementsByTag("a");
-        return scripts;
-
-    }
-
-    public static Collection<?> extractStyleSheets(Stylesheet StyleSheet) {
-
-        Elements stylesheets = StyleSheet.getElementsByTag("a");
-        return stylesheets;
-
-    }
-
-    public static void build(Document HTMLDocument) {
-
+        return HTMLDoc;
     }
 
 
