@@ -5,12 +5,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.nio.file.Path;
 import edu.odu.cs.cs350.WebsiteBuilder;
-public class WebAnalysis {
+
+public class WebAnalysis extends WebsiteBuilder {
     public static void main(String[] args) {
        //driver -> wb: new()
       //return 
-        WebsiteBuilder path = new WebsiteBuilder(".");
-            return path;
+        WebsiteBuilder path = new WebsiteBuilder();
+            return;
             try{
                 //Connenct to the web page and get the HTML document
                 Document doc = Jsoup.connect(URL).get();
@@ -27,6 +28,7 @@ public class WebAnalysis {
                     System.out.println(href);
                 }
             }
+            
             //driver -> wb: withPath(path)
             //return
       

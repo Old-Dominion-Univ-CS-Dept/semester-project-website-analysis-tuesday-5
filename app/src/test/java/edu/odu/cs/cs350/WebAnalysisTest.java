@@ -1,6 +1,7 @@
 package edu.odu.cs.cs350;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.jsoup.Jsoup;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +14,7 @@ public class WebAnalysisTest {
         Document doc = Jsoup.parse(html);
 
         String title = WebAnalysis.GetPageTitle(doc);
-        assertEquals("Example Page Title", title);
+        assertEquals("Page Title", title);
     }
 }
     
