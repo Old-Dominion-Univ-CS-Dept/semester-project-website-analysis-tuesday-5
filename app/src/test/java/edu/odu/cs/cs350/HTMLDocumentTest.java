@@ -3,8 +3,6 @@ package edu.odu.cs.cs350;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.jsoup.nodes.Element;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.Jsoup;
 
@@ -25,7 +23,7 @@ public class HTMLDocumentTest {
 
         HTMLDocument constructorHTMLDocument = new HTMLDocument(testArrayList);
 
-        assertEquals(Integer.valueOf(constructorHTMLDocument.getAnchors().size()), 1);
+        assertEquals(testElement,constructorHTMLDocument.getAnchors().get(0).getContent());
 
     }
 

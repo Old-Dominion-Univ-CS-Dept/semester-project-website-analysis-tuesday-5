@@ -26,6 +26,7 @@ dependencies {
     implementation("org.apache.poi:poi:5.2.3+")
     implementation("org.apache.poi:poi-ooxml:5.2.3+")
     implementation("com.cedarsoftware:json-io:4.14.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

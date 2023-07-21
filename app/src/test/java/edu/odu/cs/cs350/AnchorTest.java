@@ -2,10 +2,7 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Document;
-import org.jsoup.Jsoup;
 
 
 public class AnchorTest {
