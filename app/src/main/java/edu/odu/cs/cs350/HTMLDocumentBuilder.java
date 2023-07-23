@@ -1,14 +1,11 @@
 package edu.odu.cs.cs350;
 
-import java.util.ArrayList;
-import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collection;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,6 +17,12 @@ import org.jsoup.select.Elements;
  * information, it will build and return an HTML Document.
  */
 public class HTMLDocumentBuilder {
+
+    Path baseDir;
+    ArrayList<Path> webPages;
+    ArrayList<Path> directories;
+
+
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
 
     /**
@@ -45,8 +48,29 @@ public class HTMLDocumentBuilder {
     }
     */
 
-    public static void withBaseDirectory(String siteRoot) {
+    public void withBaseDirectory(Path siteRoot) throws IOException {
+        this.baseDir = siteRoot;
+        this.webPages = new ArrayList<>();
+        this.directories = new ArrayList<>();
 
+        Files.walk(siteRoot)
+            .forEach((Path path) -> {
+                if (Files.isRegularFile(path)) {
+                    this.webPages.add(path);
+                }
+                else if (Files.isDirectory(path)) {
+                    this.directories.add(path);
+                }
+            });
+
+    }
+
+    public ArrayList<Path> getWebPages() {
+        return this.webPages;
+    }
+
+    public ArrayList<Path> getDirectories() {
+        return this.directories;
     }
 
 

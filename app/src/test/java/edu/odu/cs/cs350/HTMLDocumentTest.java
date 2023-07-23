@@ -1,15 +1,17 @@
 package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
+
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Document;
-import org.jsoup.Jsoup;
+import org.junit.Test;
 
 
 public class HTMLDocumentTest {
 
-    @Test void testHTMLDocument() {
+    @Test 
+    public void testHTMLDocument() {
         Element testElement = new Element("Thursdays are just baby Fridays");
         String sampleHTML = "<html></html>";
         HTMLDocument HTMLDoc = new HTMLDocument();
