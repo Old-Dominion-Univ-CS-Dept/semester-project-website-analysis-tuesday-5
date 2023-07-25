@@ -1,60 +1,44 @@
 package edu.odu.cs.cs350;
-import org.jsoup.Jsoup;
-import org.jsoup.helper.Validate;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import java.io.IOException;
-
-public class WebAnalysis extends WebsiteBuilder {
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+//This is WebAnalysis a driver class for WB (WebsiteBuilder) where it will fetch the path and URL 
+//of the given directory
+public class WebAnalysis  {
     public static void main(String[] args) throws IOException{
-        Validate.isTrue(args.length == 1, "usage: supply url to fetch");
-        String url = args[0];
-        print("Fetching %s...", url);
 
-        Document doc = Jsoup.connect(url).get();
-        Elements links = doc.select("a[href]");
-        Elements media = doc.select("[src]");
-        Elements imports = doc.select("link[href]");
+        Path pathToAnalysis = Paths.get(args[0]);
+        System.out.println(pathToAnalysis);
 
-        print("\nMedia: (%d)", media.size());
-        for (Element src : media) {
-            if (src.normalName().equals("img"))
-                print(" * %s: <%s> %sx%s (%s)",
-                        src.tagName(), src.attr("abs:src"), src.attr("width"), src.attr("height"),
-                        trim(src.attr("alt"), 20));
-            else
-                print(" * %s: <%s>", src.tagName(), src.attr("abs:src"));
-        }
+        //driver -> wb: new()
+        //return
+        //The method withPath(String) in the type WebsiteBuilder is not applicable for the arguments ()
+        //The constructor WebsiteBuilder(Path) is undefined
+        WebsiteBuilder WB = new WebsiteBuilder(pathToAnalysis);
+        WB.withPath();
 
-        print("\nImports: (%d)", imports.size());
-        for (Element link : imports) {
-            print(" * %s <%s> (%s)", link.tagName(),link.attr("abs:href"), link.attr("rel"));
-        }
-
-        print("\nLinks: (%d)", links.size());
-        for (Element link : links) {
-            print(" * a: <%s>  (%s)", link.attr("abs:href"), trim(link.text(), 35));
-        }
-    }
-
-    private static void print(String msg, Object... args) {
-        System.out.println(String.format(msg, args));
-    }
-
-    private static String trim(String s, int width) {
-        if (s.length() > width)
-            return s.substring(0, width-1) + ".";
-        else
-            return s;
-    }
-            //driver -> wb: new()
-           //return 
-        
-            //driver -> wb: withPath(path)
+             //driver -> wb: withPath(path)
             //return
-      
+        System.out.println("Path Identifed: ");
+        for (Path file : WB.withPath()){
+            System.out.format("  -%s%n", file);
+        }
+        System.out.println();
+
             //driver -> wb: withURLs(urls)
             //return
+            //The method withURL(String) in the type WebsiteBuilder is not applicable for the arguments ()
+        System.out.println("URLs Identified: ");
+        for (Path file : WB.withURL()){
+            System.out.format("  - %s%n", file);
+        }
+
+        //driver -> wb: build()
+        Stream.Builder<String> builder = Stream.builder();
+        Stream<String> str = builder.build();
+        str.forEach(System.out::println);
     }
-   //driver -> wb: build()
+}    
+    
+   
