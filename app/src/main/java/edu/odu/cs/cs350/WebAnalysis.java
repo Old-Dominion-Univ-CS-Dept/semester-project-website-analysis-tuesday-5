@@ -30,7 +30,7 @@ public class WebAnalysis  {
             //return
             //The method withURL(String) in the type WebsiteBuilder is not applicable for the arguments ()
         System.out.println("URLs Identified: ");
-        for (Path file : WB.withURL()){
+        for (Path file : WB.withURLs()){
             System.out.format("  - %s%n", file);
         }
 
