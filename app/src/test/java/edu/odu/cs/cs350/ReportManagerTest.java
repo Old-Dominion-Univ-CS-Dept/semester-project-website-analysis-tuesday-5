@@ -1,30 +1,49 @@
-package edu.odu.cs.cs350;
+package edu.odu.cs.cs350.reportTest;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.odu.cs.cs350.entity.Website;
+import org.junit.Before;
+import org.junit.Test;;
 
 public class ReportManagerTest {
+    private ReportManager reportManager,reportManager1;
+    private Website mockWebsite;
 
     @Before
     public void setUp() {
-       
+        reportManager = mock(ReportManager.class);
+        reportManager1 = new ReportManager();
+        mockWebsite = mock(Website.class);
     }
 
     @Test
-    public void testGenerateReport() {
-       
-        String reportName = "Sample Report";
-        ReportManager.generateReport(reportName);
-        
+    public void testSetSourceData() {
+        reportManager1.setSourceData(mockWebsite);
+
+        // Verify that the source data was set correctly
+        assertEquals(mockWebsite, reportManager1.website);
     }
 
     @Test
-    public void testExportReport() {
-        
-        String reportName = "Sample Report";
-        String format = "PDF";
-        ReportManager.exportReport(reportName, format);
-       
-}
+    public void testDetermineBaseFilename() {
+        LocalDateTime now = LocalDateTime.of(2023, 7, 24, 12, 34, 56); // Set a fixed date-time for testing
+        reportManager.website = mockWebsite;
+        String expectedBaseFilename = "2023-07-24-123456";
+
+        // Mock the LocalDateTime.now() call to return the fixed date-time
+        LocalDateTime fixedDateTime = LocalDateTime.of(2023, 7, 24, 12, 34, 56);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmmss");
+        String formattedDateTime = fixedDateTime.format(formatter);
+        when(reportManager.determineBaseFilename()).thenReturn(formattedDateTime);
+        // Test the determineBaseFilename method
+        assertEquals(expectedBaseFilename, reportManager.determineBaseFilename());
+    }
+
 }
