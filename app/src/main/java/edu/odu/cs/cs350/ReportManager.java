@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReportManager {
+
     Website website;
     private List<ReportWriter> reportWriters;
     public void setSourceData(Website website){
@@ -41,5 +42,17 @@ public class ReportManager {
 
         excelReportWriter.setBaseName(baseFilename);
         excelReportWriter.write();
+    
+public static String generateReport(String reportName) {
+
+        System.out.println("Generating the report: " + reportName);
+        return "Generated report: " + reportName;
+    }
+    
+    public static String exportReport(String reportName, String format) {
+
+        System.out.println("Exporting the report: " + reportName + " in format: " + format);
+        return "Exported report: " + reportName + " in " + format + " format ";
+
     }
 }

@@ -24,6 +24,7 @@ public class ReportManagerTest {
     }
 
     @Test
+
     public void testSetSourceData() {
         reportManager1.setSourceData(mockWebsite);
 
@@ -45,5 +46,21 @@ public class ReportManagerTest {
         // Test the determineBaseFilename method
         assertEquals(expectedBaseFilename, reportManager.determineBaseFilename());
     }
+
+
+    public void testGenerateReport() {
+       
+        String reportName = "Sample Report";
+        String generatedReport = ReportManager.generateReport(reportName);
+        assertEquals("Generated report: " + reportName, generatedReport);
+    }
+
+    @Test
+    public void testExportReport() {
+        
+        String reportName = "Sample Report";
+        String format = "PDF";
+        String exportedReport = ReportManager.exportReport(reportName, format);
+        assertEquals("Exported report: " + reportName + " in " + format + " format", exportedReport);
 
 }
