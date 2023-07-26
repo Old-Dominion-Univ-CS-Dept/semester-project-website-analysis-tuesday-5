@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.odu.cs.cs350.entity.Website;
+import edu.odu.cs.cs350.Website;
 import org.junit.Before;
 import org.junit.Test;;
 
