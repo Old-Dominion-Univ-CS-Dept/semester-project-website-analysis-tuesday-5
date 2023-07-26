@@ -1,4 +1,4 @@
-package edu.odu.cs.cs350.reportTest;
+package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
