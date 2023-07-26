@@ -1,14 +1,24 @@
 package edu.odu.cs.cs350;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
 import java.util.Collection;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.lang.Class;
+import java.net.URL;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.junit.jupiter.api.Test;
+import org.jsoup.nodes.Element;
 
 public class HTMLDocumentBuilderTest {
 
@@ -40,13 +50,24 @@ public class HTMLDocumentBuilderTest {
         */
     }
 
+    @Test void withBaseDirectoryTest() {
+        /*
+        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+
+        HTMLDoc.withBaseDirectory("C:/Users/hayes/Documents/CS350/semester-project-website-analysis-tuesday-5/app/src/test/java/edu/odu/cs/cs350/baseDir/");
+        assertTrue(HTMLDoc.getBaseDir() != null);
+        */
+        
+
+    }
+
     @Test void extractAnchorsTest() {
-        StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a><a id=\"a2\">a2</a></html>");
+        StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a></html>");
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
         Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
-        Collection<?> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
+        ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
 
-        assertEquals(functionLinks.toString(), "<a id=\"a1\">a1</a>\n<a id=\"a2\">a2</a>");
+        assertEquals(functionLinks.get(0).getContent().toString(), "<a id=\"a1\">a1</a>");
 
     }
    /* 

@@ -19,12 +19,27 @@ public class TextReportWriter implements ReportWriter {
     @Override
     public void setSourceData(Website website) {
         this.website = website;
+
+public class TextReportWriter {
+    
+    public static void writeReport(String fileName){
+        try {
+            BufferedWriter Writer = new BufferedWriter(new FileWriter(fileName));
+
+            Writer.write("Text report content.");
+
+            Writer.close();
+            System.out.println("Report written successfully.");
+    }   catch (IOException e) {
+            System.err.println("Error writing the report: " + e.getMessage());
+
     }
 
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
     }
+
 
     @Override
     public void write() {
@@ -83,5 +98,10 @@ public class TextReportWriter implements ReportWriter {
         return pageSize;
     }
 
+}
+
+
+    
+    
 }
 
