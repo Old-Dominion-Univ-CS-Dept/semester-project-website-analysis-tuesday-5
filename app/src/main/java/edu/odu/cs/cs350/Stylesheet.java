@@ -1,5 +1,5 @@
 package edu.odu.cs.cs350;
 
-public class Stylesheet {
-    
+public class Stylesheet extends Resource {
+
 }
