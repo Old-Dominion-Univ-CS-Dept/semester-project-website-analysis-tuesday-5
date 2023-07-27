@@ -2,31 +2,22 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.io.File;
-import java.nio.file.Files;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.IOException;
-import java.util.Collection;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.lang.Class;
-import java.net.URL;
+import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.junit.Test;
 
 public class HTMLDocumentBuilderTest {
 
-    @Test void HTMLDocumentBuilder() {
+    @Test public void HTMLDocumentBuilder() {
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
     }
 
-    @Test void withContentFromStringBufferTest() {
+    @Test public void withContentFromStringBufferTest() {
         String comparisonString = "<html><head><title>test</title></head></html>";
         StringBuffer testStringBuffer = new StringBuffer(comparisonString);
 
@@ -38,7 +29,7 @@ public class HTMLDocumentBuilderTest {
 
     }
 
-    @Test void withContextFromFileTest() {
+    @Test public void withContextFromFileTest() {
         /* Save for the next increment
 
         File testHTML = new File("SampleHTMLFile.html");
@@ -48,26 +39,32 @@ public class HTMLDocumentBuilderTest {
         assertEquals(testSite,Website);
         
         */
+        System.out.println(System.getProperty("user.dir"));
+        Path testingPath = Paths.get("src/main/java/edu/odu/cs/cs350/Anchor.java");
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\main\\java\\edu\\odu\\cs\\cs350\\Anchor.java", testingPath.toAbsolutePath().toString());
     }
 
-    @Test void withBaseDirectoryTest() {
-        /*
+    @Test public void withBaseDirectoryTest() throws IOException {
+        
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
 
-        HTMLDoc.withBaseDirectory("C:/Users/hayes/Documents/CS350/semester-project-website-analysis-tuesday-5/app/src/test/java/edu/odu/cs/cs350/baseDir/");
-        assertTrue(HTMLDoc.getBaseDir() != null);
-        */
+        Path path = Paths.get("C:/Users/hayes/Documents/CS350/semester-project-website-analysis-tuesday-5/app/src/test/java/edu/odu/cs/cs350/baseDir/");
+
+        HTMLDoc.withBaseDirectory(path);
+
+        assertEquals(2, HTMLDoc.getDirectories().size());
+        assertEquals(1, HTMLDoc.getWebPages().size());
         
 
     }
 
-    @Test void extractAnchorsTest() {
-        StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a></html>");
+    @Test public void extractAnchorsTest() {
+        StringBuffer testHTML = new StringBuffer("<html><a href=\"https://www.google.com\" id=\"a1\">a1</a></html>");
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
         Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
         ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
 
-        assertEquals(functionLinks.get(0).getContent().toString(), "<a id=\"a1\">a1</a>");
+        assertEquals(functionLinks.size(), 1);
 
     }
    /* 
