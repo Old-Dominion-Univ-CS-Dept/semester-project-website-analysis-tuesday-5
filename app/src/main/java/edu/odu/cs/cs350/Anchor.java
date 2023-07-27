@@ -1,7 +1,6 @@
 package edu.odu.cs.cs350;
 
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Document;
 
 public class Anchor {
     HTMLDocument foundOn;
@@ -61,6 +60,10 @@ public class Anchor {
      */
     public Element getContent() {
         return content;
+    }
+
+    public void setContent(Element content) {
+        this.content = content;
     }
 
     /**

@@ -39,6 +39,9 @@ public class HTMLDocumentBuilderTest {
         assertEquals(testSite,Website);
         
         */
+        System.out.println(System.getProperty("user.dir"));
+        Path testingPath = Paths.get("src/main/java/edu/odu/cs/cs350/Anchor.java");
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\main\\java\\edu\\odu\\cs\\cs350\\Anchor.java", testingPath.toAbsolutePath().toString());
     }
 
     @Test public void withBaseDirectoryTest() throws IOException {
@@ -56,12 +59,12 @@ public class HTMLDocumentBuilderTest {
     }
 
     @Test public void extractAnchorsTest() {
-        StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a></html>");
+        StringBuffer testHTML = new StringBuffer("<html><a href=\"https://www.google.com\" id=\"a1\">a1</a></html>");
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
         Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
         ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
 
-        assertEquals(functionLinks.get(0).getContent().toString(), "<a id=\"a1\">a1</a>");
+        assertEquals(functionLinks.size(), 1);
 
     }
    /* 

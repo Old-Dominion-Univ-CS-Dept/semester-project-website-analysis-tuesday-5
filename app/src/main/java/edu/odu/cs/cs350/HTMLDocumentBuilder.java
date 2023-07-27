@@ -1,10 +1,11 @@
 package edu.odu.cs.cs350;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,9 +22,22 @@ public class HTMLDocumentBuilder {
     Path baseDir;
     ArrayList<Path> webPages;
     ArrayList<Path> directories;
+    private ArrayList<URL> baseUrls;
+
+    private ArrayList<Resource> anchors;
+    private ArrayList<Resource> images;
+    private ArrayList<Resource> scripts;
+    private ArrayList<Resource> stylesheets;
 
 
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
+
+    public HTMLDocumentBuilder() {
+        this.anchors = new ArrayList<>();
+        this.images = new ArrayList<>();
+        this.scripts = new ArrayList<>();
+        this.stylesheets = new ArrayList<>();
+    }
 
     /**
      * Parse HTML from a StringBuffer
@@ -37,16 +51,15 @@ public class HTMLDocumentBuilder {
 
     }
     
-    /*
-    public static Document withContentFrom(String file) {
-        Hold all of this until next increment
+    
+    public void withContentFrom(String file) 
+        throws IOException 
+    {
 
-        File inputFile = new File(file);
-        return Jsoup.parse(inputFile, "UTF-8");
-
-
+        Path filePath = Paths.get(file);
+        this.webPages.add(filePath);
     }
-    */
+    
 
     public void withBaseDirectory(Path siteRoot) throws IOException {
         this.baseDir = siteRoot;
@@ -74,8 +87,13 @@ public class HTMLDocumentBuilder {
     }
 
 
-    public static void withBaseURLs(Collection<?> URLs) {
-
+    public static void withBaseURLs(ArrayList<URL> URLs) {
+        for (URL iterURL : URLs) {
+            String stringifiedURL = iterURL.toString();
+            if (stringifiedURL.startsWith("http://") || stringifiedURL.startsWith("https://") || stringifiedURL.contains(":")) {
+                
+            }
+        }
     }
 
     /**
@@ -88,9 +106,11 @@ public class HTMLDocumentBuilder {
     public static ArrayList<Anchor> extractAnchors(Document doc) {
         ArrayList<Anchor> anchors = new ArrayList<Anchor>();
         //Element content = doc.getElementById("content");
-        Elements links = doc.getElementsByTag("a");
+        Elements links = doc.select("a");
+        links.attr("href");
         for (Element link : links) {
-            Anchor a = new Anchor(link);
+            Element linkHref = new Element(link.attr("href"));
+            Anchor a = new Anchor(linkHref);
             anchors.add(a);
         }
 
