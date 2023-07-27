@@ -66,8 +66,28 @@ public static Vector<Element> withURLs(Element URL){
  * builds website with path and url
  * @param website
  */
-    
-public static void build(Website website) {
+
+public Website build() throws IOException {
+
+    List<Path> files = walkDirectory();
+    List<Path> prunedFiles = pruneNonHTMLFiles(files);
+
+    List<HTMLDocument> parsedDocument = new ArrayList<>();
+    for (Path htmlFile : prunedFiles) {
+        BufferedReader buffer = new BufferedReader(/*...htmlFile... */);
+        HTMLDocument doc = new HTMLDocumentBuilder()
+        .withContentFrom(buffer)
+        .withbsiteBaseDir(this.path)
+        .withWebsiteURLs(this.urls)
+        .extractContent()
+        .build();
+
+        parsedDocuments.add(doc);
+    }
+
+    Website site = new Website(this.path, this.urls, parseDocuments);
+
+    return website;
+    }
 
     }
-}
