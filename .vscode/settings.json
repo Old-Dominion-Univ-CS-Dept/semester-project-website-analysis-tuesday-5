@@ -3,5 +3,6 @@
         "lib/**/*.jar",
         "/home/cs_jcant005/CS350Summer/semester-project-website-analysis-tuesday-5/lib/jsoup-1.16.1.jar",
         "/home/cs_jcant005/CS350Summer/semester-project-website-analysis-tuesday-5/lib/junit-platform-console-standalone-1.10.0-M1.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
