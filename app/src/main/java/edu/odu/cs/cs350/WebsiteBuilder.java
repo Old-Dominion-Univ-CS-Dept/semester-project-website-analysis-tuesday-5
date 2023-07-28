@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,6 +14,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.Vector;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+
+
 
 /**
  * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
@@ -21,6 +30,22 @@ import java.nio.file.Path;
 
 
 public class WebsiteBuilder {
+
+    private Path path;
+    private ArrayList<URL> urls;
+    Path directoryToExamine;
+    List<Path> allFiles;
+    List<Path> allDirectories;
+
+
+    /**
+     * Default Constructor
+     */
+
+public WebsiteBuilder() {
+    path = "path";
+    ArrayList<URL> urls = "urls";
+    }
 
     /**
      * obtains website path
@@ -45,8 +70,7 @@ public static Document withPath(String Path) throws IOException{
 public static Document withURL(String URL) throws IOException{
         
     Document doc = Jsoup.connect(URL).get();
-    return doc;
-        
+    return doc;  
     }
 
     /**
@@ -55,12 +79,60 @@ public static Document withURL(String URL) throws IOException{
  * @return
  */
 
-public static Vector<Element> withURLs(Element URL){
+public static ArrayList<URL> withURLs(URL URL){
         
-    Vector<Element> collect = new Vector<>();
+    ArrayList<URL> collect = new ArrayList<URL>();
     collect.add(URL);
     return collect;
 }
+
+public void walkDirectory(Path thePath) {
+
+    this.directoryToExamine = thePath;
+
+    this.allFiles = new ArrayList<>();
+    this.allDirectories = new ArrayList<>();
+
+}
+
+ /**
+     * Examine this SimpleDirectoryWalker's specified directory of interest.
+     *
+     * @thorws IOException if directory could not be read
+     */
+    public void examineDirectory()
+        throws IOException
+    {
+        Files.walk(this.directoryToExamine)
+            .forEach((Path path) -> {
+                if (Files.isRegularFile(path)) {
+                    this.allFiles.add(path);
+                }
+                else if (Files.isDirectory(path)) {
+                    this.allDirectories.add(path);
+                }
+            });
+    }
+/**
+     * Retrieve the list of identified files.
+     */
+    public List<Path> getFileList()
+    {
+        return this.allFiles;
+    }
+
+    /**
+     * Retrieve the list of identified directories.
+     */
+    public List<Path> getDirectoryList()
+    {
+        return this.allDirectories;
+    }
+
+    public removeNonHTMLFiles()
+    {
+        
+    }
 
 /**
  * builds website with path and url
@@ -69,10 +141,10 @@ public static Vector<Element> withURLs(Element URL){
 
 public Website build() throws IOException {
 
-    List<Path> files = walkDirectory();
-    List<Path> prunedFiles = pruneNonHTMLFiles(files);
+    ArrayList<Path> files = walkDirectory(Path thePath);
+    ArrayList<Path> prunedFiles = pruneNonHTMLFiles(files);
 
-    List<HTMLDocument> parsedDocument = new ArrayList<>();
+    ArrayList<HTMLDocument> parsedDocument = new ArrayList<>();
     for (Path htmlFile : prunedFiles) {
         BufferedReader buffer = new BufferedReader(/*...htmlFile... */);
         HTMLDocument doc = new HTMLDocumentBuilder()
