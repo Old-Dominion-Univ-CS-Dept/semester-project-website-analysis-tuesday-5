@@ -2,6 +2,7 @@ package edu.odu.cs.cs350;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -145,11 +146,12 @@ public Website build() throws IOException {
 
     ArrayList<HTMLDocument> parsedDocument = new ArrayList<>();
     for (Path htmlFile : prunedFiles) {
-        WebsiteBuilder buffer = new WebsiteBuilder(/*...htmlFile... */);
+        FileReader html = new FileReader(htmlFile.toString());
+        BufferedReader buffer = new BufferedReader(html);
         HTMLDocument doc = new HTMLDocumentBuilder()
         .withContentFrom(buffer)
         .withBaseDirectory(this.path)
-        .withWebsiteURLs(this.urls)
+        .withBaseURLs(this.urls)
         .extractContent()
         .build();
 
