@@ -1,6 +1,9 @@
-package edu.odu.cs.cs350;
+package edu.odu.cs.cs350.htmlTag;
 
 import org.jsoup.nodes.Element;
+
+import edu.odu.cs.cs350.HTMLDocument;
+
 import org.jsoup.nodes.Document;
 
 public class Anchor {
