@@ -155,6 +155,24 @@ public class HTMLDocumentBuilder {
     }
 
     /**
+     * Extracts all anchors from a given HTML Document
+     * 
+     * @param an HTML Document
+     * 
+     * @return an ArrayList of all anchors found
+     */
+    public void extractImages() {
+        this.images = new ArrayList<>();
+        Elements images = HTMLDocumentContent.select("img[src]");
+        for (Element image : images) {
+            Element picture = new Element(image.attr("src"));
+            Image a = new Image(picture);
+            this.images.add(a);
+        }
+    }
+
+
+    /**
      * Accessor for ArrayList of Anchors
      * 
      * @param none
@@ -167,6 +185,7 @@ public class HTMLDocumentBuilder {
 
     public void extractContent() throws IOException {
         this.extractAnchors();
+        this.extractImages();
     }
 
 

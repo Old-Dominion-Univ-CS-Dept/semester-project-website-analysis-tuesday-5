@@ -4,10 +4,9 @@ import org.jsoup.nodes.Element;
 
 import edu.odu.cs.cs350.enums.ResourceKind;
 
-public class Image extends Resource {
+public class Anchor extends Resource {
 
     private Element content;
-    private ResourceKind kind;
 
     /**
      * Empty constructor
@@ -16,40 +15,39 @@ public class Image extends Resource {
      * 
      * @return none
      */
-    public Image() {
-        this.setKind(ResourceKind.IMAGE);
+    public Anchor() {
+        this.setKind(ResourceKind.ANCHOR);
         this.setFoundOn(null);
-
     }
 
     /**
-     * Image constructor
+     * Anchor constructor
      * 
      * @param an Element
      * 
-     * @return an Image object
+     * @return an Anchor object
      */
-    public Image(Element ImageContent) {
-        this.setKind(ResourceKind.IMAGE);
-        content = ImageContent;
+    public Anchor(Element anchorContent) {
+        this.setKind(ResourceKind.ANCHOR);
+        content = anchorContent;
     }
 
     /**
-     * Image constructor
+     * Anchor constructor
      * 
      * @param an HTMLDocument object and an Element object
      * 
-     * @return an Image object
+     * @return an Anchor object
      */
-    public Image(HTMLDocument found, Element ImageContent) {
+    public Anchor(HTMLDocument found, Element anchorContent) {
         this.addFoundOn(found);
-        this.setKind(ResourceKind.IMAGE);
-        content = ImageContent;
+        this.setKind(ResourceKind.ANCHOR);
+        content = anchorContent;
     }
 
 
     /**
-     * An accessor for the content of an Image object
+     * An accessor for the content of an Anchor object
      * 
      * @param none
      * 
@@ -61,7 +59,7 @@ public class Image extends Resource {
 
 
     /**
-     * A mutator for the content of an Image Object
+     * A mutator for the content of an Anchor Object
      * 
      * @param content
      * 
@@ -70,4 +68,5 @@ public class Image extends Resource {
     public void setContent(Element content) {
         this.content = content;
     }
+    
 }
