@@ -56,7 +56,15 @@ public class HTMLDocumentBuilder {
 
     }
     
-    
+    /**
+     * Parse HTML content from a filepath
+     * 
+     * @param file (string)
+     * 
+     * @return none
+     * 
+     * @throws IOException
+     */
     public void withContentFrom(String file) 
         throws IOException 
     {
@@ -66,6 +74,13 @@ public class HTMLDocumentBuilder {
         //this.webPages.add(filePath);
     }
 
+    /**
+     * Accessor for the HTML content of the HTMLDocument object
+     * 
+     * @param none
+     * 
+     * @return A document object containing the HTML content
+     */
     public Document getHTMLContent() {
         return this.HTMLDocumentContent;
     }
@@ -88,6 +103,13 @@ public class HTMLDocumentBuilder {
 
     }
 
+    /**
+     * Accessor for base directory
+     * 
+     * @param none
+     * 
+     * @return Path object for the base directory
+     */
     public Path getBaseDirectory() {
         return this.baseDir;
     }
@@ -126,6 +148,13 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    /**
+     * Accessor for ArrayList of Anchors
+     * 
+     * @param none
+     * 
+     * @return anchors ArrayList
+     */
     public ArrayList<Anchor> getAnchors() {
         return anchors;
     }
@@ -138,11 +167,11 @@ public class HTMLDocumentBuilder {
     /**
      * Builds a completed HTMLDocument object
      * 
-     * @param A StringBuffer object
+     * @param None
      * 
      * @return an HTMLDocument object
      */
-    public HTMLDocument build(StringBuffer StrBuffer) {
+    public HTMLDocument build() {
         HTMLDocument HTMLDoc = new HTMLDocument();
         HTMLDoc.setHTMLContent(HTMLDocumentContent);
         HTMLDoc.setAnchors(HTMLDoc, anchors);
