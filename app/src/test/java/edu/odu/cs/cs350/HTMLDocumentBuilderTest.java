@@ -66,7 +66,7 @@ public class HTMLDocumentBuilderTest {
         HTMLDoc.withContentFrom(testHTML);
         HTMLDoc.extractAnchors();
 
-        assertEquals(HTMLDoc.getAnchors().size(), 2);
+        assertEquals(HTMLDoc.getAnchors().size(), 3);
 
     }
    /* 

@@ -17,6 +17,7 @@ public class Anchor extends Resource {
      */
     public Anchor() {
         this.setKind(ResourceKind.ANCHOR);
+        this.setFoundOn(null);
     }
 
     /**
