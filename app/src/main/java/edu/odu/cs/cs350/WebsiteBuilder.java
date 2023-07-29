@@ -1,26 +1,14 @@
 package edu.odu.cs.cs350;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import java.util.Vector;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Stream;
-import java.util.stream.Collectors;
 
 
 
@@ -33,7 +21,7 @@ import java.util.stream.Collectors;
 public class WebsiteBuilder {
 
     private Path path;
-    private List<URL> urls;
+    private ArrayList<URL> urls;
     Path directoryToExamine;
     List<Path> allFiles;
     List<Path> allDirectories;
@@ -86,6 +74,10 @@ public static ArrayList<URL> withURLs(URL URL){
     return collect;
 }
 
+/** Walk Directory function
+ * @param thePath
+ */
+
 public void walkDirectory(Path thePath) {
 
     this.directoryToExamine = thePath;
@@ -129,6 +121,11 @@ public void walkDirectory(Path thePath) {
         return this.allDirectories;
     }
 
+    /**
+     * Removes Non HTML Files
+     * @return
+     */
+
     public List<Path> removeNonHTMLFiles()
     {
         return null;
@@ -136,27 +133,32 @@ public void walkDirectory(Path thePath) {
 
 /**
  * builds website with path and url
- * @param website
+ * @throws IOException
+ * @return
  */
 
 public Website build() throws IOException {
 
-    List<Path> files = getFileList();
     List<Path> prunedFiles = removeNonHTMLFiles();
 
     ArrayList<HTMLDocument> parsedDocument = new ArrayList<>();
     for (Path htmlFile : prunedFiles) {
         FileReader html = new FileReader(htmlFile.toString());
         BufferedReader buffer = new BufferedReader(html);
-        HTMLDocument doc = new HTMLDocumentBuilder()
-        .withContentFrom(buffer)
-        .withBaseDirectory(this.path)
-        .withBaseURLs(this.urls)
-        .extractContent()
-        .build();
+        HTMLDocumentBuilder docBuilder = new HTMLDocumentBuilder();
+        docBuilder.withContentFrom(buffer);
+        docBuilder.withBaseDirectory(this.path);
+        docBuilder.withBaseURLs(this.urls);
+        docBuilder.extractContent();
+        docBuilder.build();
+        HTMLDocument doc = docBuilder.build();
 
         parsedDocument.add(doc);
     }
+
+    Website site = new Website(this.path, this.urls, parsedDocument);
+
+    return site;
     }
 
     }
