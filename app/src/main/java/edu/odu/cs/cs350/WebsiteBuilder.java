@@ -90,7 +90,7 @@ public void walkDirectory(Path thePath) {
  /**
      * Examine this SimpleDirectoryWalker's specified directory of interest.
      *
-     * @thorws IOException if directory could not be read
+     * @throws IOException if directory could not be read
      */
     public void examineDirectory()
         throws IOException
