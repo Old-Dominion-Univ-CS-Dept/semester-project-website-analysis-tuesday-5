@@ -1,34 +1,25 @@
 package edu.odu.cs.cs350;
-
-import java.util.Collection;
-import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.nio.file.Path;
+
 
 /** 
  * Website class also used for Website builder
  */
 public class Website {
 
-Vector<Element> URL;
-static String Path;
+ArrayList<URL> URL;
+static Path Path;
 
     /**
  * Function for website URL and path
- * @param Url
+ * @param urls
  * @param path
+ * @param parsedDocument
  */
-public Website(Vector<Element> Url, String path) {
-    URL = Url;
+public Website(Path path, ArrayList<URL> urls, ArrayList<HTMLDocument> parsedDocument) {
+    URL = urls;
     Path = path;
 }
 
@@ -36,29 +27,32 @@ public Website(Vector<Element> Url, String path) {
  * Sets website path
  * @param path
  */
-public void setPath(String path) {
+public void setPath(Path path) {
     Path = path;
 }
 
-///public static Path getPath() {
- ///   return Path;
-///}
+/** Gets Website path
+ */
+
+public static Path getPath() {
+    return Path;
+}
 
     /**
  * Sets website url
- * @param Url
+ * @param urls
  */
-public void setUrl(Vector<Element> Url) {
-    URL = Url;
+public void setUrl(ArrayList<URL> urls) {
+    URL = urls;
 }
 
     /**
  * Gets website url
- * @param Url
  * @return
  */
-public static URL getURL(java.net.URL Url) {
-    return Url;
+public ArrayList<URL> getURL() {
+    return URL;
 }
     
 }
+
