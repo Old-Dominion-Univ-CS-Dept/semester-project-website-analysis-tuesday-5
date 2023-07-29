@@ -1,58 +1,48 @@
 package edu.odu.cs.cs350;
-import java.net.URL;
-import java.util.ArrayList;
+
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
-
-/** 
- * Website class also used for Website builder
- */
 public class Website {
+    List<OtherFile> otherFiles;
+    Path localDirectory;
+    List<HTMLDocument> pages;
 
-ArrayList<URL> URL;
-static Path Path;
+    public Website() {
+        pages = new ArrayList<>();
+    }
 
-    /**
- * Function for website URL and path
- * @param urls
- * @param path
- * @param parsedDocument
- */
-public Website(Path path, ArrayList<URL> urls, ArrayList<HTMLDocument> parsedDocument) {
-    URL = urls;
-    Path = path;
+    public Website(Path localDirectory, List<HTMLDocument> pages) {
+        this.localDirectory = localDirectory;
+        this.pages = pages;
+    }
+
+    public List<OtherFile> getOtherFiles() {
+        return otherFiles;
+    }
+
+    public void setOtherFiles(List<OtherFile> otherFiles) {
+        this.otherFiles = otherFiles;
+    }
+
+    public void setLocalDirectory(Path localDirectory) {
+        this.localDirectory = localDirectory;
+    }
+
+    public void addPage(HTMLDocument page) {
+        pages.add(page);
+    }
+
+    public void setPages(List<HTMLDocument> pages) {
+        this.pages = pages;
+    }
+
+    public Path getLocalDirectory() {
+        return localDirectory;
+    }
+
+    public List<HTMLDocument> getPages() {
+        return pages;
+    }
 }
-
-    /**
- * Sets website path
- * @param path
- */
-public void setPath(Path path) {
-    Path = path;
-}
-
-/** Gets Website path
- */
-
-public static Path getPath() {
-    return Path;
-}
-
-    /**
- * Sets website url
- * @param urls
- */
-public void setUrl(ArrayList<URL> urls) {
-    URL = urls;
-}
-
-    /**
- * Gets website url
- * @return
- */
-public ArrayList<URL> getURL() {
-    return URL;
-}
-    
-}
-
