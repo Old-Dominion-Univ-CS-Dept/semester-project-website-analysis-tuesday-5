@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 public class WebsiteBuilder {
 
     private Path path;
-    private ArrayList<URL> urls;
+    private List<URL> urls;
     Path directoryToExamine;
     List<Path> allFiles;
     List<Path> allDirectories;
@@ -43,8 +43,7 @@ public class WebsiteBuilder {
      */
 
 public WebsiteBuilder() {
-    path = "path";
-    ArrayList<URL> urls = "urls";
+    path = null;
     }
 
     /**
@@ -129,9 +128,9 @@ public void walkDirectory(Path thePath) {
         return this.allDirectories;
     }
 
-    public removeNonHTMLFiles()
+    public List<Path> removeNonHTMLFiles()
     {
-        
+        return null;
     }
 
 /**
@@ -141,25 +140,21 @@ public void walkDirectory(Path thePath) {
 
 public Website build() throws IOException {
 
-    ArrayList<Path> files = walkDirectory(Path thePath);
-    ArrayList<Path> prunedFiles = pruneNonHTMLFiles(files);
+    List<Path> files = getFileList();
+    List<Path> prunedFiles = removeNonHTMLFiles();
 
     ArrayList<HTMLDocument> parsedDocument = new ArrayList<>();
     for (Path htmlFile : prunedFiles) {
-        BufferedReader buffer = new BufferedReader(/*...htmlFile... */);
+        WebsiteBuilder buffer = new WebsiteBuilder(/*...htmlFile... */);
         HTMLDocument doc = new HTMLDocumentBuilder()
         .withContentFrom(buffer)
-        .withbsiteBaseDir(this.path)
+        .withBaseDirectory(this.path)
         .withWebsiteURLs(this.urls)
         .extractContent()
         .build();
 
-        parsedDocuments.add(doc);
+        parsedDocument.add(doc);
     }
-
-    Website site = new Website(this.path, this.urls, parseDocuments);
-
-    return website;
     }
 
     }
