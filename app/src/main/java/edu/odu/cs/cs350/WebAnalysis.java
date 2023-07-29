@@ -17,7 +17,7 @@ public class WebAnalysis {
         Website site = createWebsite(websitePath, urls);
 
         ReportManager manager = new ReportManager();
-        manager.setSourceData(websitePath);
+        manager.setSourceData(site);
         manager.determineBaseFilename();
         manager.writeAll();
 

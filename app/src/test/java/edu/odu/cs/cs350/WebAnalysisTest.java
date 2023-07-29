@@ -23,5 +23,17 @@ public class WebAnalysisTest {
 
         assertEquals(expectedUrls, actualUrls);
     }
+    @Test
+    public void testCreateWebsite() {
+        // Test data
+        String websitePath = "/example/website";
+        List<String> urls = Arrays.asList("https://www.example.com", "https://www.example.org");
 
+        // Call the method
+        Website website = createWebsite(websitePath, urls);
+
+        // Check if the website object is created correctly
+        assertEquals(websitePath, website.getPath());
+        assertEquals(urls, website.getURLs());
+    }
 }
