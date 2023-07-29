@@ -1,11 +1,13 @@
 package edu.odu.cs.cs350;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -48,8 +50,9 @@ public class HTMLDocumentBuilder {
      * 
      * @return an HTML Document
      */
-    public void withContentFrom(StringBuffer reader) {
-        this.HTMLDocumentContent = Jsoup.parse(reader.toString());
+    public void withContentFrom(BufferedReader reader) throws IOException {
+        String htmlCodeAsString = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        this.HTMLDocumentContent = Jsoup.parse(htmlCodeAsString);
 
     }
     
@@ -114,8 +117,8 @@ public class HTMLDocumentBuilder {
     public void extractAnchors() {
         this.anchors = new ArrayList<>();
         //Element content = doc.getElementById("content");
-        Elements links = HTMLDocumentContent.select("a");
-        links.attr("href");
+        Elements links = HTMLDocumentContent.select("a[href]");
+        //links.attr("href");
         for (Element link : links) {
             Element linkHref = new Element(link.attr("href"));
             Anchor a = new Anchor(linkHref);
