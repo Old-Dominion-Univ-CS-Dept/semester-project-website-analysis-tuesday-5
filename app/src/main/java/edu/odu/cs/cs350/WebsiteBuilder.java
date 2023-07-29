@@ -150,7 +150,6 @@ public Website build() throws IOException {
         docBuilder.withBaseDirectory(this.path);
         docBuilder.withBaseURLs(this.urls);
         docBuilder.extractContent();
-        docBuilder.build();
         HTMLDocument doc = docBuilder.build();
 
         parsedDocument.add(doc);
