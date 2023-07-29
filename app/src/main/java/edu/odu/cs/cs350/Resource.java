@@ -15,6 +15,7 @@ public class Resource {
     private ArrayList<HTMLDocument> foundOn;
 
     public Resource() {
+        this.foundOn = new ArrayList<>();
     }
 
 

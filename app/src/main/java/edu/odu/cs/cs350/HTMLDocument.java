@@ -14,6 +14,7 @@ public class HTMLDocument {
     ArrayList<Anchor> anchors;
     Document HTMLContent;
     Path baseDir;
+    Path pathToDoc;
 
     /**
      * Empty HTMLDocument Constructor.
@@ -23,7 +24,7 @@ public class HTMLDocument {
      * @return HTMLDocument object
      */
     public HTMLDocument() {
-        anchors = null;
+        this.anchors = new ArrayList<>();
         
     }
  
@@ -36,6 +37,14 @@ public class HTMLDocument {
      */
     public HTMLDocument(ArrayList<Anchor> extractedAnchors) {
         anchors = extractedAnchors;
+    }
+
+    public void setPathToDocument(Path path) {
+        this.pathToDoc = path;
+    }
+
+    public void setBaseDir(Path path) {
+        this.baseDir = path;
     }
 
     /**
@@ -84,14 +93,14 @@ public class HTMLDocument {
             if (stringifiedContent.startsWith("http://") || stringifiedContent.startsWith("https://") || stringifiedContent.contains(":")) {
                 anchor.setLocation(Locality.EXTERNAL);
                 anchor.setUrl(stringifiedContent);
+                
+            
+            } else if (anchor.getContent().nodeName().toString().startsWith("#")) {
+                    anchor.setLocation(Locality.INTRAPAGE);
+            } else {
+                anchor.setLocation(Locality.INTERNAL);
             }
-
-            //Pattern pattern = Pattern.compile("#");
-            //Matcher matcher = pattern.matcher(anchor.getContent().toString());
-            //if(matcher.find()) {
-            //    anchor.setLocation(Locality.INTRAPAGE);
-            //}
-        }
-
+        } 
     }
+
 }

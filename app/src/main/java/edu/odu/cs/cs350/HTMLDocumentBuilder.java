@@ -33,6 +33,8 @@ public class HTMLDocumentBuilder {
 
     private Document HTMLDocumentContent;
 
+    private Path pathToSourceDoc;
+
 
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
 
@@ -70,7 +72,7 @@ public class HTMLDocumentBuilder {
     {
         File inputFile = new File(file);
         this.HTMLDocumentContent = Jsoup.parse(inputFile, "UTF-8");
-        this.baseDir = Paths.get(file).normalize();
+        this.pathToSourceDoc = Paths.get(file).normalize();
         //this.webPages.add(filePath);
     }
 
@@ -83,6 +85,10 @@ public class HTMLDocumentBuilder {
      */
     public Document getHTMLContent() {
         return this.HTMLDocumentContent;
+    }
+
+    public void withPathToDoc(Path htmlPath) {
+        this.pathToSourceDoc = htmlPath;
     }
     
 
@@ -175,6 +181,8 @@ public class HTMLDocumentBuilder {
         HTMLDocument HTMLDoc = new HTMLDocument();
         HTMLDoc.setHTMLContent(HTMLDocumentContent);
         HTMLDoc.setAnchors(HTMLDoc, anchors);
+        HTMLDoc.setBaseDir(this.baseDir);
+        HTMLDoc.setPathToDocument(pathToSourceDoc);
 
         return HTMLDoc;
     }
