@@ -3,50 +3,17 @@ package edu.odu.cs.cs350;
 
 
 
-import java.util.List;
-
-public class HTMLDocument {
-    List<Resource> resources;
-    long fileSize;
-
-    String fileName;
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public long getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(long fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public List<Resource> getResources() {
-        return resources;
-    }
-
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
-
+import java.nio.file.Path;
 import java.util.ArrayList;
-import org.jsoup.nodes.Element;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import org.jsoup.nodes.Document;
+
+import edu.odu.cs.cs350.enums.Locality;
 
 public class HTMLDocument {
-    enum Locality {
-        Internal,
-        External,
-        IntraPage
-    }
     ArrayList<Anchor> anchors;
-    Locality locality;
+    Document HTMLContent;
+    Path baseDir;
 
     /**
      * Empty HTMLDocument Constructor.
@@ -57,7 +24,6 @@ public class HTMLDocument {
      */
     public HTMLDocument() {
         anchors = null;
-        locality = null;
         
     }
  
@@ -81,7 +47,7 @@ public class HTMLDocument {
      */
     public void setAnchors(HTMLDocument HTMLDoc, ArrayList<Anchor> anchorList) {
         for(Anchor anchor: anchorList) {
-            anchor.setFoundOn(HTMLDoc);
+            anchor.addFoundOn(HTMLDoc);
             anchors.add(anchor);
         }
     }
@@ -97,6 +63,14 @@ public class HTMLDocument {
         return anchors;
     }
 
+    public void setHTMLContent(Document HTMLContent) {
+        this.HTMLContent = HTMLContent;
+    }
+
+    public Document getHTMLContent() {
+        return this.HTMLContent;
+    }
+
     /**
      * Categorize anchors as either Internal, External, or Intra-page
      * 
@@ -106,11 +80,17 @@ public class HTMLDocument {
      */
     public void categorizeAnchors() {
         for (Anchor anchor : anchors) {
-            Pattern pattern = Pattern.compile("#");
-            Matcher matcher = pattern.matcher(anchor.getContent().toString());
-            if(matcher.find()) {
-                locality = Locality.IntraPage;
+            String stringifiedContent = anchor.getContent().toString();
+            if (stringifiedContent.startsWith("http://") || stringifiedContent.startsWith("https://") || stringifiedContent.contains(":")) {
+                anchor.setLocation(Locality.EXTERNAL);
+                anchor.setUrl(stringifiedContent);
             }
+
+            //Pattern pattern = Pattern.compile("#");
+            //Matcher matcher = pattern.matcher(anchor.getContent().toString());
+            //if(matcher.find()) {
+            //    anchor.setLocation(Locality.INTRAPAGE);
+            //}
         }
 
     }

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,10 +21,10 @@ public class HTMLDocumentBuilderTest {
         StringBuffer testStringBuffer = new StringBuffer(comparisonString);
 
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionDoc = HTMLDoc.withContentFrom(testStringBuffer);
+        HTMLDoc.withContentFrom(testStringBuffer);
         Document testDoc = Jsoup.parse(comparisonString.toString());
 
-        assertEquals(functionDoc.toString(), testDoc.toString());
+        assertEquals(HTMLDoc.getHTMLContent().toString(), testDoc.toString());
 
     }
 
@@ -52,8 +51,7 @@ public class HTMLDocumentBuilderTest {
 
         HTMLDoc.withBaseDirectory(path);
 
-        assertEquals(2, HTMLDoc.getDirectories().size());
-        assertEquals(1, HTMLDoc.getWebPages().size());
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\test\\java\\edu\\odu\\cs\\cs350\\baseDir", HTMLDoc.getBaseDirectory().toString());
         
 
     }
@@ -61,10 +59,10 @@ public class HTMLDocumentBuilderTest {
     @Test public void extractAnchorsTest() {
         StringBuffer testHTML = new StringBuffer("<html><a href=\"https://www.google.com\" id=\"a1\">a1</a></html>");
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
-        ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
+        HTMLDoc.withContentFrom(testHTML);
+        HTMLDoc.extractAnchors();
 
-        assertEquals(functionLinks.size(), 1);
+        assertEquals(HTMLDoc.getAnchors().size(), 1);
 
     }
    /* 
