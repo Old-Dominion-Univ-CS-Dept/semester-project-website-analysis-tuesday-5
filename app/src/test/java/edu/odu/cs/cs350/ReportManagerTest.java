@@ -64,3 +64,4 @@ public class ReportManagerTest {
         assertEquals("Exported report: " + reportName + " in " + format + " format", exportedReport);
 
 }
+}
