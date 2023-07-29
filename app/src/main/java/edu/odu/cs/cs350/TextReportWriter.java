@@ -19,7 +19,7 @@ public class TextReportWriter implements ReportWriter {
     @Override
     public void setSourceData(Website website) {
         this.website = website;
-
+    }
 public class TextReportWriter {
     
     public static void writeReport(String fileName){
@@ -34,13 +34,13 @@ public class TextReportWriter {
             System.err.println("Error writing the report: " + e.getMessage());
 
     }
-
+    }
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
     }
 
-
+    
     @Override
     public void write() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(baseFileName + "-summary.txt"))) {
@@ -99,9 +99,20 @@ public class TextReportWriter {
     }
 
 }
-
-
-    
-    
+@Override
+public void setBaseName(String baseFileName) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setBaseName'");
 }
+@Override
+public void write() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'write'");
+}
+
+}
+    
+
+
+
 

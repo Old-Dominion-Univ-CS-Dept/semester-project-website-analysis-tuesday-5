@@ -4,12 +4,10 @@ package edu.odu.cs.cs350;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public class ReportManager {
 
     Website website;
-    private List<ReportWriter> reportWriters;
     public void setSourceData(Website website){
         this.website = website;
     };
@@ -42,7 +40,7 @@ public class ReportManager {
 
         excelReportWriter.setBaseName(baseFilename);
         excelReportWriter.write();
-    
+    } 
 public static String generateReport(String reportName) {
 
         System.out.println("Generating the report: " + reportName);
