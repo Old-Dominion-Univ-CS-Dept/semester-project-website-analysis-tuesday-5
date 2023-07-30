@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83c0795e-607b-4fc5-80b7-869ed46163ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/Anchor.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/Anchor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/HTMLDocument.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/HTMLDocument.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/HTMLDocumentBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/HTMLDocumentBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/ReportManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/ReportManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/TextReportWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/TextReportWriter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/Website.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/Website.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/WebsiteBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/main/edu/odu/cs/cs350/WebsiteBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/AnchorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/AnchorTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/AnchorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/AnchorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/HTMLDocumentBuilderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/HTMLDocumentBuilderTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/HTMLDocumentTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/HTMLDocumentTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/ReportManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/ReportManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/WebAnalysisTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/bin/test/edu/odu/cs/cs350/WebAnalysisTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/HTMLDocumentBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/HTMLDocumentBuilderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/HTMLDocumentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/HTMLDocumentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/WebAnalysisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/edu/odu/cs/cs350/WebAnalysisTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,19 +53,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="semester-project-website-analysis-tuesday-5 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>

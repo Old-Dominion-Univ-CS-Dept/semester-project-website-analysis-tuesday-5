@@ -1,9 +1,10 @@
 package edu.odu.cs.cs350;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+
 import edu.odu.cs.cs350.enums.Locality;
 import edu.odu.cs.cs350.enums.ResourceKind;
-
-import java.nio.file.Path;
 
 public class Resource {
     private Path path;
@@ -11,8 +12,10 @@ public class Resource {
     private Locality location;
     private ResourceKind kind;
     private long sizeOfFile;
+    private ArrayList<HTMLDocument> foundOn;
 
     public Resource() {
+        this.foundOn = new ArrayList<>();
     }
 
 
@@ -56,5 +59,17 @@ public class Resource {
         this.sizeOfFile = sizeOfFile;
     }
 
+    public void setFoundOn(ArrayList<HTMLDocument> foundOnList) {
+        this.foundOn = foundOnList;
+    }
 
-}
+    public ArrayList<HTMLDocument> getFoundOn() {
+        return foundOn;
+    }
+
+    public void addFoundOn(HTMLDocument HTMLDoc) {
+        this.foundOn.add(HTMLDoc);
+    }
+
+
+} 

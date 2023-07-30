@@ -1,44 +1,50 @@
 package edu.odu.cs.cs350;
+
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
-//This is WebAnalysis a driver class for WB (WebsiteBuilder) where it will fetch the path and URL 
-//of the given directory
-public class WebAnalysis  {
-    public static void main(String[] args) throws IOException{
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-        Path pathToAnalysis = Paths.get(args[0]);
-        System.out.println(pathToAnalysis);
+public class WebAnalysis {
 
-        //driver -> wb: new()
-        //return
-        //The method withPath(String) in the type WebsiteBuilder is not applicable for the arguments ()
-        //The constructor WebsiteBuilder(Path) is undefined
-        WebsiteBuilder WB = new WebsiteBuilder(pathToAnalysis);
-        WB.withPath();
+    public static void main(String[] args) {
+        String websitePath = args[0];
 
-             //driver -> wb: withPath(path)
-            //return
-        System.out.println("Path Identifed: ");
-        for (Path file : WB.withPath()){
-            System.out.format("  -%s%n", file);
-        }
-        System.out.println();
+        List<String> urls = collectURLs(args);
 
-            //driver -> wb: withURLs(urls)
-            //return
-            //The method withURL(String) in the type WebsiteBuilder is not applicable for the arguments ()
-        System.out.println("URLs Identified: ");
-        for (Path file : WB.withURLs()){
-            System.out.format("  - %s%n", file);
-        }
+        Website site = createWebsite(websitePath, urls);
 
-        //driver -> wb: build()
-        Stream.Builder<String> builder = Stream.builder();
-        Stream<String> str = builder.build();
-        str.forEach(System.out::println);
+        ReportManager manager = new ReportManager();
+        manager.setSourceData(site);
+        manager.determineBaseFilename();
+        manager.writeAll();
+
+        writeReportNames(manager);
     }
-}    
-    
-   
+
+    // Method to collect URLs from command-line arguments
+    public static List<String> collectURLs(String[] args) {
+        return Arrays.stream(args)
+                .skip(1)
+                .collect(Collectors.toList());
+    }
+
+    // Method to create a Website object
+    public static Website createWebsite(String websitePath, List<String> urls) {
+        return new WebsiteBuilder()
+                .withPath(websitePath)
+                .withURLs(urls)
+                .build();
+    }
+
+    // Method to write report names
+    public static void writeReportNames(ReportManager manager) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
+            manager.writeReportNames(writer);
+        } catch (IOException e) {
+            System.err.println("Error occurred while writing reports: " + e.getMessage());
+        }
+    }
+}

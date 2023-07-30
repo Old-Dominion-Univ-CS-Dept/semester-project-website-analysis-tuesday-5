@@ -2,43 +2,34 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.IOException;
-import java.util.Collection;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.lang.Class;
-import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.junit.Test;
 
 public class HTMLDocumentBuilderTest {
 
-    @Test void HTMLDocumentBuilder() {
+    @Test public void HTMLDocumentBuilder() {
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
     }
 
-    @Test void withContentFromStringBufferTest() {
-        String comparisonString = "<html><head><title>test</title></head></html>";
-        StringBuffer testStringBuffer = new StringBuffer(comparisonString);
+    @Test public void withContentFromStringBufferTest() throws IOException {
+        Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/bufferTest.html");
+        FileReader testFile = new FileReader(pathToTestFile.toString());
+        BufferedReader comparison = new BufferedReader(testFile);
+        
 
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionDoc = HTMLDoc.withContentFrom(testStringBuffer);
-        Document testDoc = Jsoup.parse(comparisonString.toString());
+        HTMLDoc.withContentFrom(comparison);
 
-        assertEquals(functionDoc.toString(), testDoc.toString());
+        assertEquals(HTMLDoc.getHTMLContent().toString(), "<html>\n <head></head>\n <body>\n  test!\n </body>\n</html>");
 
     }
 
-    @Test void withContextFromFileTest() {
+    @Test public void withContextFromFileTest() {
         /* Save for the next increment
 
         File testHTML = new File("SampleHTMLFile.html");
@@ -48,26 +39,34 @@ public class HTMLDocumentBuilderTest {
         assertEquals(testSite,Website);
         
         */
+        System.out.println(System.getProperty("user.dir"));
+        Path testingPath = Paths.get("src/main/java/edu/odu/cs/cs350/Anchor.java");
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\main\\java\\edu\\odu\\cs\\cs350\\Anchor.java", testingPath.toAbsolutePath().toString());
     }
 
-    @Test void withBaseDirectoryTest() {
-        /*
+    @Test public void withBaseDirectoryTest() throws IOException {
+        
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
 
-        HTMLDoc.withBaseDirectory("C:/Users/hayes/Documents/CS350/semester-project-website-analysis-tuesday-5/app/src/test/java/edu/odu/cs/cs350/baseDir/");
-        assertTrue(HTMLDoc.getBaseDir() != null);
-        */
+        Path path = Paths.get("C:/Users/hayes/Documents/CS350/semester-project-website-analysis-tuesday-5/app/src/test/java/edu/odu/cs/cs350/baseDir/");
+
+        HTMLDoc.withBaseDirectory(path);
+
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\test\\java\\edu\\odu\\cs\\cs350\\baseDir", HTMLDoc.getBaseDirectory().toString());
         
 
     }
 
-    @Test void extractAnchorsTest() {
-        StringBuffer testHTML = new StringBuffer("<html><a id=\"a1\">a1</a></html>");
-        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
-        ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
+    @Test public void extractAnchorsTest() throws IOException {
+        Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
+        FileReader testFile = new FileReader(pathToTestFile.toString());
+        BufferedReader testHTML = new BufferedReader(testFile);
 
-        assertEquals(functionLinks.get(0).getContent().toString(), "<a id=\"a1\">a1</a>");
+        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+        HTMLDoc.withContentFrom(testHTML);
+        HTMLDoc.extractAnchors();
+
+        assertEquals(HTMLDoc.getAnchors().size(), 3);
 
     }
    /* 
