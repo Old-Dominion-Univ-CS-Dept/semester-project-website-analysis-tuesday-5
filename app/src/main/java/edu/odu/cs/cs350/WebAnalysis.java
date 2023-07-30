@@ -8,13 +8,13 @@ import edu.odu.cs.cs350.Website;
 import edu.odu.cs.cs350.ReportManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class WebAnalysis {
     public static void main(String[] args) throws IOException {
@@ -37,12 +37,12 @@ public class WebAnalysis {
             try (BufferedReader reader = new BufferedReader(new FileReader(htmlFile.toFile()))) {
                 HTMLDocumentBuilder hb = new HTMLDocumentBuilder();
                 hb.withContentFrom(reader);
-                hb.setBaseDirectory(path);
-                hb.setBaseURL(htmlFile);
+                hb.withBaseDirectory(path);
+                hb.withPathToDoc(htmlFile);
                 Document doc = Jsoup.parse(htmlFile.toFile(), "UTF-8");
-                // Extract resources from HTML content
+               // Extract resources from HTML content
                 hb.extractContent(doc);
-                hb.setFilename(htmlFile.getFileName().toString());
+                hb.withContentFrom(htmlFile.getFileName().toString());
                 // Build the HTMLDocument
                 // Add the HTMLDocument to the Website
                 HTMLDocument page = hb.build();
