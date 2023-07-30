@@ -11,9 +11,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * This is a test for the Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
+ * information, it will build and return a website including its path and url.
+ */
+
 public class WebsiteBuilderTest {
 
     @Test
+
+    
     public void testWalkDirectory() throws IOException {
         // Create a temporary directory for testing
         Path tempDirectory = Files.createTempDirectory("testDirectory");
