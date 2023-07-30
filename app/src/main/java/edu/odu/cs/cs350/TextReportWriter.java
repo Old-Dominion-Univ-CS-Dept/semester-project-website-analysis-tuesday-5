@@ -2,8 +2,8 @@ package edu.odu.cs.cs350;
 
 import edu.odu.cs.cs350.HTMLDocument;
 import edu.odu.cs.cs350.Website;
-import edu.odu.cs.cs350.Image;
 import edu.odu.cs.cs350.Resource;
+import edu.odu.cs.cs350.Image;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
