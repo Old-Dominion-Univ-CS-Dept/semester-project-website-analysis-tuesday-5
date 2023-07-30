@@ -1,4 +1,4 @@
-package edu.odu.cs.cs350.htmlTag;
+package edu.odu.cs.cs350;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

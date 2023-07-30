@@ -1,4 +1,4 @@
-package edu.odu.cs.cs350.htmlTag;
+package edu.odu.cs.cs350;
 
 import org.jsoup.nodes.Element;
 
