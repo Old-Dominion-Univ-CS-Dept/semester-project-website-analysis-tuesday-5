@@ -5,6 +5,7 @@ package edu.odu.cs.cs350;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Document;
 
@@ -16,6 +17,45 @@ public class HTMLDocument {
     Path baseDir;
     Path pathToDoc;
     ArrayList<HTMLDocument> foundOn;
+
+    List<Resource> resources;
+    long fileSize;
+    String URL;
+
+    String fileName;
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
 
     /**
      * Empty HTMLDocument Constructor.
