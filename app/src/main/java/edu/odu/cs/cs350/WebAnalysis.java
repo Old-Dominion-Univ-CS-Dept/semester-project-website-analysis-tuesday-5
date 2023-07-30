@@ -1,50 +1,63 @@
 package edu.odu.cs.cs350;
 
-import java.io.BufferedWriter;
+import edu.odu.cs.cs350.HTMLDocumentBuilder;
+import edu.odu.cs.cs350.WebsiteBuilder;
+import edu.odu.cs.cs350.HTMLDocument;
+import edu.odu.cs.cs350.OtherFile;
+import edu.odu.cs.cs350.Website;
+import edu.odu.cs.cs350.ReportManager;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Scanner;
 
 public class WebAnalysis {
+    public static void main(String[] args) throws IOException {
+        WebsiteBuilder wb = new WebsiteBuilder();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the path to the website directory: ");
+        Path path = Path.of(scanner.nextLine());
 
-    public static void main(String[] args) {
-        String websitePath = args[0];
 
-        List<String> urls = collectURLs(args);
+        wb.withPath(path);
 
-        Website site = createWebsite(websitePath, urls);
+        Website site = wb.build();
+        site.setLocalDirectory(path);
+        List<Path> htmlFiles = wb.walkDirectory(path);
+        List<Path> prunedFiles = wb.removeNonHTMLFiles(htmlFiles);
+        List<OtherFile> otherFiles = wb.extractOtherFiles(htmlFiles);
+        site.setOtherFiles(otherFiles);
 
-        ReportManager manager = new ReportManager();
-        manager.setSourceData(site);
-        manager.determineBaseFilename();
-        manager.writeAll();
-
-        writeReportNames(manager);
-    }
-
-    // Method to collect URLs from command-line arguments
-    public static List<String> collectURLs(String[] args) {
-        return Arrays.stream(args)
-                .skip(1)
-                .collect(Collectors.toList());
-    }
-
-    // Method to create a Website object
-    public static Website createWebsite(String websitePath, List<String> urls) {
-        return new WebsiteBuilder()
-                .withPath(websitePath)
-                .withURLs(urls)
-                .build();
-    }
-
-    // Method to write report names
-    public static void writeReportNames(ReportManager manager) {
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
-            manager.writeReportNames(writer);
-        } catch (IOException e) {
-            System.err.println("Error occurred while writing reports: " + e.getMessage());
+        for (Path htmlFile : prunedFiles) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(htmlFile.toFile()))) {
+                HTMLDocumentBuilder hb = new HTMLDocumentBuilder();
+                hb.withContentFrom(reader);
+                hb.setBaseDirectory(path);
+                hb.setBaseURL(htmlFile);
+                Document doc = Jsoup.parse(htmlFile.toFile(), "UTF-8");
+                // Extract resources from HTML content
+                hb.extractContent(doc);
+                hb.setFilename(htmlFile.getFileName().toString());
+                // Build the HTMLDocument
+                // Add the HTMLDocument to the Website
+                HTMLDocument page = hb.build();
+                site.addPage(page);
+            } catch (IOException e) {
+                System.out.println("Error processing HTML file: " + htmlFile);
+                e.printStackTrace();
+            }
         }
+//        wb.walkDirectoryOtherFile()
+        ReportManager rm = new ReportManager();
+        rm.setSourceData(site);
+        rm.determineBaseFilename();
+
+        rm.writeAll();
+
     }
 }
