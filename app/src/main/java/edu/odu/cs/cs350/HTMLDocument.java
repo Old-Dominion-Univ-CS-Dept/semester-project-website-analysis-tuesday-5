@@ -15,6 +15,7 @@ public class HTMLDocument {
     Document HTMLContent;
     Path baseDir;
     Path pathToDoc;
+    ArrayList<HTMLDocument> foundOn;
 
     /**
      * Empty HTMLDocument Constructor.
