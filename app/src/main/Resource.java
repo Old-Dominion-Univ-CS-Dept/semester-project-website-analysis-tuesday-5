@@ -1,4 +1,4 @@
-package edu.odu.cs.cs350.htmlTag;
+package edu.odu.cs.cs350;
 
 import edu.odu.cs.cs350.enums.Locality;
 import edu.odu.cs.cs350.enums.ResourceKind;
