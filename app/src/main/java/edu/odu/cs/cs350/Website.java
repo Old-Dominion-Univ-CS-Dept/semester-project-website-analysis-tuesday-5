@@ -33,7 +33,7 @@ public class Website {
     }
 
     /**
-    * Get other types of files function
+    * Get other types of files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio) function
     * @return
     */
 
@@ -42,7 +42,7 @@ public class Website {
     }
 
     /** 
-    * sets other types of files function
+    * sets other types of files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio) function
     */
 
     public void setOtherFiles(List<OtherFile> otherFiles) {
