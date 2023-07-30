@@ -63,5 +63,5 @@ public class ReportManagerTest {
         String exportedReport = ReportManager.exportReport(reportName, format);
         assertEquals("Exported report: " + reportName + " in " + format + " format", exportedReport);
 
-}
+    }
 }
