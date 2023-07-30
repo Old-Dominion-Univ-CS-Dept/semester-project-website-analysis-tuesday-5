@@ -2,13 +2,12 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.junit.Test;
 
 public class HTMLDocumentBuilderTest {
@@ -17,15 +16,16 @@ public class HTMLDocumentBuilderTest {
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
     }
 
-    @Test public void withContentFromStringBufferTest() {
-        String comparisonString = "<html><head><title>test</title></head></html>";
-        StringBuffer testStringBuffer = new StringBuffer(comparisonString);
+    @Test public void withContentFromStringBufferTest() throws IOException {
+        Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/bufferTest.html");
+        FileReader testFile = new FileReader(pathToTestFile.toString());
+        BufferedReader comparison = new BufferedReader(testFile);
+        
 
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionDoc = HTMLDoc.withContentFrom(testStringBuffer);
-        Document testDoc = Jsoup.parse(comparisonString.toString());
+        HTMLDoc.withContentFrom(comparison);
 
-        assertEquals(functionDoc.toString(), testDoc.toString());
+        assertEquals(HTMLDoc.getHTMLContent().toString(), "<html>\n <head></head>\n <body>\n  test!\n </body>\n</html>");
 
     }
 
@@ -52,19 +52,21 @@ public class HTMLDocumentBuilderTest {
 
         HTMLDoc.withBaseDirectory(path);
 
-        assertEquals(2, HTMLDoc.getDirectories().size());
-        assertEquals(1, HTMLDoc.getWebPages().size());
+        assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\test\\java\\edu\\odu\\cs\\cs350\\baseDir", HTMLDoc.getBaseDirectory().toString());
         
 
     }
 
-    @Test public void extractAnchorsTest() {
-        StringBuffer testHTML = new StringBuffer("<html><a href=\"https://www.google.com\" id=\"a1\">a1</a></html>");
-        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document functionExtraction = HTMLDoc.withContentFrom(testHTML);
-        ArrayList<Anchor> functionLinks = HTMLDoc.extractAnchors(functionExtraction);
+    @Test public void extractAnchorsTest() throws IOException {
+        Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
+        FileReader testFile = new FileReader(pathToTestFile.toString());
+        BufferedReader testHTML = new BufferedReader(testFile);
 
-        assertEquals(functionLinks.size(), 1);
+        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+        HTMLDoc.withContentFrom(testHTML);
+        HTMLDoc.extractAnchors();
+
+        assertEquals(HTMLDoc.getAnchors().size(), 3);
 
     }
    /* 

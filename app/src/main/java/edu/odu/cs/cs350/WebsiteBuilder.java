@@ -1,165 +1,178 @@
 package edu.odu.cs.cs350;
+import edu.odu.cs.cs350.enums.FileType;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import java.util.Vector;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
-
-
 
 /**
  * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
  * information, it will build and return a website including its path and url.
  */
 
-
 public class WebsiteBuilder {
-
     private Path path;
-    private ArrayList<URL> urls;
-    Path directoryToExamine;
-    List<Path> allFiles;
-    List<Path> allDirectories;
+    private HTMLDocumentBuilder htmlDocumentBuilder;
 
+    private int htmlCounter,
+            cssCounter,
+            imageryCounter,
+            jsCounter,
+            archivesCounter,
+            videosCounter,
+            audioCounter,
+            uncategorizedCounter;
 
     /**
      * Default Constructor
-     */
-
-public WebsiteBuilder() {
-    path = "path";
-    ArrayList<URL> urls = "urls";
-    }
-
-    /**
-     * obtains website path
-     * @param Path
+     * @param path
      * @return
-     * @throws IOException
      */
     
-public static Document withPath(String Path) throws IOException{
-
-    Document path = Jsoup.connect(Path).get();
-    return path;
-}
-
-    /**
- * obtains website URL
- * @param URL
- * @return
- * @throws IOException
- */
-    
-public static Document withURL(String URL) throws IOException{
-        
-    Document doc = Jsoup.connect(URL).get();
-    return doc;  
+    public WebsiteBuilder withPath(Path path) {
+        this.path = path;
+        return this;
     }
 
     /**
- * obtains collection of website URLs
- * @param URL
- * @return
- */
-
-public static ArrayList<URL> withURLs(URL URL){
-        
-    ArrayList<URL> collect = new ArrayList<URL>();
-    collect.add(URL);
-    return collect;
-}
-
-public void walkDirectory(Path thePath) {
-
-    this.directoryToExamine = thePath;
-
-    this.allFiles = new ArrayList<>();
-    this.allDirectories = new ArrayList<>();
-
-}
-
- /**
-     * Examine this SimpleDirectoryWalker's specified directory of interest.
-     *
-     * @thorws IOException if directory could not be read
-     */
-    public void examineDirectory()
-        throws IOException
-    {
-        Files.walk(this.directoryToExamine)
-            .forEach((Path path) -> {
-                if (Files.isRegularFile(path)) {
-                    this.allFiles.add(path);
-                }
-                else if (Files.isDirectory(path)) {
-                    this.allDirectories.add(path);
-                }
-            });
-    }
-/**
-     * Retrieve the list of identified files.
-     */
-    public List<Path> getFileList()
-    {
-        return this.allFiles;
-    }
-
-    /**
-     * Retrieve the list of identified directories.
-     */
-    public List<Path> getDirectoryList()
-    {
-        return this.allDirectories;
-    }
-
-    public removeNonHTMLFiles()
-    {
-        
-    }
-
-/**
  * builds website with path and url
- * @param website
+ * @return
  */
 
-public Website build() throws IOException {
-
-    ArrayList<Path> files = walkDirectory(Path thePath);
-    ArrayList<Path> prunedFiles = pruneNonHTMLFiles(files);
-
-    ArrayList<HTMLDocument> parsedDocument = new ArrayList<>();
-    for (Path htmlFile : prunedFiles) {
-        BufferedReader buffer = new BufferedReader(/*...htmlFile... */);
-        HTMLDocument doc = new HTMLDocumentBuilder()
-        .withContentFrom(buffer)
-        .withbsiteBaseDir(this.path)
-        .withWebsiteURLs(this.urls)
-        .extractContent()
-        .build();
-
-        parsedDocuments.add(doc);
+    public Website build() {
+        HTMLDocument htmlDocument = null;
+        if (htmlDocumentBuilder != null) {
+            htmlDocument = htmlDocumentBuilder.build();
+        }
+        return new Website();
     }
 
-    Website site = new Website(this.path, this.urls, parseDocuments);
+    /** Walk Directory function
+ * @param directory
+ * @throws IOException
+ * @return
+ */
 
-    return website;
+    public List<Path> walkDirectory(Path directory) throws IOException {
+        List<Path> htmlFiles = new ArrayList<>();
+
+        // Traverse the directory and collect HTML files
+        Files.walk(directory)
+                .filter(file -> Files.isRegularFile(file))
+                .forEach(htmlFiles::add);
+        return htmlFiles;
     }
 
+     /**
+     * Removes Non HTML Files
+     * @param files
+     * @return
+     */
+
+    public List<Path> removeNonHTMLFiles(List<Path> files) {
+        List<Path> htmlFiles = files.stream()
+                .filter(file -> file.toString().endsWith(".html"))
+                .collect(Collectors.toList());
+
+        if (htmlFiles.isEmpty()) {
+            System.err.println("Error: The site contains zero HTML pages. Analysis cannot proceed.");
+            System.exit(1);
+        } else if (htmlFiles.size() > 1000) {
+            System.out.println("Warning: The site contains more than 1,000 pages. Analysis is not recommended for large sites.");
+        }
+        return htmlFiles;
     }
+
+    /**
+    * Extracts other files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio
+    * @param files
+    */
+
+    public List<OtherFile> extractOtherFiles(List<Path> files) throws IOException {
+        List<OtherFile> otherFiles = new ArrayList<>();
+        for (Path file : files) {
+            String name = Files.probeContentType(file);
+            switch (name) {
+                case "text/html":
+                    System.out.print("HTML file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    htmlCounter++;
+                    break;
+                case "text/css":
+                    System.out.print("CSS file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile css = new OtherFile(name, "CSS", Files.size(file), file.toFile().getPath(), FileType.CSS);
+                    otherFiles.add(css);
+                    cssCounter++;
+                    break;
+                case "image/png":
+                    System.out.print("Image(PNG) file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile image = new OtherFile(name, "PNG", Files.size(file), file.toFile().getPath(), FileType.IMAGE);
+                    otherFiles.add(image);
+                    imageryCounter++;
+                    break;
+                case "image/jpeg":
+                    System.out.print("Image(JPG) file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile imageJPEG = new OtherFile(name, "JPG", Files.size(file), file.toFile().getPath(), FileType.IMAGE);
+                    otherFiles.add(imageJPEG);
+                    imageryCounter++;
+                    break;
+                case "text/plain":
+                    System.out.print("Text/Plain read as JS file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile js = new OtherFile(name, "JS", Files.size(file), file.toFile().getPath(), FileType.JS);
+                    otherFiles.add(js);
+                    jsCounter++;
+                    break;
+                case "application/x-zip-compressed":
+                    System.out.print("Zip(Archive) file file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile zip = new OtherFile(name, "ZIP", Files.size(file), file.toFile().getPath(), FileType.ARCHIVE);
+                    otherFiles.add(zip);
+                    archivesCounter++;
+                    break;
+                case "video/quicktime":
+                case "video/mp4":
+                    System.out.print("Video(.mov/.mp4) file found and added:");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile video = new OtherFile(name, "Video", Files.size(file), file.toFile().getPath(), FileType.VIDEO);
+                    otherFiles.add(video);
+                    videosCounter++;
+                    break;
+                case "application/pdf":
+                    System.out.println("PDF file set as Uncategorized file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile pdf = new OtherFile(name, "PDF", Files.size(file), file.toFile().getPath(), FileType.UNCATEGORIZED);
+                    otherFiles.add(pdf);
+                    uncategorizedCounter++;
+                    break;
+                case "audio/mpeg":
+                    System.out.print("Audio file found and added: ");
+                    System.out.println(file.getFileName());
+                    System.out.println("file path: " + file.toFile().getPath());
+                    OtherFile audio = new OtherFile(name, "Audio", Files.size(file), file.toFile().getPath(), FileType.AUDIO);
+                    otherFiles.add(audio);
+                    audioCounter++;
+                    break;
+            }
+        }
+        System.out.println("HTML: " + htmlCounter + " CSS:" + cssCounter + " JS:" + jsCounter + " Images:" + imageryCounter +
+                " Archives:" + archivesCounter + " Audio:" + audioCounter
+                + " Videos: " + videosCounter + " Uncategorized:" + uncategorizedCounter);
+        return otherFiles;
+    }
+}
+

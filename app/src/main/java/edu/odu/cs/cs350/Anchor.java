@@ -2,17 +2,11 @@ package edu.odu.cs.cs350;
 
 import org.jsoup.nodes.Element;
 
-public class Anchor {
-    HTMLDocument foundOn;
-    long sizeOfFile;
-    Element content;
-    Locality locality;
+import edu.odu.cs.cs350.enums.ResourceKind;
 
-    enum Locality {
-        Internal,
-        External,
-        Intrapage
-    }
+public class Anchor extends Resource {
+
+    private Element content;
 
     /**
      * Empty constructor
@@ -22,9 +16,8 @@ public class Anchor {
      * @return none
      */
     public Anchor() {
-        foundOn = null;
-        content = null;
-        locality = null;
+        this.setKind(ResourceKind.ANCHOR);
+        this.setFoundOn(null);
     }
 
     /**
@@ -35,6 +28,7 @@ public class Anchor {
      * @return an Anchor object
      */
     public Anchor(Element anchorContent) {
+        this.setKind(ResourceKind.ANCHOR);
         content = anchorContent;
     }
 
@@ -46,7 +40,8 @@ public class Anchor {
      * @return an Anchor object
      */
     public Anchor(HTMLDocument found, Element anchorContent) {
-        foundOn = found;
+        this.addFoundOn(found);
+        this.setKind(ResourceKind.ANCHOR);
         content = anchorContent;
     }
 
@@ -62,52 +57,16 @@ public class Anchor {
         return content;
     }
 
-    public void setContent(Element content) {
-        this.content = content;
-    }
 
     /**
-     * Mutator for the locality of the Anchor object
+     * A mutator for the content of an Anchor Object
      * 
-     * @param Locality enumerator
+     * @param content
      * 
      * @return none
      */
-    public void setLocality(Locality localityToBeSet) {
-        locality = localityToBeSet;
-    }
-
-    /**
-     * Accessor for locality
-     * 
-     * @param none
-     * 
-     * @return Locality enumerator
-     */
-    public Locality getLocality() {
-        return locality;
-    }
-
-    /**
-     * Mutator for foundOn member variable
-     * 
-     * @param HTMLDocument
-     * 
-     * @return none 
-     */
-    public void setFoundOn(HTMLDocument HTMLDoc) {
-        foundOn = HTMLDoc;
-    }
-
-    /**
-     * Accessor for the foundOn member variable
-     * 
-     * @param none
-     * 
-     * @return foundOn member variable
-     */
-    public HTMLDocument getFoundOn() {
-        return foundOn;
+    public void setContent(Element content) {
+        this.content = content;
     }
     
 }

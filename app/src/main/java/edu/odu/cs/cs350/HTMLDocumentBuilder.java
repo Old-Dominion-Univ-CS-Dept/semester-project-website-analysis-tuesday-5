@@ -1,11 +1,13 @@
 package edu.odu.cs.cs350;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,14 +22,18 @@ import org.jsoup.select.Elements;
 public class HTMLDocumentBuilder {
 
     Path baseDir;
-    ArrayList<Path> webPages;
-    ArrayList<Path> directories;
+    //ArrayList<Path> webPages;
+    //ArrayList<Path> directories;
     private ArrayList<URL> baseUrls;
 
-    private ArrayList<Resource> anchors;
+    private ArrayList<Anchor> anchors;
     private ArrayList<Resource> images;
     private ArrayList<Resource> scripts;
     private ArrayList<Resource> stylesheets;
+
+    private Document HTMLDocumentContent;
+
+    private Path pathToSourceDoc;
 
 
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
@@ -46,24 +52,49 @@ public class HTMLDocumentBuilder {
      * 
      * @return an HTML Document
      */
-    public static Document withContentFrom(StringBuffer reader) {
-        return Jsoup.parse(reader.toString());
+    public void withContentFrom(BufferedReader reader) throws IOException {
+        String htmlCodeAsString = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        this.HTMLDocumentContent = Jsoup.parse(htmlCodeAsString);
 
     }
     
-    
+    /**
+     * Parse HTML content from a filepath
+     * 
+     * @param file (string)
+     * 
+     * @return none
+     * 
+     * @throws IOException
+     */
     public void withContentFrom(String file) 
         throws IOException 
     {
+        File inputFile = new File(file);
+        this.HTMLDocumentContent = Jsoup.parse(inputFile, "UTF-8");
+        this.pathToSourceDoc = Paths.get(file).normalize();
+        //this.webPages.add(filePath);
+    }
 
-        Path filePath = Paths.get(file);
-        this.webPages.add(filePath);
+    /**
+     * Accessor for the HTML content of the HTMLDocument object
+     * 
+     * @param none
+     * 
+     * @return A document object containing the HTML content
+     */
+    public Document getHTMLContent() {
+        return this.HTMLDocumentContent;
+    }
+
+    public void withPathToDoc(Path htmlPath) {
+        this.pathToSourceDoc = htmlPath;
     }
     
 
     public void withBaseDirectory(Path siteRoot) throws IOException {
         this.baseDir = siteRoot;
-        this.webPages = new ArrayList<>();
+        /*this.webPages = new ArrayList<>();
         this.directories = new ArrayList<>();
 
         Files.walk(siteRoot)
@@ -74,10 +105,22 @@ public class HTMLDocumentBuilder {
                 else if (Files.isDirectory(path)) {
                     this.directories.add(path);
                 }
-            });
+            }); */
 
     }
 
+    /**
+     * Accessor for base directory
+     * 
+     * @param none
+     * 
+     * @return Path object for the base directory
+     */
+    public Path getBaseDirectory() {
+        return this.baseDir;
+    }
+
+    /*
     public ArrayList<Path> getWebPages() {
         return this.webPages;
     }
@@ -85,14 +128,29 @@ public class HTMLDocumentBuilder {
     public ArrayList<Path> getDirectories() {
         return this.directories;
     }
+    */
 
 
-    public static void withBaseURLs(ArrayList<URL> URLs) {
-        for (URL iterURL : URLs) {
-            String stringifiedURL = iterURL.toString();
-            if (stringifiedURL.startsWith("http://") || stringifiedURL.startsWith("https://") || stringifiedURL.contains(":")) {
-                
-            }
+    public void withBaseURLs(ArrayList<URL> URLs) {
+        this.baseUrls = URLs;
+    }
+
+    /**
+     * Extracts all anchors from a given HTML Document
+     * 
+     * @param an HTML Document
+     * 
+     * @return an ArrayList of all anchors found
+     */
+    public void extractAnchors() {
+        this.anchors = new ArrayList<>();
+        //Element content = doc.getElementById("content");
+        Elements links = HTMLDocumentContent.select("a[href]");
+        //links.attr("href");
+        for (Element link : links) {
+            Element linkHref = new Element(link.attr("href"));
+            Anchor a = new Anchor(linkHref);
+            this.anchors.add(a);
         }
     }
 
@@ -103,33 +161,47 @@ public class HTMLDocumentBuilder {
      * 
      * @return an ArrayList of all anchors found
      */
-    public static ArrayList<Anchor> extractAnchors(Document doc) {
-        ArrayList<Anchor> anchors = new ArrayList<Anchor>();
-        //Element content = doc.getElementById("content");
-        Elements links = doc.select("a");
-        links.attr("href");
-        for (Element link : links) {
-            Element linkHref = new Element(link.attr("href"));
-            Anchor a = new Anchor(linkHref);
-            anchors.add(a);
+    public void extractImages() {
+        this.images = new ArrayList<>();
+        Elements images = HTMLDocumentContent.select("img[src]");
+        for (Element image : images) {
+            Element picture = new Element(image.attr("src"));
+            Image a = new Image(picture);
+            this.images.add(a);
         }
+    }
 
+
+    /**
+     * Accessor for ArrayList of Anchors
+     * 
+     * @param none
+     * 
+     * @return anchors ArrayList
+     */
+    public ArrayList<Anchor> getAnchors() {
         return anchors;
+    }
+
+    public void extractContent() throws IOException {
+        this.extractAnchors();
+        this.extractImages();
     }
 
 
     /**
      * Builds a completed HTMLDocument object
      * 
-     * @param A StringBuffer object
+     * @param None
      * 
      * @return an HTMLDocument object
      */
-    public static HTMLDocument build(StringBuffer StrBuffer) {
-        Document doc = withContentFrom(StrBuffer);
+    public HTMLDocument build() {
         HTMLDocument HTMLDoc = new HTMLDocument();
-        ArrayList<Anchor> docAnchors = extractAnchors(doc);
-        HTMLDoc.setAnchors(HTMLDoc, docAnchors);
+        HTMLDoc.setHTMLContent(HTMLDocumentContent);
+        HTMLDoc.setAnchors(HTMLDoc, anchors);
+        HTMLDoc.setBaseDir(this.baseDir);
+        HTMLDoc.setPathToDocument(pathToSourceDoc);
 
         return HTMLDoc;
     }

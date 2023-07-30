@@ -1,64 +1,95 @@
 package edu.odu.cs.cs350;
 
-import java.util.Collection;
-import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import java.util.Vector;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 /** 
  * Website class also used for Website builder
  */
+
 public class Website {
+    List<OtherFile> otherFiles;
+    Path localDirectory;
+    List<HTMLDocument> pages;
 
-Vector<Element> URL;
-static String Path;
+     /**
+ * Default constructor
+ */
 
-    /**
+    public Website() {
+        pages = new ArrayList<>();
+    }
+
+ /**
  * Function for website URL and path
- * @param Url
- * @param path
+ * @param localDirectory
+ * @param pages
  */
-public Website(Vector<Element> Url, String path) {
-    URL = Url;
-    Path = path;
-}
+
+    public Website(Path localDirectory, List<HTMLDocument> pages) {
+        this.localDirectory = localDirectory;
+        this.pages = pages;
+    }
 
     /**
- * Sets website path
- * @param path
- */
-public void setPath(String path) {
-    Path = path;
-}
+    * Get other types of files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio) function
+    * @return
+    */
 
-///public static Path getPath() {
- ///   return Path;
-///}
+    public List<OtherFile> getOtherFiles() {
+        return otherFiles;
+    }
+
+    /** 
+    * sets other types of files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio) function
+    */
+
+    public void setOtherFiles(List<OtherFile> otherFiles) {
+        this.otherFiles = otherFiles;
+    }
+
+    /** 
+    * sets local directory function
+    */
+
+    public void setLocalDirectory(Path localDirectory) {
+        this.localDirectory = localDirectory;
+    }
+
+    /** 
+    * adds an html document page function
+    * @param page
+    */
+
+    public void addPage(HTMLDocument page) {
+        pages.add(page);
+    }
 
     /**
- * Sets website url
- * @param Url
- */
-public void setUrl(Vector<Element> Url) {
-    URL = Url;
-}
+    * sets an html document function
+    * @param pages
+    */
+
+    public void setPages(List<HTMLDocument> pages) {
+        this.pages = pages;
+    }
 
     /**
- * Gets website url
- * @param Url
- * @return
- */
-public static URL getURL(java.net.URL Url) {
-    return Url;
-}
-    
+    * gets a local directory function
+    * @return
+    */
+
+    public Path getLocalDirectory() {
+        return localDirectory;
+    }
+
+    /**
+    * gets an html document function
+    * @return
+    */
+
+    public List<HTMLDocument> getPages() {
+        return pages;
+    }
 }
