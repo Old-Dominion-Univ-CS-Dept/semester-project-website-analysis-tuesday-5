@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
+ * information, it will build and return a website including its path and url.
+ */
+
 public class WebsiteBuilder {
     private Path path;
     private HTMLDocumentBuilder htmlDocumentBuilder;
@@ -21,11 +26,21 @@ public class WebsiteBuilder {
             audioCounter,
             uncategorizedCounter;
 
+    /**
+     * Default Constructor
+     * @param path
+     * @return
+     */
+    
     public WebsiteBuilder withPath(Path path) {
         this.path = path;
         return this;
     }
 
+    /**
+ * builds website with path and url
+ * @return
+ */
 
     public Website build() {
         HTMLDocument htmlDocument = null;
@@ -34,6 +49,12 @@ public class WebsiteBuilder {
         }
         return new Website();
     }
+
+    /** Walk Directory function
+ * @param directory
+ * @throws IOException
+ * @return
+ */
 
     public List<Path> walkDirectory(Path directory) throws IOException {
         List<Path> htmlFiles = new ArrayList<>();
@@ -44,6 +65,12 @@ public class WebsiteBuilder {
                 .forEach(htmlFiles::add);
         return htmlFiles;
     }
+
+     /**
+     * Removes Non HTML Files
+     * @param files
+     * @return
+     */
 
     public List<Path> removeNonHTMLFiles(List<Path> files) {
         List<Path> htmlFiles = files.stream()
@@ -58,6 +85,11 @@ public class WebsiteBuilder {
         }
         return htmlFiles;
     }
+
+    /**
+    * Extracts other files (HTML, CSS, Image(PNG), Image(JPG), plaintext, zip files, quicktime videos, mp4 videos, pdf, audio
+    * @param files
+    */
 
     public List<OtherFile> extractOtherFiles(List<Path> files) throws IOException {
         List<OtherFile> otherFiles = new ArrayList<>();
