@@ -3,7 +3,6 @@ package edu.odu.cs.cs350;
 import org.jsoup.nodes.Element;
 
 import edu.odu.cs.cs350.enums.ResourceKind;
-import edu.odu.cs.cs350.htmlTag.Resource;
 
 public class Image extends Resource {
 

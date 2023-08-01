@@ -16,7 +16,7 @@ import org.jsoup.select.Elements;
 
 /**
  * This is an HTML parser that takes URLs or files and extracts various tags (anchors,
- * images, stylesheets, JavaScript code) from each webpage. After extracting all of that
+ * images, StyleSheets, JavaScript code) from each webpage. After extracting all of that
  * information, it will build and return an HTML Document.
  */
 public class HTMLDocumentBuilder {
@@ -27,9 +27,9 @@ public class HTMLDocumentBuilder {
     private ArrayList<URL> baseUrls;
 
     private ArrayList<Anchor> anchors;
-    private ArrayList<Resource> images;
-    private ArrayList<Resource> scripts;
-    private ArrayList<Resource> stylesheets;
+    private ArrayList<Image> images;
+    private ArrayList<Script> scripts;
+    private ArrayList<StyleSheet> StyleSheets;
 
     private Document HTMLDocumentContent;
 
@@ -42,7 +42,7 @@ public class HTMLDocumentBuilder {
         this.anchors = new ArrayList<>();
         this.images = new ArrayList<>();
         this.scripts = new ArrayList<>();
-        this.stylesheets = new ArrayList<>();
+        this.StyleSheets = new ArrayList<>();
     }
 
     /**
@@ -94,19 +94,6 @@ public class HTMLDocumentBuilder {
 
     public void withBaseDirectory(Path siteRoot) throws IOException {
         this.baseDir = siteRoot;
-        /*this.webPages = new ArrayList<>();
-        this.directories = new ArrayList<>();
-
-        Files.walk(siteRoot)
-            .forEach((Path path) -> {
-                if (Files.isRegularFile(path)) {
-                    this.webPages.add(path);
-                }
-                else if (Files.isDirectory(path)) {
-                    this.directories.add(path);
-                }
-            }); */
-
     }
 
     /**
@@ -161,7 +148,7 @@ public class HTMLDocumentBuilder {
      * 
      * @return an ArrayList of all anchors found
      */
-    public void extractImages() {
+    public void extractImages() throws IOException {
         this.images = new ArrayList<>();
         Elements images = HTMLDocumentContent.select("img[src]");
         for (Element image : images) {
@@ -171,6 +158,42 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    public ArrayList<Image> getImages() {
+        return this.images;
+    }
+
+    /**
+     * Extracts all anchors from a given HTML Document
+     * 
+     * @param an HTML Document
+     * 
+     * @return an ArrayList of all anchors found
+     */
+    public void extractScripts() {
+        this.scripts = new ArrayList<>();
+        Elements scripts = HTMLDocumentContent.select("script");
+        for (Element script : scripts) {
+            Script s = new Script(script);
+            this.scripts.add(s);
+        }
+    }
+
+    public ArrayList<Script> getScripts() {
+        return this.scripts;
+    }
+
+    public void extractStyleSheets() {
+        this.StyleSheets = new ArrayList<>();
+        Elements StyleSheets = HTMLDocumentContent.select("style");
+        for (Element StyleSheet : StyleSheets) {
+            StyleSheet s = new StyleSheet(StyleSheet);
+            this.StyleSheets.add(s);
+        }
+    }   
+
+    public ArrayList<StyleSheet> getStyleSheets() {
+        return this.StyleSheets;
+    }
 
     /**
      * Accessor for ArrayList of Anchors
@@ -186,6 +209,8 @@ public class HTMLDocumentBuilder {
     public void extractContent() throws IOException {
         this.extractAnchors();
         this.extractImages();
+        this.extractScripts();
+        this.extractStyleSheets();
     }
 
 
@@ -195,11 +220,16 @@ public class HTMLDocumentBuilder {
      * @param None
      * 
      * @return an HTMLDocument object
+     * @throws IOException
      */
-    public HTMLDocument build() {
+    public HTMLDocument build() throws IOException {
         HTMLDocument HTMLDoc = new HTMLDocument();
         HTMLDoc.setHTMLContent(HTMLDocumentContent);
+        this.extractContent();
         HTMLDoc.setAnchors(HTMLDoc, anchors);
+        HTMLDoc.setImages(HTMLDoc, images);
+        HTMLDoc.setScripts(HTMLDoc, scripts);
+        HTMLDoc.setStyleSheets(HTMLDoc, StyleSheets);
         HTMLDoc.setBaseDir(this.baseDir);
         HTMLDoc.setPathToDocument(pathToSourceDoc);
 

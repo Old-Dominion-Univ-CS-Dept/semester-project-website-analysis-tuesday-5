@@ -69,6 +69,19 @@ public class HTMLDocumentBuilderTest {
         assertEquals(HTMLDoc.getAnchors().size(), 3);
 
     }
+
+    @Test public void extractImagesTest() throws IOException {
+    Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
+    FileReader testFile = new FileReader(pathToTestFile.toString());
+    BufferedReader testHTML = new BufferedReader(testFile);
+
+    HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+    HTMLDoc.withContentFrom(testHTML);
+    HTMLDoc.extractImages();
+
+    assertEquals(HTMLDoc.getImages().size(), 1);
+
+    }
    /* 
     @BeforeEach
     public void setUp() {

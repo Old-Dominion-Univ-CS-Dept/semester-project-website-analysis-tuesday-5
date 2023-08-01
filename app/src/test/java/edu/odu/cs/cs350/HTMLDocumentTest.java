@@ -41,8 +41,9 @@ public class HTMLDocumentTest {
         HTMLDocBuilder.withBaseDirectory(pathToTestSite);
         HTMLDocBuilder.withContentFrom("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
         HTMLDocBuilder.extractAnchors();
-        //HTMLDocBuilder.withPathToDoc(pathToTestSite);
-        HTMLDocument HTMLDoc = HTMLDocBuilder.build();
+        HTMLDocBuilder.withPathToDoc(pathToTestSite);
+        HTMLDocument HTMLDoc = new HTMLDocument();
+        HTMLDoc.setAnchors(HTMLDoc, HTMLDocBuilder.getAnchors());
 
         HTMLDoc.categorizeAnchors();
         assertEquals(3, HTMLDoc.getAnchors().size());
