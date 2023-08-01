@@ -31,15 +31,6 @@ public class HTMLDocument {
         this.anchors = new ArrayList<>();
         
     }
-
-    public HTMLDocument(ArrayList<Anchor> anchors, ArrayList<Image> images, 
-                        ArrayList<Script> scripts, ArrayList<StyleSheet> stylesheets) {
-        
-        this.anchors = anchors;
-        this.images = images;
-        this.scripts = scripts;
-        this.stylesheets = stylesheets;
-    }
  
     /**
      * HTMLdocument constructor

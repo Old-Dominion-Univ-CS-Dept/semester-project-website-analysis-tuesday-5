@@ -33,7 +33,6 @@ public class ScriptTest {
         HTMLDoc.extractScripts();
 
         assertEquals(HTMLDoc.getScripts().get(0).getContent().html(), "console.log(\"acdefg\")");
-
     }
     
 }
