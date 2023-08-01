@@ -22,8 +22,6 @@ import org.jsoup.select.Elements;
 public class HTMLDocumentBuilder {
 
     Path baseDir;
-    //ArrayList<Path> webPages;
-    //ArrayList<Path> directories;
     private ArrayList<URL> baseUrls;
 
     private ArrayList<Anchor> anchors;

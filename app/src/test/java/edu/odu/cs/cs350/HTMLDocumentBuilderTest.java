@@ -30,15 +30,6 @@ public class HTMLDocumentBuilderTest {
     }
 
     @Test public void withContextFromFileTest() {
-        /* Save for the next increment
-
-        File testHTML = new File("SampleHTMLFile.html");
-        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
-        Document Website = HTMLDoc.withContentFrom("SampleHTMLFile.html");
-        Document testSite = Jsoup.parse(testHTML, "UTF-8", "http://www.cs.odu.edu/");
-        assertEquals(testSite,Website);
-        
-        */
         System.out.println(System.getProperty("user.dir"));
         Path testingPath = Paths.get("src/main/java/edu/odu/cs/cs350/Anchor.java");
         assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\main\\java\\edu\\odu\\cs\\cs350\\Anchor.java", testingPath.toAbsolutePath().toString());

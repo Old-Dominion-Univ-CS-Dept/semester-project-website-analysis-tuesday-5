@@ -20,7 +20,6 @@ public class StyleSheetTest {
         Element testElem = new Element("h1 {color: blue;}");
         StyleSheetTest.setContent(testElem);
         assertEquals("h1 {color: blue;}",StyleSheetTest.getContent().nodeName());
-        
     }
 
     @Test public void extractStyleSheets() throws IOException {

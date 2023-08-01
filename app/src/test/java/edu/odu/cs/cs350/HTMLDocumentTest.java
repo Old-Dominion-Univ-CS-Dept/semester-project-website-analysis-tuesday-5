@@ -18,7 +18,7 @@ public class HTMLDocumentTest {
     @Test 
     public void testHTMLDocument() {
         Element testElement = new Element("Thursdays are just baby Fridays");
-        String sampleHTML = "<html></html>";
+        //String sampleHTML = "<html></html>";
         HTMLDocument HTMLDoc = new HTMLDocument();
 
         Anchor testAnchor = new Anchor(HTMLDoc, testElement);
