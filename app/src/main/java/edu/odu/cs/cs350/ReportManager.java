@@ -5,18 +5,37 @@ package edu.odu.cs.cs350;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+* Report Manager class
+*/
+
 public class ReportManager {
 
     Website website;
+
+    /** 
+    * Set Source data function
+    @param website
+    */
+    
     public void setSourceData(Website website){
         this.website = website;
     };
+
+    /** 
+    * Determine base file name function
+    @return now.format(formatter)
+    */
 
     public String determineBaseFilename() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HHmmss");
         return now.format(formatter);
     }
+
+    /**
+    * Write all data for parent functions 
+    */
 
     public void writeAll() {
         String baseFilename = determineBaseFilename();
@@ -41,11 +60,25 @@ public class ReportManager {
         excelReportWriter.setBaseName(baseFilename);
         excelReportWriter.write();
     } 
+
+    /**
+    * Generates reports with data
+    @param reportName
+    @return "Generated report: " + reportName;
+*/
+    
 public static String generateReport(String reportName) {
 
         System.out.println("Generating the report: " + reportName);
         return "Generated report: " + reportName;
     }
+
+    /** 
+    * Exports report with data
+    @param reportName
+    @param format
+    @return "Exported report: " + reportName + " in " + format + " format "
+    */
     
     public static String exportReport(String reportName, String format) {
 
