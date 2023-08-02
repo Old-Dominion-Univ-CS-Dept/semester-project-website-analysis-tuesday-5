@@ -18,7 +18,7 @@ public class HTMLDocumentTest {
     @Test 
     public void testHTMLDocument() {
         Element testElement = new Element("Thursdays are just baby Fridays");
-        String sampleHTML = "<html></html>";
+        //String sampleHTML = "<html></html>";
         HTMLDocument HTMLDoc = new HTMLDocument();
 
         Anchor testAnchor = new Anchor(HTMLDoc, testElement);
@@ -41,8 +41,9 @@ public class HTMLDocumentTest {
         HTMLDocBuilder.withBaseDirectory(pathToTestSite);
         HTMLDocBuilder.withContentFrom("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
         HTMLDocBuilder.extractAnchors();
-        //HTMLDocBuilder.withPathToDoc(pathToTestSite);
-        HTMLDocument HTMLDoc = HTMLDocBuilder.build();
+        HTMLDocBuilder.withPathToDoc(pathToTestSite);
+        HTMLDocument HTMLDoc = new HTMLDocument();
+        HTMLDoc.setAnchors(HTMLDoc, HTMLDocBuilder.getAnchors());
 
         HTMLDoc.categorizeAnchors();
         assertEquals(3, HTMLDoc.getAnchors().size());

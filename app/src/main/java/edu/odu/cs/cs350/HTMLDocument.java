@@ -13,6 +13,9 @@ import edu.odu.cs.cs350.enums.Locality;
 
 public class HTMLDocument {
     ArrayList<Anchor> anchors;
+    ArrayList<Image> images;
+    ArrayList<Script> scripts;
+    ArrayList<StyleSheet> stylesheets;
     Document HTMLContent;
     Path baseDir;
     Path pathToDoc;
@@ -112,6 +115,40 @@ public class HTMLDocument {
     public ArrayList<Anchor> getAnchors() {
         return anchors;
     }
+
+    public void setImages(HTMLDocument HTMLDoc, ArrayList<Image> imageList) {
+        for(Image image: imageList) {
+            image.addFoundOn(HTMLDoc);
+            images.add(image);
+        }
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setScripts(HTMLDocument HTMLDoc, ArrayList<Script> scriptList) {
+        for(Script script: scriptList) {
+            script.addFoundOn(HTMLDoc);
+            scripts.add(script);
+        }
+}
+
+    public ArrayList<Script> getScripts() {
+        return scripts;
+    }
+
+    public void setStyleSheets(HTMLDocument HTMLDoc, ArrayList<StyleSheet> stylesheetList) {
+        for(StyleSheet stylesheet: stylesheetList) {
+            stylesheet.addFoundOn(HTMLDoc);
+            stylesheets.add(stylesheet);
+    }
+}
+
+    public ArrayList<StyleSheet> getstylesheets() {
+        return stylesheets;
+    }
+
 
     public void setHTMLContent(Document HTMLContent) {
         this.HTMLContent = HTMLContent;

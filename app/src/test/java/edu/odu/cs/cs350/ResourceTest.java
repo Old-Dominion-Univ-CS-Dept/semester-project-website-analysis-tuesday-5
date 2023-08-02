@@ -20,7 +20,7 @@ public class ResourceTest {
     public void testGettersAndSetters() {
         Path testPath = Paths.get("test/resource/file.txt");
         String testUrl = "https://test.com/resource/file.txt";
-        Locality testLocality = Locality.LOCAL;
+        Locality testLocality = Locality.INTRAPAGE;
         ResourceKind testKind = ResourceKind.OTHER;
         long testSize = 1024;
 

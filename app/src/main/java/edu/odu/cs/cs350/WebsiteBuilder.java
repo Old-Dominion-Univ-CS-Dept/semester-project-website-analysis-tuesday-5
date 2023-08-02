@@ -174,5 +174,9 @@ public class WebsiteBuilder {
                 + " Videos: " + videosCounter + " Uncategorized:" + uncategorizedCounter);
         return otherFiles;
     }
+
+    public Path getPath() {
+        return path;
+    }
 }
 

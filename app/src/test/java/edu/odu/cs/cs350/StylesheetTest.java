@@ -2,9 +2,37 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 
-public class StylesheetTest {
-    @Test void Stylesheet() {
-        fail("Not yet implemented");
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.jsoup.nodes.Element;
+import org.junit.Test;
+
+import edu.odu.cs.cs350.enums.ResourceKind;
+
+public class StyleSheetTest {
+    @Test public void StyleSheet() {
+        StyleSheet StyleSheetTest = new StyleSheet();
+        assertEquals(ResourceKind.STYLESHEET, StyleSheetTest.getKind());
+        Element testElem = new Element("h1 {color: blue;}");
+        StyleSheetTest.setContent(testElem);
+        assertEquals("h1 {color: blue;}",StyleSheetTest.getContent().nodeName());
+    }
+
+    @Test public void extractStyleSheets() throws IOException {
+        Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
+        FileReader testFile = new FileReader(pathToTestFile.toString());
+        BufferedReader testHTML = new BufferedReader(testFile);
+
+        HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
+        HTMLDoc.withContentFrom(testHTML);
+        HTMLDoc.extractStyleSheets();
+
+        assertEquals(HTMLDoc.getStyleSheets().get(0).getContent().html(), "h1 {color: red;}");
+
     }
     
 }
