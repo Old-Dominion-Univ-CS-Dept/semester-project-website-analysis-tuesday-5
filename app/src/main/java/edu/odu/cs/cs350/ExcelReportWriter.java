@@ -22,6 +22,9 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
+/**
+* Excel Report Writer class 
+*/
 
 public class ExcelReportWriter<Row> {
     private Website sourceData;
@@ -37,21 +40,40 @@ public class ExcelReportWriter implements ReportWriter {
         this.website = website;
     }
 
+    /**
+    * Sets base file name function
+    @param baseFileName
+    */
+
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName+"-summary";
 
     }
 
+    /**
+    * Gets website and website parameters (I.E Path and URL) function
+    @return website
+    */
+
     @Override
     public Website getWebsite() {
         return website;
     }
 
+    /**
+    * Gets Base file name function
+    @return baseFileName
+    */
+
     @Override
     public String getBaseFileName() {
         return baseFileName;
     }
+
+    /**
+    * write function
+    */
 
     @Override
     public void write() {
@@ -95,6 +117,13 @@ public class ExcelReportWriter implements ReportWriter {
         }
     }
 
+    /**
+    * Get resource count function
+    @param resources
+    @param kind
+    @return count
+    */
+
     private int getResourceCount(List<Resource> resources, ResourceKind kind) {
         int count = 0;
         for (Resource resource : resources) {
@@ -104,6 +133,12 @@ public class ExcelReportWriter implements ReportWriter {
         }
         return count;
     }
+
+    /**
+    @param resources
+    @param locality
+    @return count
+    */
 
     private int getLinkCount(List<Resource> resources, Locality locality) {
         int count = 0;
