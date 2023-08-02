@@ -22,41 +22,91 @@ public class OtherFile {
     String typetest;
     FileType fileType;
 
+    /**
+    * Get File Name
+    @return name
+    */
+
     public String getName() {
         return name;
     }
+
+    /**
+    * Set file name function
+    @param name
+    */
 
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+    * Get file size function
+    @return fileSize
+    */
+
     public long getFileSize() {
         return fileSize;
     }
+
+    /**
+    * Set file Size function
+    @param fileSize
+    */
 
     public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
 
+    /**
+    * Get File path function
+    @return path
+    */
+
     public String getPath() {
         return path;
     }
+
+    /**
+    * Set file path function
+    @param path
+    */
 
     public void setPath(String path) {
         this.path = path;
     }
 
+    /**
+    * Get type test function
+    @return typetest
+    */
+
     public String getTypetest() {
         return typetest;
     }
+
+    /**
+    * Set type test function
+    @param typetest
+    */
 
     public void setTypetest(String typetest) {
         this.typetest = typetest;
     }
 
+    /**
+    * Get file type function
+    @return fileType
+    */
+    
     public FileType getFileType() {
         return fileType;
     }
+
+    /** 
+    * Set file type function
+    @param fileType
+    */
 
     public void setFileType(FileType fileType) {
         this.fileType = fileType;
