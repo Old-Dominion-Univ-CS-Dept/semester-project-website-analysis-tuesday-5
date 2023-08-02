@@ -85,9 +85,20 @@ public class HTMLDocumentBuilder {
         return this.HTMLDocumentContent;
     }
 
+    /**
+    * With Path to Document function
+    @param htmlPath
+    */
+
     public void withPathToDoc(Path htmlPath) {
         this.pathToSourceDoc = htmlPath;
     }
+
+    /**
+    * With Base Directory function
+    @param siteRoot
+    @throws IOException
+    */
     
 
     public void withBaseDirectory(Path siteRoot) throws IOException {
@@ -115,6 +126,10 @@ public class HTMLDocumentBuilder {
     }
     */
 
+    /**
+    * With Base URLs function
+    @param URLs
+    */
 
     public void withBaseURLs(ArrayList<URL> URLs) {
         this.baseUrls = URLs;
@@ -156,6 +171,11 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    /**
+    * Get Images function
+    @return this.images
+    */
+
     public ArrayList<Image> getImages() {
         return this.images;
     }
@@ -176,9 +196,18 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    /**
+    * Get Scripts function
+    @param this.scripts
+    */
+
     public ArrayList<Script> getScripts() {
         return this.scripts;
     }
+
+    /**
+    * extract StyleSheets function
+    */
 
     public void extractStyleSheets() {
         this.StyleSheets = new ArrayList<>();
@@ -188,6 +217,11 @@ public class HTMLDocumentBuilder {
             this.StyleSheets.add(s);
         }
     }   
+
+    /**
+    * Get StyleSheets
+    @return this.StyleSheets
+    */
 
     public ArrayList<StyleSheet> getStyleSheets() {
         return this.StyleSheets;
@@ -203,6 +237,11 @@ public class HTMLDocumentBuilder {
     public ArrayList<Anchor> getAnchors() {
         return anchors;
     }
+
+    /**
+    * Extract Content function
+    @throws IOException
+    */
 
     public void extractContent() throws IOException {
         this.extractAnchors();
