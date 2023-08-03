@@ -54,7 +54,10 @@ public class TextReportWriter {
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
     }
-
+    
+/**
+* Write function
+*/
     
     @Override
     public void write() {
@@ -90,6 +93,11 @@ public class TextReportWriter {
         }
     }
 
+    /**
+    * Calculates Page Size function
+    @param page
+    */
+
     private double calculatePageSize(HTMLDocument page) {
         double pageSize = page.getFileSize();
 
@@ -112,13 +120,22 @@ public class TextReportWriter {
 
         return pageSize;
     }
-
+/**
+* Sets Base Name function
+@param baseFileName
+*/
+    
 }
 @Override
 public void setBaseName(String baseFileName) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'setBaseName'");
 }
+
+    /**
+    * Write function
+    */
+    
 @Override
 public void write() {
     // TODO Auto-generated method stub
