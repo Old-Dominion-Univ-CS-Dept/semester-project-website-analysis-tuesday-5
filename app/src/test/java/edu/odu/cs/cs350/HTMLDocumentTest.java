@@ -15,6 +15,10 @@ import edu.odu.cs.cs350.enums.Locality;
 
 public class HTMLDocumentTest {
 
+    /**
+    * Test HTML Document function's ability to properly display built documents
+    */
+
     @Test 
     public void testHTMLDocument() {
         Element testElement = new Element("Thursdays are just baby Fridays");
@@ -33,6 +37,10 @@ public class HTMLDocumentTest {
         assertEquals(testElement,constructorHTMLDocument.getAnchors().get(0).getContent());
 
     }
+
+    /**
+    *Tests anchor categorization
+    */
 
     @Test
     public void testAnchorCategorization() throws IOException {
