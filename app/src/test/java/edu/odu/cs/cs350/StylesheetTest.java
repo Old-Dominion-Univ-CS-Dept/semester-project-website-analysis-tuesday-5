@@ -29,6 +29,7 @@ public class StyleSheetTest {
 
     /**
     * Tests ability to extract stylesheets and stylesheet data
+    @throws IOException
     */
 
     @Test public void extractStyleSheets() throws IOException {
