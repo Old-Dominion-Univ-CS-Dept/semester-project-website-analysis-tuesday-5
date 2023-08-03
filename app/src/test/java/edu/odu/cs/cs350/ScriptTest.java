@@ -13,6 +13,10 @@ import org.junit.Test;
 
 import edu.odu.cs.cs350.enums.ResourceKind;
 
+/**
+*Script Test class
+*/
+
 public class ScriptTest {
     /**
     *Tests ability to obtain and create new scripts
