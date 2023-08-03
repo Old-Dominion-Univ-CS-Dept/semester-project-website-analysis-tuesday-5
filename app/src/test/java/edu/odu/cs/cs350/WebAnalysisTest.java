@@ -24,6 +24,11 @@ public class WebAnalysisTest {
         wb = new WebsiteBuilder();
 
     }
+
+    /**
+    * Tests Input Stream given user input
+    @throws IOException
+    */
     
     @Test
     void testWithPathInput() throws IOException {
@@ -34,6 +39,10 @@ public class WebAnalysisTest {
 
     }
 
+    /**
+    * Tests build function
+    */
+
     @Test
     void testBuild(){
         Website site = wb.build();
@@ -41,12 +50,21 @@ public class WebAnalysisTest {
 
     }
 
+    /**
+    * Tests path output is equivalent to path input
+    */
+
     @Test
     void testWithPath(){
         Path path = Path.of("path/to/website/directory");
         wb.withPath(path);
         assertEquals(path, wb.getPath());
     }
+
+    /**
+    * Tests directory walker function
+    @Throws IOException
+    */
 
     @Test
     void testWalkDirectory() throws IOException {
@@ -63,6 +81,10 @@ public class WebAnalysisTest {
         assertEquals(Path.of("file1.html"), result.get(0));
         assertEquals(Path.of("file2.txt"), result.get(1));
     }
+
+    /**
+    * Tests Remove Non HTML Files function
+    */
 
     @Test
     void testRemoveNonHTMLFiles() {
