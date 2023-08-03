@@ -29,6 +29,7 @@ public class ScriptTest {
 
     /**
     * Tests ability to extract scripts
+    @throws IOException
     */
 
     @Test public void extractScripts() throws IOException {
