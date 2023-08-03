@@ -12,6 +12,9 @@ import org.junit.Test;
 
 import edu.odu.cs.cs350.enums.Locality;
 
+/**
+*HTML Document test class
+*/
 
 public class HTMLDocumentTest {
 
@@ -40,6 +43,7 @@ public class HTMLDocumentTest {
 
     /**
     *Tests anchor categorization
+    @throws IOException
     */
 
     @Test
