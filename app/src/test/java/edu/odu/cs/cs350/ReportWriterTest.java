@@ -5,6 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+*Report Writer Test class
+*/
+
 public class ReportWriterTest {
 
     /**
