@@ -42,10 +42,8 @@ public class WebsiteBuilder {
  * @return
  */
 
-    public Website build() {
-        HTMLDocument htmlDocument = null;
+    public Website build() throws IOException {
         if (htmlDocumentBuilder != null) {
-            htmlDocument = htmlDocumentBuilder.build();
         }
         return new Website();
     }
