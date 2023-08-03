@@ -7,7 +7,9 @@ import org.junit.Test;
 
 
 public class AnchorTest {
-
+/**
+* Tests anchor class
+*/
     @Test public void Anchor() {
         Anchor blankAnchor = new Anchor();
         
