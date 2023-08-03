@@ -78,6 +78,10 @@ public class JSONReportIntegrationTest {
         jsonReportWriter.setBaseName("test-report");
     }
 
+    /**
+    * Tests JSON report writer's ability to properly integrate the data necessary to generate a JSON report
+    */
+
     @Test
     public void testJSONReportWriterIntegration() throws IOException {
         // Call the write method to generate the JSON report
@@ -96,8 +100,11 @@ public class JSONReportIntegrationTest {
         assertThat(jsonReportContent, containsString("\"Uncategorized Files\""));
 
     }
-
-    // Helper method to read the content of the JSON report file
+    
+/**
+* Helper method to read the content of the JSON report file
+*/
+    
     private String readJSONReportFile(String filePath) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
