@@ -16,6 +16,10 @@ public class ReportManagerTest {
     private ReportManager reportManager,reportManager1;
     private Website mockWebsite;
 
+    /**
+    * Sets up mock report manager
+    */
+    
     @Before
     public void setUp() {
         reportManager = mock(ReportManager.class);
