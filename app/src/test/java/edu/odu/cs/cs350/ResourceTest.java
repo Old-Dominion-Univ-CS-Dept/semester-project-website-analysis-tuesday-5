@@ -16,6 +16,10 @@ public class ResourceTest {
         resource = new Resource();
     }
 
+    /**
+    * Tests getters and setter functions
+    */
+
     @Test
     public void testGettersAndSetters() {
         Path testPath = Paths.get("test/resource/file.txt");
