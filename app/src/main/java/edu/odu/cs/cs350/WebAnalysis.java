@@ -62,24 +62,12 @@ public class WebAnalysis {
             }
         }
 //        wb.walkDirectoryOtherFile()
-       // ReportManager rm = new ReportManager();
-       // rm.setSourceData(site);
-       // rm.determineBaseFilename();
+        ReportManager rm = new ReportManager();
+        rm.setSourceData(site);
+        rm.determineBaseFilename();
 
-       // rm.writeAll();
-        this.webPages = new ArrayList<>();
-        this.directories = new ArrayList<>();
-
-        Files.walk(siteRoot)
-            .forEach((Path path) -> {
-                if (Files.isRegularFile(path)) {
-                    this.webPages.add(path);
-                }
-                else if (Files.isDirectory(path)) {
-                    this.directories.add(path);
-                }
-            }
-            );
+        rm.writeAll();
+       
 
         }
 }

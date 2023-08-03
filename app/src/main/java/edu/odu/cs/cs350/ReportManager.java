@@ -86,4 +86,8 @@ public static String generateReport(String reportName) {
         return "Exported report: " + reportName + " in " + format + " format ";
 
     }
+
+    public Object getBaseFilename() {
+        return "path/to/website/directory";
+    }
 }

@@ -107,4 +107,16 @@ public class WebAnalysisTest {
     }
 
 
+    @Test
+    public void testDetermineBaseFilename() {
+        Website site = new Website();
+        ReportManager rm = new ReportManager();
+        rm.setSourceData(site);
+        rm.determineBaseFilename();
+
+        String expectedBaseFilename = "path/to/website/directory";
+        assertEquals(expectedBaseFilename, rm.getBaseFilename());
+    }
+
+
 }
