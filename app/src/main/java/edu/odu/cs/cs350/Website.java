@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Website {
     List<OtherFile> otherFiles;
     Path localDirectory;
     List<HTMLDocument> pages;
+    ArrayList<URL> urls;
 
      /**
  * Default constructor
@@ -20,6 +22,12 @@ public class Website {
     public Website() {
         pages = new ArrayList<>();
     }
+
+    public Website(Path path, ArrayList<URL> urls, List<HTMLDocument> HTMLDocuments) {
+        this.localDirectory = path;
+        this.urls = urls;
+        this.pages = HTMLDocuments;
+    }   
 
  /**
  * Function for website URL and path
