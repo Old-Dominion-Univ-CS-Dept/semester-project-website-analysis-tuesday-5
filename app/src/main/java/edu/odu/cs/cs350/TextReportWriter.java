@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 
+/** 
+* TextReportWriter class
+*/
+
 public class TextReportWriter implements ReportWriter {
     private Website website;
     private String baseFileName;
@@ -21,6 +25,11 @@ public class TextReportWriter implements ReportWriter {
         this.website = website;
     }
 public class TextReportWriter {
+
+    /** 
+    * Write Text Report function
+    @param fileName
+    */
     
     public static void writeReport(String fileName){
         try {
@@ -35,6 +44,12 @@ public class TextReportWriter {
 
     }
     }
+
+    /**
+    * Sets base name function
+    @param baseFileName
+    */
+    
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
