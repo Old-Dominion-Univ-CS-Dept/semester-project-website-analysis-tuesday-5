@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+* Web Analysis class
+*/
 public class WebAnalysis {
     public static void main(String[] args) throws IOException {
         WebsiteBuilder wb = new WebsiteBuilder();
