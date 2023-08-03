@@ -14,6 +14,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TextReportWriterTest {
+    /**
+    * Tests report writer's ability to write and create data
+    */
+    
     @Test
     public void testWrite() {
         // Mock the necessary data
