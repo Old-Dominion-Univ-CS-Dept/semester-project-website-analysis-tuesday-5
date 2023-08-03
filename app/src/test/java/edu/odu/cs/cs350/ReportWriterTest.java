@@ -7,6 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 public class ReportWriterTest {
 
+    /**
+    * Tests ability to create an expected json file name
+    */
+
     @Test
     public void testJsonExtension() {
         String extension = "json";
@@ -19,6 +23,10 @@ public class ReportWriterTest {
         assertEquals(expectedFileName, fileName);
     }
 
+    /**
+    * Tests ability to create a proper text extension and date time format
+    */
+
     @Test
     public void testTxtExtension() {
         String extension = "txt";
@@ -30,6 +38,10 @@ public class ReportWriterTest {
 
         assertEquals(expectedFileName, fileName);
     }
+
+    /**
+    * Tests ability to create a proper xlsx extension and date time format
+    */
 
     @Test
     public void testXlsxExtension() {
