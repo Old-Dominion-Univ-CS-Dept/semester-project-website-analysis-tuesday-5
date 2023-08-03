@@ -14,6 +14,10 @@ import org.junit.Test;
 import edu.odu.cs.cs350.enums.ResourceKind;
 
 public class ScriptTest {
+    /**
+    *Tests ability to obtain and create new scripts
+    */
+    
     @Test public void Script() {
         Script ScriptTest = new Script();
         assertEquals(ResourceKind.SCRIPT, ScriptTest.getKind());
@@ -22,6 +26,10 @@ public class ScriptTest {
         assertEquals("Console.log(\"Javascript code\")",ScriptTest.getContent().nodeName());
         
     }
+
+    /**
+    * Tests ability to extract scripts
+    */
 
     @Test public void extractScripts() throws IOException {
         Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
