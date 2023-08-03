@@ -23,6 +23,10 @@ public class ReportManagerTest {
         mockWebsite = mock(Website.class);
     }
 
+    /**
+    * Tests the ability to set source data
+    */
+
     @Test
 
     public void testSetSourceData() {
@@ -31,6 +35,10 @@ public class ReportManagerTest {
         // Verify that the source data was set correctly
         assertEquals(mockWebsite, reportManager1.website);
     }
+
+    /**
+    * Tests the ability to determine the properly get the expected base file name
+    */
 
     @Test
     public void testDetermineBaseFilename() {
@@ -47,6 +55,10 @@ public class ReportManagerTest {
         assertEquals(expectedBaseFilename, reportManager.determineBaseFilename());
     }
 
+    /**
+    * Tests ability to properly generate a report
+    */
+
 
     public void testGenerateReport() {
        
@@ -54,6 +66,10 @@ public class ReportManagerTest {
         String generatedReport = ReportManager.generateReport(reportName);
         assertEquals("Generated report: " + reportName, generatedReport);
     }
+
+    /**
+    *Tests ability to export a sample report
+    */
 
     @Test
     public void testExportReport() {
