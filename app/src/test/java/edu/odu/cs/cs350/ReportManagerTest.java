@@ -12,6 +12,10 @@ import edu.odu.cs.cs350.Website;
 import org.junit.Before;
 import org.junit.Test;;
 
+/**
+*Report Manager Test class
+*/
+
 public class ReportManagerTest {
     private ReportManager reportManager,reportManager1;
     private Website mockWebsite;
