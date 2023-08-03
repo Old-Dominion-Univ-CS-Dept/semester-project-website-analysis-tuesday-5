@@ -17,7 +17,7 @@ import org.junit.Test;
 public class HTMLDocumentBuilderTest {
 
     /**
-    * Tests document builder's ability to create new document builder's
+    * Tests document builder's ability to create new document builders
     */
 
     @Test public void HTMLDocumentBuilder() {
