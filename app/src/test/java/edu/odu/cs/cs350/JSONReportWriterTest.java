@@ -22,9 +22,17 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
+/**
+*JSON Report integration test class
+*/
+
 public class JSONReportIntegrationTest {
     private Website website;
     private JSONReportWriter jsonReportWriter;
+
+    /**
+    *Sets up JSON Report Writer tests
+    */
 
     @BeforeEach
     public void setUp() {
@@ -80,6 +88,7 @@ public class JSONReportIntegrationTest {
 
     /**
     * Tests JSON report writer's ability to properly integrate the data necessary to generate a JSON report
+    @throws IOException
     */
 
     @Test
@@ -103,6 +112,7 @@ public class JSONReportIntegrationTest {
     
 /**
 * Helper method to read the content of the JSON report file
+@return contentBuilder.toString()
 */
     
     private String readJSONReportFile(String filePath) throws IOException {
