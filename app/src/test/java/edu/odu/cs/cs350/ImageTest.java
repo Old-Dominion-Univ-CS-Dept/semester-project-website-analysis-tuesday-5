@@ -13,6 +13,10 @@ import org.junit.Test;
 
 import edu.odu.cs.cs350.enums.ResourceKind;
 
+/**
+* Tests Image's ability to properly display and parse an image
+*/
+
 public class ImageTest {
     @Test public void Image() {
         Image imageTest = new Image();
@@ -22,6 +26,10 @@ public class ImageTest {
         assertEquals("Oroboros.jpg",imageTest.getContent().nodeName());
         
     }
+
+    /**
+    * Tests extract Images ability to extract image data
+    */
 
     @Test public void extractImages() throws IOException {
         Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
