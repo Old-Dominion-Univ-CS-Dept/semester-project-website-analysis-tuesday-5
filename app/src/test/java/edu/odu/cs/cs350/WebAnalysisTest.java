@@ -1,17 +1,16 @@
 package edu.odu.cs.cs350;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
 * Web Analysis Test class
@@ -50,7 +49,7 @@ public class WebAnalysisTest {
     */
 
     @Test
-    void testBuild(){
+    void testBuild() throws IOException {
         Website site = wb.build();
         assertEquals(Website.class, site.getLocalDirectory());
 

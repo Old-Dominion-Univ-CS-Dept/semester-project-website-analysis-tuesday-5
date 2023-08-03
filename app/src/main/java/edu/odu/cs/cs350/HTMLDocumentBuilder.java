@@ -36,6 +36,13 @@ public class HTMLDocumentBuilder {
 
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
 
+    /**
+     * Default constructor for HTMLDocumentBuilder
+     * 
+     * @param none
+     * 
+     * @return none
+     */
     public HTMLDocumentBuilder() {
         this.anchors = new ArrayList<>();
         this.images = new ArrayList<>();
@@ -86,8 +93,11 @@ public class HTMLDocumentBuilder {
     }
 
     /**
-    * With Path to Document function
-    @param htmlPath
+    * Set path to the HTMLDocument
+    *
+    * @param htmlPath
+    *
+    * @return none
     */
 
     public void withPathToDoc(Path htmlPath) {
@@ -95,9 +105,12 @@ public class HTMLDocumentBuilder {
     }
 
     /**
-    * With Base Directory function
-    @param siteRoot
-    @throws IOException
+    * Set base directory that the HTMLDocument is housed in
+    * @param siteRoot
+    *
+    * @throws IOException
+    *
+    * @return none
     */
     
 
@@ -116,20 +129,13 @@ public class HTMLDocumentBuilder {
         return this.baseDir;
     }
 
-    /*
-    public ArrayList<Path> getWebPages() {
-        return this.webPages;
-    }
-
-    public ArrayList<Path> getDirectories() {
-        return this.directories;
-    }
-    */
-
     /**
-    * With Base URLs function
-    @param URLs
-    */
+     * Set base URLS for the HTMLDocument object
+     * 
+     * @param an ArrayList of URLs
+     * 
+     * @return none
+     */
 
     public void withBaseURLs(ArrayList<URL> URLs) {
         this.baseUrls = URLs;
@@ -172,10 +178,12 @@ public class HTMLDocumentBuilder {
     }
 
     /**
-    * Get Images function
-    @return this.images
-    */
-
+     * Accessor for ArrayList of Images in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return ArrayList of Images
+     */
     public ArrayList<Image> getImages() {
         return this.images;
     }
@@ -197,18 +205,23 @@ public class HTMLDocumentBuilder {
     }
 
     /**
-    * Get Scripts function
-    @param this.scripts
-    */
-
+     * Accessor for scripts in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return ArrayList of Scripts
+     */
     public ArrayList<Script> getScripts() {
         return this.scripts;
     }
 
     /**
-    * extract StyleSheets function
-    */
-
+     * Extracts all inline Style tags and information for the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return none
+     */
     public void extractStyleSheets() {
         this.StyleSheets = new ArrayList<>();
         Elements StyleSheets = HTMLDocumentContent.select("style");
@@ -219,10 +232,12 @@ public class HTMLDocumentBuilder {
     }   
 
     /**
-    * Get StyleSheets
-    @return this.StyleSheets
-    */
-
+     * Accessor for ArrayList of StyleSheets
+     * 
+     * @param none
+     * 
+     * @return ArrayList of StyleSheets in the HTMLDocument
+     */
     public ArrayList<StyleSheet> getStyleSheets() {
         return this.StyleSheets;
     }
@@ -239,10 +254,14 @@ public class HTMLDocumentBuilder {
     }
 
     /**
-    * Extract Content function
-    @throws IOException
-    */
-
+     * Simplified extraction function. Extracts all content in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return none
+     * 
+     * @throws IOException
+     */
     public void extractContent() throws IOException {
         this.extractAnchors();
         this.extractImages();
@@ -257,6 +276,7 @@ public class HTMLDocumentBuilder {
      * @param None
      * 
      * @return an HTMLDocument object
+     * 
      * @throws IOException
      */
     public HTMLDocument build() throws IOException {
