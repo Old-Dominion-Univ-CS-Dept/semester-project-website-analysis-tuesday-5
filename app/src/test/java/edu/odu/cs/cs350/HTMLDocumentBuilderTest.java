@@ -10,6 +10,10 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+/**
+*HTML Document Builder Test class
+*/
+
 public class HTMLDocumentBuilderTest {
 
     /**
@@ -22,6 +26,7 @@ public class HTMLDocumentBuilderTest {
 
     /**
     * Tests String Buffer Test's ability to properly read paths
+    @throws IOException
     */
 
     @Test public void withContentFromStringBufferTest() throws IOException {
@@ -49,6 +54,7 @@ public class HTMLDocumentBuilderTest {
 
     /**
     * Tests base directory's ability to properly get and display the resultant path
+    @throws IOException
     */
 
     @Test public void withBaseDirectoryTest() throws IOException {
@@ -66,6 +72,7 @@ public class HTMLDocumentBuilderTest {
 
     /**
     * Test's extract anchors function
+    @throws IOException
     */
 
     @Test public void extractAnchorsTest() throws IOException {
@@ -83,6 +90,7 @@ public class HTMLDocumentBuilderTest {
 
     /**
     * Test's extract images function
+    @throws IOException
     */
 
     @Test public void extractImagesTest() throws IOException {
