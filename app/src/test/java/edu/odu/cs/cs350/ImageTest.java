@@ -29,6 +29,7 @@ public class ImageTest {
 
     /**
     * Tests extract Images ability to extract image data
+    @throws IOException
     */
 
     @Test public void extractImages() throws IOException {
