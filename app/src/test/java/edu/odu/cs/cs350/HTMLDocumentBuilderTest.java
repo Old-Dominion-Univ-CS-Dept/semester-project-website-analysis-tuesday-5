@@ -12,9 +12,17 @@ import org.junit.Test;
 
 public class HTMLDocumentBuilderTest {
 
+    /**
+    * Tests document builder's ability to create new document builder's
+    */
+
     @Test public void HTMLDocumentBuilder() {
         HTMLDocumentBuilder HTMLDoc = new HTMLDocumentBuilder();
     }
+
+    /**
+    * Tests String Buffer Test's ability to properly read paths
+    */
 
     @Test public void withContentFromStringBufferTest() throws IOException {
         Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/bufferTest.html");
@@ -29,11 +37,19 @@ public class HTMLDocumentBuilderTest {
 
     }
 
+    /**
+    * Tests File Test's ability to properly display the resultant path
+    */
+
     @Test public void withContextFromFileTest() {
         System.out.println(System.getProperty("user.dir"));
         Path testingPath = Paths.get("src/main/java/edu/odu/cs/cs350/Anchor.java");
         assertEquals("C:\\Users\\hayes\\Documents\\CS350\\semester-project-website-analysis-tuesday-5\\app\\src\\main\\java\\edu\\odu\\cs\\cs350\\Anchor.java", testingPath.toAbsolutePath().toString());
     }
+
+    /**
+    * Tests base directory's ability to properly get and display the resultant path
+    */
 
     @Test public void withBaseDirectoryTest() throws IOException {
         
@@ -48,6 +64,10 @@ public class HTMLDocumentBuilderTest {
 
     }
 
+    /**
+    * Test's extract anchors function
+    */
+
     @Test public void extractAnchorsTest() throws IOException {
         Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
         FileReader testFile = new FileReader(pathToTestFile.toString());
@@ -60,6 +80,10 @@ public class HTMLDocumentBuilderTest {
         assertEquals(HTMLDoc.getAnchors().size(), 3);
 
     }
+
+    /**
+    * Test's extract images function
+    */
 
     @Test public void extractImagesTest() throws IOException {
     Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");
