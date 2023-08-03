@@ -13,11 +13,17 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.*;
 
-
+/**
+* Web Analysis Test class
+*/
 public class WebAnalysisTest {
     
 
     private WebsiteBuilder wb;
+
+    /**
+    *Sets up testing parameters
+    */
 
     @BeforeEach 
     void setUp(){
