@@ -1,0 +1,69 @@
+package edu.odu.cs.cs350;
+
+import edu.odu.cs.cs350.HTMLDocument;
+import edu.odu.cs.cs350.OtherFile;
+import edu.odu.cs.cs350.Website;
+import edu.odu.cs.cs350.Image;
+import edu.odu.cs.cs350.Resource;
+import edu.odu.cs.cs350.enums.FileType;
+import edu.odu.cs.cs350.TextReportWriter;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+public class TextReportIntegrationTest {
+    private Website website;
+    private HTMLDocument htmlDocument;
+    private OtherFile otherFile;
+
+    @BeforeEach
+    public void setup() {
+        website = new Website();
+        htmlDocument = new HTMLDocument();
+        htmlDocument.setFileName("index.html");
+        htmlDocument.setFileSize(1024);
+
+        // Add resources to the HTML document
+        List<Resource> resources = new ArrayList<>();
+        Image image = new Image();
+        image.setPath(Path.of("images/image1.jpg"));
+        resources.add(image);
+        htmlDocument.setResources(resources);
+
+        // Add the HTML document to the website
+        List<HTMLDocument> pages = new ArrayList<>();
+        pages.add(htmlDocument);
+        website.setPages(pages);
+
+        // Create an "OtherFile" for the image
+        otherFile = new OtherFile("image/jpeg", "JPG", 512, "images/image1.jpg", FileType.IMAGE);
+        List<OtherFile> otherFiles = new ArrayList<>();
+        otherFiles.add(otherFile);
+        website.setOtherFiles(otherFiles);
+    }
+
+    @Test
+    public void testTextReportWriterIntegration() {
+        // Set up the TextReportWriter
+        TextReportWriter textReportWriter = new TextReportWriter();
+        textReportWriter.setSourceData(website);
+        textReportWriter.setBaseName("test-report");
+
+        // Execute the write() method
+        textReportWriter.write();
+
+        // Verify the generated report content
+        
+        // For simplicity, we are checking if the file is created and not empty.
+        String expectedFileName = "test-report-summary.txt";
+        Path generatedReportFile = Path.of(expectedFileName);
+        Assertions.assertTrue(generatedReportFile.toFile().exists());
+        Assertions.assertTrue(generatedReportFile.toFile().length() > 0);
+
+        // Clean up - delete the generated file after the test
+        generatedReportFile.toFile().delete();
+    }
+}

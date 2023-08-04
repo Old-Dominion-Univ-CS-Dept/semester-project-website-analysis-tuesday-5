@@ -1,0 +1,70 @@
+package edu.odu.cs.cs350;
+import edu.odu.cs.cs350.HTMLDocument;
+import edu.odu.cs.cs350.Website;
+import edu.odu.cs.cs350.Resource;
+import edu.odu.cs.cs350.enums.Locality;
+import edu.odu.cs.cs350.ExcelReportWriter;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+public class ExcelReportIntegrationTest {
+    private Website website;
+    private String baseFileName;
+    private String excelFilePath;
+
+    @BeforeEach
+    public void setUp() {
+        website = new Website();
+        baseFileName = "test-report";
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Clean up the generated Excel file after each test
+        File file = new File(excelFilePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+    @Test
+    public void testExcelReportWriterIntegration() {
+        List<Resource> resource = new ArrayList<>();
+        // Create some sample data for the website
+        HTMLDocument page1 = new HTMLDocument();
+        page1.setFileName("page1.html");
+        HTMLDocument page2 = new HTMLDocument();
+        page2.setFileName("page2.html");
+        //add resources
+        Resource resource1 = new Resource();
+        resource1.setPath(Path.of("test"));
+        resource1.setSizeOfFile(100);
+        resource1.setLocation(Locality.INTRAPAGE);
+        resource.add(resource1);
+        page1.setResources(resource);
+        page2.setResources(resource);
+
+        website.addPage(page1);
+        website.addPage(page2);
+
+        // Create and set up the ExcelReportWriter
+        ExcelReportWriter excelReportWriter = new ExcelReportWriter();
+        excelReportWriter.setSourceData(website);
+        excelReportWriter.setBaseName(baseFileName);
+
+        // Invoke the write method to generate the Excel report
+        excelReportWriter.write();
+
+        // Verify that the Excel file has been generated
+        excelFilePath = baseFileName + "-summary.xlsx";
+        File generatedFile = new File(excelFilePath);
+        assertTrue(generatedFile.exists());
+    }
+}
