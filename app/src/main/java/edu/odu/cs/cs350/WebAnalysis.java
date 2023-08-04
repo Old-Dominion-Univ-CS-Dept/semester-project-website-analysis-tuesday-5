@@ -65,7 +65,6 @@ public class WebAnalysis {
         ReportManager rm = new ReportManager();
         rm.setSourceData(site);
         rm.determineBaseFilename();
-
         rm.writeAll();
        
 

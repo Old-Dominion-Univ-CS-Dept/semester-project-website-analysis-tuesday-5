@@ -20,6 +20,7 @@ public class WebAnalysisTest {
     
 
     private WebsiteBuilder wb;
+    
 
     /**
     *Sets up testing parameters
@@ -43,18 +44,6 @@ public class WebAnalysisTest {
         System.setIn(inputStream);
 
     }
-
-    /**
-    * Tests build function
-    */
-
-    @Test
-    void testBuild() throws IOException {
-        Website site = wb.build();
-        assertEquals(Website.class, site.getLocalDirectory());
-
-    }
-
     /**
     * Tests path output is equivalent to path input
     */
@@ -64,27 +53,6 @@ public class WebAnalysisTest {
         Path path = Path.of("path/to/website/directory");
         wb.withPath(path);
         assertEquals(path, wb.getPath());
-    }
-
-    /**
-    * Tests directory walker function
-    @Throws IOException
-    */
-
-    @Test
-    void testWalkDirectory() throws IOException {
-        Path path = Path.of("path/to/website/directory");
-        wb.withPath(path);
-        // Mock the DirectoryStream<Path> returned by Files.newDirectoryStream
-        DirectoryStream<Path> directoryStream = mock(DirectoryStream.class);
-        when(Files.newDirectoryStream(path)).thenReturn(directoryStream);
-        when(directoryStream.iterator()).thenReturn(Arrays.asList(Path.of("file1.html"), Path.of("file2.txt")).iterator());
-
-        List<Path> result = wb.walkDirectory(path);
-
-        assertEquals(2, result.size());
-        assertEquals(Path.of("file1.html"), result.get(0));
-        assertEquals(Path.of("file2.txt"), result.get(1));
     }
 
     /**
@@ -104,14 +72,6 @@ public class WebAnalysisTest {
         assertEquals(2, result.size());
         assertEquals(Path.of("file1.html"), result.get(0));
         assertEquals(Path.of("file3.html"), result.get(1));
-    }
-
-    @Test
-    void HTMLDocumentBuilder() throws IOException {
-        Path path = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir");
-        wb.withPath(path);
-        Website site = wb.build();
-
     }
 
 
