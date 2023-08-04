@@ -14,27 +14,6 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-<<<<<<< HEAD
-class JSONReportWriterTest {
-    @Test
-    public void testWrite() {
-        // Mock the necessary data
-        Website website = mock(Website.class);
-        List<HTMLDocument> pages = createMockHTMLDocuments();
-        List<OtherFile> otherFiles = createMockOtherFiles();
-        when(website.getPages()).thenReturn(pages);
-        when(website.getOtherFiles()).thenReturn(otherFiles);
-
-        JSONReportWriter reportWriter = new JSONReportWriter();
-        reportWriter.setSourceData(website);
-        reportWriter.setBaseName("website");
-
-        // Call the write method
-        reportWriter.write();
-
-        // Perform assertions or verify the JSON output as needed
-    }
-=======
 /**
 *JSON Report integration test class
 */
@@ -71,7 +50,6 @@ public class JSONReportIntegrationTest {
         Resource imageResource2 = new Image();
         imageResource2.setPath(Path.of("/images/image2.png"));
         page1.getResources().add(imageResource2);
->>>>>>> 3ae2186b161dfd9b8306374e87786d2cb61259d3
 
     private List<HTMLDocument> createMockHTMLDocuments() {
         List<HTMLDocument> pages = new ArrayList<>();
@@ -85,7 +63,6 @@ public class JSONReportIntegrationTest {
         return pages;
     }
 
-<<<<<<< HEAD
     private HTMLDocument createMockHTMLDocument(String fileName) {
         HTMLDocument page = mock(HTMLDocument.class);
         when(page.getFileName()).thenReturn(String.valueOf(Path.of(fileName)));
@@ -99,7 +76,6 @@ public class JSONReportIntegrationTest {
         OtherFile videoFile = createMockOtherFile("video.mp4", FileType.VIDEO, 2048);
         OtherFile archiveFile = createMockOtherFile("archive.zip", FileType.ARCHIVE, 4096);
         OtherFile uncategorizedFile = createMockOtherFile("file.txt", FileType.UNCATEGORIZED, 512);
-=======
     /**
     * Tests JSON report writer's ability to properly integrate the data necessary to generate a JSON report
     @throws IOException
@@ -121,7 +97,6 @@ public class JSONReportIntegrationTest {
         assertThat(jsonReportContent, containsString("\"Video Files\""));
         assertThat(jsonReportContent, containsString("\"Audio Files\""));
         assertThat(jsonReportContent, containsString("\"Uncategorized Files\""));
->>>>>>> 3ae2186b161dfd9b8306374e87786d2cb61259d3
 
         otherFiles.add(audioFile);
         otherFiles.add(videoFile);
@@ -130,7 +105,6 @@ public class JSONReportIntegrationTest {
 
         return otherFiles;
     }
-<<<<<<< HEAD
 
     private OtherFile createMockOtherFile(String fileName, FileType fileType, long fileSize) {
         OtherFile otherFile = mock(OtherFile.class);
@@ -138,7 +112,6 @@ public class JSONReportIntegrationTest {
         when(otherFile.getFileType()).thenReturn(fileType);
         when(otherFile.getFileSize()).thenReturn(fileSize);
         return otherFile;
-=======
     
 /**
 * Helper method to read the content of the JSON report file
@@ -154,7 +127,6 @@ public class JSONReportIntegrationTest {
             }
         }
         return contentBuilder.toString();
->>>>>>> 3ae2186b161dfd9b8306374e87786d2cb61259d3
     }
 }
 
