@@ -283,14 +283,31 @@ public class HTMLDocumentBuilder {
         HTMLDocument HTMLDoc = new HTMLDocument();
         HTMLDoc.setHTMLContent(HTMLDocumentContent);
         this.extractContent();
-        HTMLDoc.setAnchors(HTMLDoc, anchors);
+        try {
+            HTMLDoc.setAnchors(HTMLDoc, anchors);
+        } catch(Exception e) {
+            HTMLDoc.setAnchors(HTMLDoc, null);
+         }
+        try {
         HTMLDoc.setImages(HTMLDoc, images);
+        } catch(Exception e) {
+            HTMLDoc.setImages(HTMLDoc, null);
+        }
+        try { 
         HTMLDoc.setScripts(HTMLDoc, scripts);
-        HTMLDoc.setStyleSheets(HTMLDoc, StyleSheets);
+        } catch(Exception e) {
+            HTMLDoc.setScripts(HTMLDoc, null);
+        }
+        try {
+            HTMLDoc.setStyleSheets(HTMLDoc, StyleSheets);
+        } catch(Exception e) {
+            HTMLDoc.setStyleSheets(HTMLDoc, null);
+        }
         HTMLDoc.setBaseDir(this.baseDir);
         HTMLDoc.setPathToDocument(pathToSourceDoc);
 
         return HTMLDoc;
+        
     }
 
 

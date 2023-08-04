@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,9 +26,8 @@ public class WebAnalysisTest {
     */
 
     @BeforeEach 
-    void setUp(){
+    void setUp() throws IOException {
         wb = new WebsiteBuilder();
-
     }
 
     /**
@@ -104,6 +104,14 @@ public class WebAnalysisTest {
         assertEquals(2, result.size());
         assertEquals(Path.of("file1.html"), result.get(0));
         assertEquals(Path.of("file3.html"), result.get(1));
+    }
+
+    @Test
+    void HTMLDocumentBuilder() throws IOException {
+        Path path = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir");
+        wb.withPath(path);
+        Website site = wb.build();
+
     }
 
 
