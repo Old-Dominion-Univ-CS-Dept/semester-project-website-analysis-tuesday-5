@@ -8,13 +8,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+*Resource Test class
+*/
+
 public class ResourceTest {
     private Resource resource;
+
+    /**
+    *Sets up new resource for testing purposes
+    */
 
     @BeforeEach
     public void setUp() {
         resource = new Resource();
     }
+
+    /**
+    * Tests getters and setter functions
+    */
 
     @Test
     public void testGettersAndSetters() {

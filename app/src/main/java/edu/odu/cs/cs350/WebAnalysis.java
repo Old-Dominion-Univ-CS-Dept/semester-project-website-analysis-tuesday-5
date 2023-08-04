@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+* Web Analysis class
+*/
 public class WebAnalysis {
     public static void main(String[] args) throws IOException {
         WebsiteBuilder wb = new WebsiteBuilder();
@@ -60,24 +62,11 @@ public class WebAnalysis {
             }
         }
 //        wb.walkDirectoryOtherFile()
-       // ReportManager rm = new ReportManager();
-       // rm.setSourceData(site);
-       // rm.determineBaseFilename();
-
-       // rm.writeAll();
-        this.webPages = new ArrayList<>();
-        this.directories = new ArrayList<>();
-
-        Files.walk(siteRoot)
-            .forEach((Path path) -> {
-                if (Files.isRegularFile(path)) {
-                    this.webPages.add(path);
-                }
-                else if (Files.isDirectory(path)) {
-                    this.directories.add(path);
-                }
-            }
-            );
+        ReportManager rm = new ReportManager();
+        rm.setSourceData(site);
+        rm.determineBaseFilename();
+        rm.writeAll();
+       
 
         }
 }

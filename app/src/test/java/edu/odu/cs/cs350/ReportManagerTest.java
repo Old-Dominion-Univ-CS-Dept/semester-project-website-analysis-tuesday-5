@@ -12,16 +12,28 @@ import edu.odu.cs.cs350.Website;
 import org.junit.Before;
 import org.junit.Test;;
 
+/**
+*Report Manager Test class
+*/
+
 public class ReportManagerTest {
     private ReportManager reportManager,reportManager1;
     private Website mockWebsite;
 
+    /**
+    * Sets up mock report manager
+    */
+    
     @Before
     public void setUp() {
         reportManager = mock(ReportManager.class);
         reportManager1 = new ReportManager();
         mockWebsite = mock(Website.class);
     }
+
+    /**
+    * Tests the ability to set source data
+    */
 
     @Test
 
@@ -31,6 +43,10 @@ public class ReportManagerTest {
         // Verify that the source data was set correctly
         assertEquals(mockWebsite, reportManager1.website);
     }
+
+    /**
+    * Tests the ability to determine the properly get the expected base file name
+    */
 
     @Test
     public void testDetermineBaseFilename() {
@@ -47,6 +63,10 @@ public class ReportManagerTest {
         assertEquals(expectedBaseFilename, reportManager.determineBaseFilename());
     }
 
+    /**
+    * Tests ability to properly generate a report
+    */
+
 
     public void testGenerateReport() {
        
@@ -54,6 +74,10 @@ public class ReportManagerTest {
         String generatedReport = ReportManager.generateReport(reportName);
         assertEquals("Generated report: " + reportName, generatedReport);
     }
+
+    /**
+    *Tests ability to export a sample report
+    */
 
     @Test
     public void testExportReport() {

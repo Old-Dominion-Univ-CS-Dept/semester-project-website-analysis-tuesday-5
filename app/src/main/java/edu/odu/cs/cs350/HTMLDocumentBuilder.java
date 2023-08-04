@@ -36,6 +36,13 @@ public class HTMLDocumentBuilder {
 
     ArrayList<Anchor> extractedAnchors = new ArrayList<Anchor>();
 
+    /**
+     * Default constructor for HTMLDocumentBuilder
+     * 
+     * @param none
+     * 
+     * @return none
+     */
     public HTMLDocumentBuilder() {
         this.anchors = new ArrayList<>();
         this.images = new ArrayList<>();
@@ -85,9 +92,26 @@ public class HTMLDocumentBuilder {
         return this.HTMLDocumentContent;
     }
 
+    /**
+    * Set path to the HTMLDocument
+    *
+    * @param htmlPath
+    *
+    * @return none
+    */
+
     public void withPathToDoc(Path htmlPath) {
         this.pathToSourceDoc = htmlPath;
     }
+
+    /**
+    * Set base directory that the HTMLDocument is housed in
+    * @param siteRoot
+    *
+    * @throws IOException
+    *
+    * @return none
+    */
     
 
     public void withBaseDirectory(Path siteRoot) throws IOException {
@@ -105,16 +129,13 @@ public class HTMLDocumentBuilder {
         return this.baseDir;
     }
 
-    /*
-    public ArrayList<Path> getWebPages() {
-        return this.webPages;
-    }
-
-    public ArrayList<Path> getDirectories() {
-        return this.directories;
-    }
-    */
-
+    /**
+     * Set base URLS for the HTMLDocument object
+     * 
+     * @param an ArrayList of URLs
+     * 
+     * @return none
+     */
 
     public void withBaseURLs(ArrayList<URL> URLs) {
         this.baseUrls = URLs;
@@ -156,6 +177,13 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    /**
+     * Accessor for ArrayList of Images in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return ArrayList of Images
+     */
     public ArrayList<Image> getImages() {
         return this.images;
     }
@@ -176,10 +204,24 @@ public class HTMLDocumentBuilder {
         }
     }
 
+    /**
+     * Accessor for scripts in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return ArrayList of Scripts
+     */
     public ArrayList<Script> getScripts() {
         return this.scripts;
     }
 
+    /**
+     * Extracts all inline Style tags and information for the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return none
+     */
     public void extractStyleSheets() {
         this.StyleSheets = new ArrayList<>();
         Elements StyleSheets = HTMLDocumentContent.select("style");
@@ -189,6 +231,13 @@ public class HTMLDocumentBuilder {
         }
     }   
 
+    /**
+     * Accessor for ArrayList of StyleSheets
+     * 
+     * @param none
+     * 
+     * @return ArrayList of StyleSheets in the HTMLDocument
+     */
     public ArrayList<StyleSheet> getStyleSheets() {
         return this.StyleSheets;
     }
@@ -204,6 +253,15 @@ public class HTMLDocumentBuilder {
         return anchors;
     }
 
+    /**
+     * Simplified extraction function. Extracts all content in the HTMLDocument
+     * 
+     * @param none
+     * 
+     * @return none
+     * 
+     * @throws IOException
+     */
     public void extractContent() throws IOException {
         this.extractAnchors();
         this.extractImages();
@@ -218,20 +276,38 @@ public class HTMLDocumentBuilder {
      * @param None
      * 
      * @return an HTMLDocument object
+     * 
      * @throws IOException
      */
     public HTMLDocument build() throws IOException {
         HTMLDocument HTMLDoc = new HTMLDocument();
         HTMLDoc.setHTMLContent(HTMLDocumentContent);
         this.extractContent();
-        HTMLDoc.setAnchors(HTMLDoc, anchors);
+        try {
+            HTMLDoc.setAnchors(HTMLDoc, anchors);
+        } catch(Exception e) {
+            HTMLDoc.setAnchors(HTMLDoc, null);
+         }
+        try {
         HTMLDoc.setImages(HTMLDoc, images);
+        } catch(Exception e) {
+            HTMLDoc.setImages(HTMLDoc, null);
+        }
+        try { 
         HTMLDoc.setScripts(HTMLDoc, scripts);
-        HTMLDoc.setStyleSheets(HTMLDoc, StyleSheets);
+        } catch(Exception e) {
+            HTMLDoc.setScripts(HTMLDoc, null);
+        }
+        try {
+            HTMLDoc.setStyleSheets(HTMLDoc, StyleSheets);
+        } catch(Exception e) {
+            HTMLDoc.setStyleSheets(HTMLDoc, null);
+        }
         HTMLDoc.setBaseDir(this.baseDir);
         HTMLDoc.setPathToDocument(pathToSourceDoc);
 
         return HTMLDoc;
+        
     }
 
 

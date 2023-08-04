@@ -1,12 +1,15 @@
 package edu.odu.cs.cs350;
-import edu.odu.cs.cs350.enums.FileType;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import edu.odu.cs.cs350.enums.FileType;
 
 /**
  * This is a Website Parser that takes a path to a website and either/or a single website url or a collection of website urls and obtains the website path and website url from each webpage. After obtaining all of that
@@ -16,6 +19,8 @@ import java.util.stream.Collectors;
 public class WebsiteBuilder {
     private Path path;
     private HTMLDocumentBuilder htmlDocumentBuilder;
+    private ArrayList<URL> urls;
+
 
     private int htmlCounter,
             cssCounter,
@@ -42,12 +47,28 @@ public class WebsiteBuilder {
  * @return
  */
 
-    public Website build() {
-        HTMLDocument htmlDocument = null;
-        if (htmlDocumentBuilder != null) {
-            htmlDocument = htmlDocumentBuilder.build();
+    public Website build() throws IOException {
+        List<Path> files = walkDirectory(path);
+        List<Path> prunedFiles = removeNonHTMLFiles(files);
+
+        List<HTMLDocument> parsedDocuments = new ArrayList<>();
+        for (Path htmlFile : prunedFiles) {
+            FileReader html = new FileReader(htmlFile.toString());
+            BufferedReader buffer = new BufferedReader(html);
+
+            HTMLDocumentBuilder docBuilder = new HTMLDocumentBuilder();
+                docBuilder.withContentFrom(buffer);
+                docBuilder.withBaseDirectory(this.path);  // needed for path normalization
+                docBuilder.withBaseURLs(this.urls);  // needed for internal/external classification
+                docBuilder.extractContent();  // exceptions can be thrown by this function
+            HTMLDocument HTMLDoc = docBuilder.build();
+
+            parsedDocuments.add(HTMLDoc);
         }
-        return new Website();
+
+        Website site = new Website(this.path, this.urls, parsedDocuments);
+
+        return site;
     }
 
     /** Walk Directory function

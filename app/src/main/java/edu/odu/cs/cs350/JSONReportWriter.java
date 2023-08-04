@@ -23,14 +23,28 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* JSON Report Writer class
+*/
+
 public class JSONReportWriter implements ReportWriter {
     private Website website;
     private String baseFileName;
+
+    /**
+    * Sets Source Data class
+    @param website
+    */
 
     @Override
     public void setSourceData(Website website) {
         this.website = website;
     }
+
+    /**
+    * Sets Base File Name function
+    @param baseFileName
+    */
 
     @Override
     public void setBaseName(String baseFileName) {
@@ -38,15 +52,29 @@ public class JSONReportWriter implements ReportWriter {
 
     }
 
+    /** 
+    *Gets website function
+    @return website
+    */
+
     @Override
     public Website getWebsite() {
         return website;
     }
 
+    /**
+    * Get Base File Name function
+    @return baseFileName
+    */
+
     @Override
     public String getBaseFileName() {
         return baseFileName;
     }
+
+    /**
+    * Write function
+    */
 
     @Override
     public void write() {

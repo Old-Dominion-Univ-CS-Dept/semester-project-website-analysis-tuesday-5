@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 
+/** 
+* TextReportWriter class
+*/
+
 public class TextReportWriter implements ReportWriter {
     private Website website;
     private String baseFileName;
@@ -21,6 +25,11 @@ public class TextReportWriter implements ReportWriter {
         this.website = website;
     }
 public class TextReportWriter {
+
+    /** 
+    * Write Text Report function
+    @param fileName
+    */
     
     public static void writeReport(String fileName){
         try {
@@ -35,11 +44,20 @@ public class TextReportWriter {
 
     }
     }
+
+    /**
+    * Sets base name function
+    @param baseFileName
+    */
+    
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
     }
-
+    
+/**
+* Write function
+*/
     
     @Override
     public void write() {
@@ -75,6 +93,11 @@ public class TextReportWriter {
         }
     }
 
+    /**
+    * Calculates Page Size function
+    @param page
+    */
+
     private double calculatePageSize(HTMLDocument page) {
         double pageSize = page.getFileSize();
 
@@ -97,13 +120,22 @@ public class TextReportWriter {
 
         return pageSize;
     }
-
+/**
+* Sets Base Name function
+@param baseFileName
+*/
+    
 }
 @Override
 public void setBaseName(String baseFileName) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'setBaseName'");
 }
+
+    /**
+    * Write function
+    */
+    
 @Override
 public void write() {
     // TODO Auto-generated method stub

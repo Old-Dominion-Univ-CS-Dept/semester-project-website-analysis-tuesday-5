@@ -20,8 +20,9 @@ public class WebsiteBuilderTest {
 
     @Test
 
-     /** Tests Walk Directory function
- * @throws IOException
+ /** 
+* Tests Walk Directory function
+@throws IOException
  */
     
     public void testWalkDirectory() throws IOException {
@@ -47,8 +48,9 @@ public class WebsiteBuilderTest {
     }
 
     @Test
-     /** Tests Remove Non HTML Files function
- * @throws IOException
+  /** 
+  * Tests Remove Non HTML Files function
+  @throws IOException
  */
     public void testRemoveNonHTMLFiles() throws IOException {
         // Create a list of test files with various extensions

@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350;
 
-<<<<<<< HEAD
 import edu.odu.cs.cs350.HTMLDocument;
 import edu.odu.cs.cs350.Website;
 import edu.odu.cs.cs350.enums.Locality;
@@ -15,27 +14,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-=======
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
-
-
-public class ExcelReportWriter<Row> {
-    private Website sourceData;
-    private String baseName;
->>>>>>> b9e28fa88b0b03e389c43c55e466b7c37ad16a41
 
 public class ExcelReportWriter implements ReportWriter {
     private Website website;
     private String baseFileName;
     @Override
     public void setSourceData(Website website) {
-<<<<<<< HEAD
         this.website = website;
     }
+
+    /**
+    * Sets base file name function
+    @param baseFileName
+    */
 
     @Override
     public void setBaseName(String baseFileName) {
@@ -43,15 +34,29 @@ public class ExcelReportWriter implements ReportWriter {
 
     }
 
+    /**
+    * Gets website and website parameters (I.E Path and URL) function
+    @return website
+    */
+
     @Override
     public Website getWebsite() {
         return website;
     }
 
+    /**
+    * Gets Base file name function
+    @return baseFileName
+    */
+
     @Override
     public String getBaseFileName() {
         return baseFileName;
     }
+
+    /**
+    * write function
+    */
 
     @Override
     public void write() {
@@ -95,6 +100,13 @@ public class ExcelReportWriter implements ReportWriter {
         }
     }
 
+    /**
+    * Get resource count function
+    @param resources
+    @param kind
+    @return count
+    */
+
     private int getResourceCount(List<Resource> resources, ResourceKind kind) {
         int count = 0;
         for (Resource resource : resources) {
@@ -104,6 +116,12 @@ public class ExcelReportWriter implements ReportWriter {
         }
         return count;
     }
+
+    /**
+    @param resources
+    @param locality
+    @return count
+    */
 
     private int getLinkCount(List<Resource> resources, Locality locality) {
         int count = 0;
@@ -115,53 +133,3 @@ public class ExcelReportWriter implements ReportWriter {
         return count;
     }
 }
-=======
-        this.sourceData = website;
-        
-    }
-    public void setBaseName(String baseFilename) {
-        this.baseName = baseFilename; 
-    }
-
-    public void write() {
-        if (sourceData == null || baseName == null) {
-            System.err.println("Error: Source data or base filename not set.");
-            return;
-        }
-
-        if (baseName == null || baseName.isEmpty()) {
-            System.err.println("Base filename not provided. Please set the source data using setSourceData() method.");
-            return;
-        }
-
-try (FileOutputStream outputStream = new FileOutputStream(baseName + ".xlsx")) {
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Website Data");
-
-            List<Page> pages = sourceData.getPages();
-
-            int rowIdx = 0;
-
-            // Writing headers for the Excel report
-            Row headerRow = sheet.createRow(rowIdx++);
-            headerRow.createCell(0).setCellValue("Page Title");
-            headerRow.createCell(1).setCellValue("Page URL");
-
-            // Writing data for each page
-            for (Page page : pages) {
-                Row dataRow = sheet.createRow(rowIdx++);
-                dataRow.createCell(0).setCellValue(page.getTitle());
-                dataRow.createCell(1).setCellValue(page.getUrl());
-            }
-
-            workbook.write(outputStream);
-            workbook.close();
-
-            System.out.println("Excel report generated successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error writing Excel report: " + e.getMessage());
-        }
-    }
-}
->>>>>>> b9e28fa88b0b03e389c43c55e466b7c37ad16a41

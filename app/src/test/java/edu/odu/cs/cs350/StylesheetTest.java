@@ -13,7 +13,16 @@ import org.junit.Test;
 
 import edu.odu.cs.cs350.enums.ResourceKind;
 
-public class StyleSheetTest {
+/**
+*Stylesheet Test Class
+*/
+
+public class StylesheetTest {
+
+    /**
+    * Tests ability to create and properly display stylesheets
+    */
+    
     @Test public void StyleSheet() {
         StyleSheet StyleSheetTest = new StyleSheet();
         assertEquals(ResourceKind.STYLESHEET, StyleSheetTest.getKind());
@@ -21,6 +30,11 @@ public class StyleSheetTest {
         StyleSheetTest.setContent(testElem);
         assertEquals("h1 {color: blue;}",StyleSheetTest.getContent().nodeName());
     }
+
+    /**
+    * Tests ability to extract stylesheets and stylesheet data
+    @throws IOException
+    */
 
     @Test public void extractStyleSheets() throws IOException {
         Path pathToTestFile = Paths.get("src/test/java/edu/odu/cs/cs350/baseDir/site/testSite.html");

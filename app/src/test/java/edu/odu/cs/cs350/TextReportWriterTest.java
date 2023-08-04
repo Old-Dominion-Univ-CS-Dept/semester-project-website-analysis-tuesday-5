@@ -13,7 +13,16 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+*Text Report Writer test class
+*/
+
 public class TextReportWriterTest {
+    
+    /**
+    * Tests report writer's ability to write and create data
+    */
+    
     @Test
     public void testWrite() {
         // Mock the necessary data
@@ -33,6 +42,11 @@ public class TextReportWriterTest {
         // Perform assertions or verify the generated text output as needed
     }
 
+    /**
+    *Create Mock HTML Documents function
+    @return pages
+    */
+
     private List<HTMLDocument> createMockHTMLDocuments() {
         List<HTMLDocument> pages = new ArrayList<>();
 
@@ -45,12 +59,24 @@ public class TextReportWriterTest {
         return pages;
     }
 
+    /**
+    *Create Mock HTML Document function
+    @param fileName
+    @param fileSize
+    @return page
+    */
+
     private HTMLDocument createMockHTMLDocument(String fileName, long fileSize) {
         HTMLDocument page = mock(HTMLDocument.class);
         when(page.getFileName()).thenReturn(String.valueOf(Path.of(fileName)));
         when(page.getFileSize()).thenReturn(fileSize);
         return page;
     }
+
+    /**
+    *Creates other mock files function
+    @return otherFiles
+    */
 
     private List<OtherFile> createMockOtherFiles() {
         List<OtherFile> otherFiles = new ArrayList<>();
@@ -65,6 +91,14 @@ public class TextReportWriterTest {
 
         return otherFiles;
     }
+
+    /**
+    * Create Other mock file function
+    @param fileName
+    @param fileType
+    @param fileSize
+    @return otherFile
+    */
 
     private OtherFile createMockOtherFile(String fileName, FileType fileType, long fileSize) {
         OtherFile otherFile = mock(OtherFile.class);

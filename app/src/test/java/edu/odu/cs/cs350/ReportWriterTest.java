@@ -5,7 +5,15 @@ import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+*Report Writer Test class
+*/
+
 public class ReportWriterTest {
+
+    /**
+    * Tests ability to create an expected json file name
+    */
 
     @Test
     public void testJsonExtension() {
@@ -19,6 +27,10 @@ public class ReportWriterTest {
         assertEquals(expectedFileName, fileName);
     }
 
+    /**
+    * Tests ability to create a proper text extension and date time format
+    */
+
     @Test
     public void testTxtExtension() {
         String extension = "txt";
@@ -30,6 +42,10 @@ public class ReportWriterTest {
 
         assertEquals(expectedFileName, fileName);
     }
+
+    /**
+    * Tests ability to create a proper xlsx extension and date time format
+    */
 
     @Test
     public void testXlsxExtension() {

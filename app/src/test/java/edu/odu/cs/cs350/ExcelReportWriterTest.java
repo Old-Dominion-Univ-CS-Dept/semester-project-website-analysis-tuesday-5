@@ -15,10 +15,16 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+*Excel Report Writer Test Class
+*/
+
 public class ExcelReportWriterTest {
 
     private Website testWebsite;
-
+/**
+*Tests website ability to create an object with test data
+*/
     @Before
     public void setUp() {
         // Create a Website object with some test data
@@ -27,6 +33,10 @@ public class ExcelReportWriterTest {
         testWebsite.addPage(new Page("Page 1", "https://www.example.com/page1"));
         testWebsite.addPage(new Page("Page 2", "https://www.example.com/page2"));
     }
+
+    /**
+    * Tests the Excel Report writer's ability to write reports with correct data
+    */
 
     @Test
     public void testWriteExcelReport() {

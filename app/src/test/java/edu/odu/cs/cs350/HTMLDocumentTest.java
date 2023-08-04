@@ -12,8 +12,15 @@ import org.junit.Test;
 
 import edu.odu.cs.cs350.enums.Locality;
 
+/**
+*HTML Document test class
+*/
 
 public class HTMLDocumentTest {
+
+    /**
+    * Test HTML Document function's ability to properly display built documents
+    */
 
     @Test 
     public void testHTMLDocument() {
@@ -33,6 +40,11 @@ public class HTMLDocumentTest {
         assertEquals(testElement,constructorHTMLDocument.getAnchors().get(0).getContent());
 
     }
+
+    /**
+    *Tests anchor categorization
+    @throws IOException
+    */
 
     @Test
     public void testAnchorCategorization() throws IOException {

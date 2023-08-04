@@ -6,9 +6,6 @@ import edu.odu.cs.cs350.enums.ResourceKind;
 
 public class StyleSheet extends Resource {
 
-<<<<<<< HEAD
-}
-=======
     private Element content;
     private ResourceKind kind;
 
@@ -75,4 +72,3 @@ public class StyleSheet extends Resource {
         this.content = content;
     }
 }
->>>>>>> b9e28fa88b0b03e389c43c55e466b7c37ad16a41

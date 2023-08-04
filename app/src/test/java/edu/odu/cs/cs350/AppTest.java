@@ -4,7 +4,9 @@
 package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
-
+/**
+* Tests App
+*/
 class AppTest {
     @Test void App() {
         fail("Not yet implemented");
