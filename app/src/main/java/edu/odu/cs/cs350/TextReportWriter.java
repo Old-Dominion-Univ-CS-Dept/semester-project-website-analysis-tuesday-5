@@ -1,19 +1,17 @@
 package edu.odu.cs.cs350;
 
 import edu.odu.cs.cs350.HTMLDocument;
+import edu.odu.cs.cs350.OtherFile;
 import edu.odu.cs.cs350.Website;
-import edu.odu.cs.cs350.Resource;
+import edu.odu.cs.cs350.enums.FileType;
 import edu.odu.cs.cs350.Image;
+import edu.odu.cs.cs350.Resource;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
-
-/** 
-* TextReportWriter class
-*/
 
 public class TextReportWriter implements ReportWriter {
     private Website website;
@@ -24,41 +22,26 @@ public class TextReportWriter implements ReportWriter {
     public void setSourceData(Website website) {
         this.website = website;
     }
-public class TextReportWriter {
 
-    /** 
-    * Write Text Report function
-    @param fileName
-    */
-    
-    public static void writeReport(String fileName){
-        try {
-            BufferedWriter Writer = new BufferedWriter(new FileWriter(fileName));
-
-            Writer.write("Text report content.");
-
-            Writer.close();
-            System.out.println("Report written successfully.");
-    }   catch (IOException e) {
-            System.err.println("Error writing the report: " + e.getMessage());
-
-    }
-    }
-
-    /**
-    * Sets base name function
-    @param baseFileName
-    */
-    
     @Override
     public void setBaseName(String baseFileName) {
         this.baseFileName = baseFileName;
     }
-    
-/**
-* Write function
-*/
-    
+
+    @Override
+    public Website getWebsite() {
+        return website;
+    }
+
+    @Override
+    public String getBaseFileName() {
+        return baseFileName;
+    }
+
+    public void setBaseFileName(String baseFileName) {
+        this.baseFileName = baseFileName;
+    }
+
     @Override
     public void write() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(baseFileName + "-summary.txt"))) {
@@ -93,11 +76,6 @@ public class TextReportWriter {
         }
     }
 
-    /**
-    * Calculates Page Size function
-    @param page
-    */
-
     private double calculatePageSize(HTMLDocument page) {
         double pageSize = page.getFileSize();
 
@@ -120,31 +98,6 @@ public class TextReportWriter {
 
         return pageSize;
     }
-/**
-* Sets Base Name function
-@param baseFileName
-*/
-    
-}
-@Override
-public void setBaseName(String baseFileName) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setBaseName'");
-}
-
-    /**
-    * Write function
-    */
-    
-@Override
-public void write() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'write'");
-}
 
 }
-    
-
-
-
 
